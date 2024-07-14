@@ -1,0 +1,4 @@
+node.js : "postgresql://postgres.mhafuomuijgzqijwoghr:[YOUR-PASSWORD]@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres"
+
+supabase project name:BBMS_V_20
+supabase project PW  : BBMS_V_20@2024
