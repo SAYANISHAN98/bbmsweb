@@ -1,0 +1,19 @@
+step1:
+npm install -D tailwindcss postcss autoprefixer   //To add Tailwind to your project
+
+step 2:
+npx tailwindcss init -p  //Then run the following command to initialize tailwind
+
+ step3:
+delete the tailwind.config.js and add my tailwind.config.js file
+
+step4:
+Add the Tailwind directives to intex.css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+step5:
+Add the background color to intex.css inside the body tag
+ background-color: #f1f1f1;
