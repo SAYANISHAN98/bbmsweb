@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Complete() {
+  const navigate = useNavigate();
   return (
     <div className='container md:mt-10'>
       <div className='flex flex-col items-center'>
@@ -8,10 +11,10 @@ export default function Complete() {
         <div className='mt-3 text-xl font-semibold text-gray-500'>
           New User Added Succussfully 
         </div>
-        <a className='mt-10' href='/Layout/User'>
-        <button className='h-10 px-5 text-red-600 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-red-500 hover:text-red-100'>Close</button>
+  
+        <button onClick={()=>navigate('/user')} className='h-10 px-5 text-red-600 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-red-500 hover:text-red-100'>Close</button>
         
-        </a>
+       
         
       </div>
     </div>

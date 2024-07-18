@@ -18,14 +18,15 @@ function App() {
     
       <Routes>
       <Route path="/ViewDetail" element={<ViewDetail />}/>
-      <Route path="/" element={<Add />}/>
+      <Route path="/Add" element={<Add />}/>
       <Route path="/Update" element={<Update />}/>
+      <Route path="/" element={<Home />}/>
           <Route path="/Login" element={<Login />}/>
-          <Route path="/Layout" element={<Layout/>}>
-            <Route path="User" element={<User />}/>
+    
+            <Route path="/user" element={<User />}/>
             <Route path="Stock" element={<Stock />}/>
 
-          </Route>
+          
           
         
       </Routes>

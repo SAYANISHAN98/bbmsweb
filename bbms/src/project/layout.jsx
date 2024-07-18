@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet,Link } from 'react-router-dom';
 import { FaBars, FaSearch, FaUserCircle, FaHome, FaUsers, FaList, FaDatabase, FaChartBar, FaCog, FaUser, FaSignOutAlt, FaTint} from 'react-icons/fa';
 
-export default function Layout() {
+export default function Layout({children}) {
   const [isRequestsOpen, setIsRequestsOpen] = useState(false);
 
   const handleRequestsClick = () => {
@@ -10,7 +10,7 @@ export default function Layout() {
   };
 
   return (
-    <div className='fixed flex flex-col w-screen h-screen overflow-hidden'>
+    <div className=' flex flex-col w-screen h-screen '>
       {/* Top navigation bar */}
       <div className='flex justify-between w-full px-4 py-3 bg-red-600'>
         <div className='flex items-center text-2xl font-bold text-white'>
@@ -65,7 +65,7 @@ export default function Layout() {
               <hr />
               <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
                 <FaUsers className='mr-2' />
-                <a href='' className='px-3'>Users</a>
+                <Link to='/user'>Users</Link>
               </li>
               <hr />
               <li
@@ -111,7 +111,7 @@ export default function Layout() {
         </div>
 
         <div className='flex-1 w-full p-4'>
-          <Outlet />
+          {children}
         </div>
       </div>
     </div>
