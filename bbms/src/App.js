@@ -7,6 +7,7 @@ import Home from "./project/Home";
 import Add from "./project/Form/Add/Add";
 import Update from "./project/Form/update/Update";
 import ViewDetail from "./project/ViewDetail";
+import Notfound from "./Notfound";
 
 
 function App() {
@@ -17,14 +18,17 @@ function App() {
      <BrowserRouter>
     
       <Routes>
+      <Route path="/" element={<Layout />}>
       <Route path="/ViewDetail" element={<ViewDetail />}/>
       <Route path="/Add" element={<Add />}/>
       <Route path="/Update" element={<Update />}/>
-      <Route path="/" element={<Home />}/>
+      <Route index element={<Home />}/>
           <Route path="/Login" element={<Login />}/>
     
             <Route path="/user" element={<User />}/>
             <Route path="Stock" element={<Stock />}/>
+            <Route path='*' element={<Notfound/>}/>
+            </Route>
 
           
           
