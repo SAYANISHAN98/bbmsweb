@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+
 import { Outlet,Link, NavLink } from 'react-router-dom';
+
+import { Outlet,Link } from 'react-router-dom';
+
 import { FaBars, FaSearch, FaUserCircle, FaHome, FaUsers, FaList, FaDatabase, FaChartBar, FaCog, FaUser, FaSignOutAlt, FaTint} from 'react-icons/fa';
 
-export default function Layout() {
+export default function Layout({children}) {
   const [isRequestsOpen, setIsRequestsOpen] = useState(false);
 
   const handleRequestsClick = () => {
@@ -111,7 +115,10 @@ export default function Layout() {
         </div>
 
         <div className='flex-1 w-full p-4'>
+
           <Outlet/>
+          {children}
+
         </div>
       </div>
     </div>
