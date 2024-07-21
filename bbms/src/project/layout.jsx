@@ -19,7 +19,7 @@ export default function Layout({children}) {
       <div className='flex justify-between w-full px-4 py-3 bg-red-600'>
         <div className='flex items-center text-2xl font-bold text-white'>
         <FaTint className='mr-2' />
-          Blood Stock Management
+          Blood Bank Management Systems
         </div>
 
         <div className='flex items-center gap-x-5'>
