@@ -4,14 +4,14 @@ import PrivateRoute from "./routes/privateRoute";
 import PublicRoute from "./routes/publicRoute";
 
 import Login from "./project/login";
-import Layout from "./layout";
+import Layout from "./project/layout";
 import User from "./project/user";
 import Stock from "./project/stock";
 import Home from "./project/Home";
 import Add from "./project/Form/Add/Add";
 import Update from "./project/Form/update/Update";
 import ViewDetail from "./project/ViewDetail";
-import Notfound from "./Notfound";
+import Notfound from "./project/Notfound";
 
 function App() {
   return (
@@ -43,5 +43,3 @@ function App() {
 }
 
 export default App;
-
-// thusha
