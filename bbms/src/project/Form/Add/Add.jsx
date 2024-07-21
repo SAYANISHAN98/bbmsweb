@@ -5,6 +5,7 @@ import StepperControl from "./StepperControl";
 import Personal from "./content/Personal";
 import Health from "./content/Health";
 import Complete from "./content/Complete";
+import Layout from '../../layout';
 
 
 export default function Add() {
@@ -37,6 +38,7 @@ export default function Add() {
   }
   
   return (
+   
 
     <div className='w-1/2 pb-2 mx-auto bg-white shadow-xl rounded-2xl'>
       <div className='container mt-5 horizontal'>
@@ -69,6 +71,7 @@ export default function Add() {
       }
 
   </div>
+ 
 
   )
 }
