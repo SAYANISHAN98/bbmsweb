@@ -1,10 +1,11 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import {  FaSearch, FaUserCircle,FaCog, FaUser, FaSignOutAlt, FaTint} from 'react-icons/fa';
 
 
 export default function Navigation() {
   return (
-    <div className='flex justify-between w-full px-4 py-3 bg-red-600'>
+    <div className='flex justify-between w-full px-4 py-1 bg-red-600'>
     <div className='flex items-center text-2xl font-bold text-white'>
     <FaTint className='mr-2' />
       Blood Stock Management
@@ -23,20 +24,27 @@ export default function Navigation() {
           <FaUserCircle className='w-10 h-10 mt-1' />
           <div className='absolute right-0 z-10 hidden w-40 bg-white rounded-lg shadow group-focus:block top-full'>
             <ul className='px-3 py-2 text-base font-bold text-gray-600'>
-              <li className='flex items-center mb-3'>
+            <NavLink to='/stockanalys' >
+            <li className='flex items-center mb-3'>
                 <FaUser className='mr-2' />
-                <a href=''>Profile</a>
+                <div>Profile</div>
               </li>
+            </NavLink>
+              
               <hr className='bg-gray-600' />
-              <li className='flex items-center mt-2 mb-3'>
-                <FaCog className='mr-2' />
-                <a href=''>Settings</a>
-              </li>
+              <NavLink>
+                <li className='flex items-center mt-2 mb-3'>
+                  <FaCog className='mr-2' />
+                  <div>Settings</div>
+                </li>
+              </NavLink>
+             
               <hr className='bg-gray-600' />
-              <li className='flex items-center mt-1 mb-3'>
+              <NavLink>
+                <li className='flex items-center mt-1 mb-3'>
                 <FaSignOutAlt className='mr-2' />
-                <a href=''>Logout</a>
-              </li>
+                <div>Logout</div>
+              </li></NavLink>
             </ul>
           </div>
         </button>
