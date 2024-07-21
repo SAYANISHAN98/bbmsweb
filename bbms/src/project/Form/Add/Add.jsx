@@ -40,6 +40,7 @@ export default function Add() {
   return (
     <Layout>
 
+
     <div className='w-1/2 pb-2 mx-auto bg-white shadow-xl rounded-2xl'>
       <div className='container mt-5 horizontal'>
       <Stepper steps={steps}

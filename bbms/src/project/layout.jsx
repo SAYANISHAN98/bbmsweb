@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+
+import { Outlet,Link, NavLink } from 'react-router-dom';
+
 import { Outlet,Link } from 'react-router-dom';
+
 import { FaBars, FaSearch, FaUserCircle, FaHome, FaUsers, FaList, FaDatabase, FaChartBar, FaCog, FaUser, FaSignOutAlt, FaTint} from 'react-icons/fa';
 
 export default function Layout({children}) {
@@ -60,7 +64,7 @@ export default function Layout({children}) {
             <ul className='font-bold text-gray-600'>
               <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
                 <FaHome className='mr-2' />
-                <a href='' className='px-3'>Home</a>
+                <NavLink to='/'>Home</NavLink>
               </li>
               <hr />
               <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
@@ -99,7 +103,7 @@ export default function Layout({children}) {
               <hr />
               <li className='flex items-center px-2 py-2 mb-2 rounded hover:shadow hover:bg-red-700 hover:text-white'>
                 <FaChartBar className='mr-2' />
-                <a href='' className='px-3'>Stock Analysis</a>
+                <Link to='/stockanalysis'>Stock Analysis</Link>
               </li>
             </ul>
           </div>
@@ -111,7 +115,10 @@ export default function Layout({children}) {
         </div>
 
         <div className='flex-1 w-full p-4'>
+
+          <Outlet/>
           {children}
+
         </div>
       </div>
     </div>
