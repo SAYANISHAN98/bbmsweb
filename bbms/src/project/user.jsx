@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Layout from './layout';
+import Layout from '../layout';
 
 export default function User() {
   const [users, setUsers] = useState([]);
