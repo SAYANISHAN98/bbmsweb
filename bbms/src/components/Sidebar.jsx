@@ -12,7 +12,7 @@ export default function Sidebar() {
   return (
    
    
-    <div className='flex flex-col justify-between h-full bg-white w-60'>
+    <div className='flex flex-col justify-between h-full bg-white w-58'>
     <div>
         <hr />
         <ul className='font-bold text-gray-600'>
@@ -76,7 +76,7 @@ export default function Sidebar() {
         
         <hr />
 
-        <NavLink to='/Stock' >
+        <NavLink to='/stockanalys' >
         <li className='flex items-center px-2 py-2 mb-2 rounded hover:shadow hover:bg-red-700 hover:text-white'>
             <FaChartBar className='mr-2' />
             <div className='px-3'>Stock Analysis</div>
