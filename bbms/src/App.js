@@ -11,7 +11,7 @@ import Home from "./project/Home";
 import Add from "./project/Form/Add/Add";
 import Update from "./project/Form/update/Update";
 import ViewDetail from "./project/ViewDetail";
-import Notfound from "./Notfound";
+import Notfound from "./project/Notfound";
 
 function App() {
   return (
@@ -61,5 +61,3 @@ function App() {
 }
 
 export default App;
-
-// thusha

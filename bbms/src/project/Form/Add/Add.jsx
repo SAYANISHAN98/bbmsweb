@@ -5,7 +5,7 @@ import StepperControl from "./StepperControl";
 import Personal from "./content/Personal";
 import Health from "./content/Health";
 import Complete from "./content/Complete";
-import Layout from '../../layout';
+import Layout from '../../../layout';
 
 
 export default function Add() {
