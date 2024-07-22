@@ -4,18 +4,17 @@ import PrivateRoute from "./routes/privateRoute";
 import PublicRoute from "./routes/publicRoute";
 
 import Login from "./project/login";
-import Layout from "./project/layout";
+import Layout from "./layout";
 import User from "./project/user";
 import Stock from "./project/stock";
 import Home from "./project/Home";
 import Add from "./project/Form/Add/Add";
 import Update from "./project/Form/update/Update";
 import ViewDetail from "./project/ViewDetail";
-import Notfound from "./project/Notfound";
+import Notfound from "./Notfound";
 
 function App() {
   return (
-
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -34,23 +33,6 @@ function App() {
           <Route path="/login" element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
           </Route>
-
-  
-  
-   
-     <BrowserRouter>
-    
-      <Routes>
-      <Route path="/ViewDetail" element={<ViewDetail />}/>
-      <Route path="/Add" element={<Add />}/>
-      <Route path="/Update" element={<Update />}/>
-      <Route path="/" element={<Home />}/>
-          <Route path="/Login" element={<Login />}/>
-    
-            <Route path="/user" element={<User />}/>
-            <Route path="Stock" element={<Stock />}/>
-
-          
         
         </Routes>
        
@@ -61,3 +43,5 @@ function App() {
 }
 
 export default App;
+
+// thusha
