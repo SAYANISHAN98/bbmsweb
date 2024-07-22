@@ -7,7 +7,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const signInWithEmail = async () => {
+  const signInWithEmail = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError('');
 
@@ -34,6 +35,7 @@ export default function Login() {
             <div className="flex items-center justify-center mb-8 text-4xl font-semibold">
               <h1>Login</h1>
             </div>
+            <form onSubmit={signInWithEmail}>
             <div>
               <label className="text-lg font-medium">Email</label>
               <input
@@ -57,7 +59,7 @@ export default function Login() {
               />
             </div>
             {error && (
-              <div className="text-red-500 mt-2">{error}</div>
+              <div className="mt-2 text-red-500">{error}</div>
             )}
             <div className="flex justify-center mt-4 item-center">
               <div>
@@ -66,14 +68,15 @@ export default function Login() {
             </div>
             <div className="flex flex-col mt-4 gap-y-4">
               <button
-                onClick={signInWithEmail}
-                type="button"
+                
+                type="submit"
                 className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 rounded-xl text-lg"
                 disabled={loading}
               >
                 {loading ? "Signing in..." : "Sign in"}
               </button>
             </div>
+            </form>
           </div>
         </div>
       </div>

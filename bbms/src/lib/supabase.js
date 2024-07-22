@@ -30,9 +30,9 @@ const LocalStorageAdapter = {
 };
 
 // Replace these with your actual Supabase URL and Anon Key
-const supabaseUrl = "https://jjnhevzcwuocsxlqbjoc.supabase.co";
+const supabaseUrl = "https://mhafuomuijgzqijwoghr.supabase.co";
 const supabaseAnonKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impqbmhldnpjd3VvY3N4bHFiam9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjAwODcyMDEsImV4cCI6MjAzNTY2MzIwMX0.BAWrB9HacmcsmiTf2oygl2UG89JX3WmiUykZWN8VEvc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oYWZ1b211aWpnenFpandvZ2hyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjAzMzEwMjMsImV4cCI6MjAzNTkwNzAyM30.aKee0-O5Fhb4Jsw408ELcqQRc9pORCAtn3zas2JDQdo";
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
