@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
 
-// Define the adapter for secure storage
+
 const LocalStorageAdapter = {
   getItem: async (key) => {
     try {
