@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Outlet,NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaBars, FaHome, FaUsers, FaList, FaDatabase, FaChartBar, FaCog} from 'react-icons/fa';
 
 
@@ -67,7 +67,7 @@ export default function Sidebar() {
         )}
         <hr />
 
-        <NavLink to=''>
+        <NavLink to='/Stock'>
         <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
             <FaDatabase className='mr-2' />
             <div className='px-3'>Blood Stockt</div>
@@ -76,7 +76,7 @@ export default function Sidebar() {
         
         <hr />
 
-        <NavLink to='/Stock' >
+        <NavLink to='/stockanalys' >
         <li className='flex items-center px-2 py-2 mb-2 rounded hover:shadow hover:bg-red-700 hover:text-white'>
             <FaChartBar className='mr-2' />
             <div className='px-3'>Stock Analysis</div>

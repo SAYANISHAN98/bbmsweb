@@ -1,5 +1,4 @@
-import React from 'react';
-import Layout from '../layout';
+import React from 'react'
 
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
 
         </div>
  
-
    
    
   )
