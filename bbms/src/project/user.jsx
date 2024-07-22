@@ -22,7 +22,8 @@ export default function User() {
 
   return (
     
-    // <Layout>
+     <Layout>
+
     <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
       <div className='w-4/5'>
         <div className="flex items-center justify-center py-8">
@@ -73,6 +74,7 @@ export default function User() {
         </div>
       </div>
     </div>
-    // </Layout>
+
+    </Layout>
   );
 }
