@@ -70,7 +70,7 @@ export default function Sidebar() {
         <NavLink to='/Stock'>
         <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
             <FaDatabase className='mr-2' />
-            <div className='px-3'>Blood Stockt</div>
+            <div className='px-3'>Blood Stock</div>
         </li>
         </NavLink>
         
