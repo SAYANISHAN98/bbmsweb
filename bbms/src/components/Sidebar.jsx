@@ -76,7 +76,7 @@ export default function Sidebar() {
         
         <hr />
 
-        <NavLink to='/stockanalys' >
+        <NavLink to='/Stock' >
         <li className='flex items-center px-2 py-2 mb-2 rounded hover:shadow hover:bg-red-700 hover:text-white'>
             <FaChartBar className='mr-2' />
             <div className='px-3'>Stock Analysis</div>
