@@ -33,6 +33,26 @@ function App() {
           <Route path="/login" element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
           </Route>
+
+          </Routes>
+          </BrowserRouter>
+  
+  
+   
+     <BrowserRouter>
+    
+      <Routes>
+      <Route path="/ViewDetail" element={<ViewDetail />}/>
+      <Route path="/Add" element={<Add />}/>
+      <Route path="/Update" element={<Update />}/>
+      <Route path="/" element={<Home />}/>
+          <Route path="/Login" element={<Login />}/>
+    
+            <Route path="/user" element={<User />}/>
+            <Route path="Stock" element={<Stock />}/>
+
+          
+
         
         </Routes>
        
