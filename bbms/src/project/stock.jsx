@@ -32,7 +32,7 @@ export default function Stock() {
     </div>
   );
 */}
-  return (
+ /* return (
     <div className="flex flex-col items-center min-h-screen py-10 bg-red-50">
       <h1 className="mb-8 text-4xl font-bold text-red-700">Blood Stock</h1>
       <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 md:grid-cols-2 lg:grid-cols-4">
@@ -127,6 +127,6 @@ export default function Stock() {
         
       </div>
     </div>
-  );
+  );*/
 };
 
