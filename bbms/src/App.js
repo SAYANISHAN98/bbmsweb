@@ -34,7 +34,8 @@ function App() {
           <Route path="/login" element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
           </Route>
-
+          </Routes>
+          </BrowserRouter>
   
   
    

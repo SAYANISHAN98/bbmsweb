@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../layout';
 
 
 export default function Home() {
@@ -12,9 +13,7 @@ export default function Home() {
         </div>
  
 
-   <Layout>
-   <img src={img} alt="logo" width="100" height="100" />
-   </Layout>
+  
 
    
    
