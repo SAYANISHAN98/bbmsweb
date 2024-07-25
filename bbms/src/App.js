@@ -6,7 +6,7 @@ import PublicRoute from './routes/publicRoute';
 
 import Login from './project/login';
 import Layout from './layout';
-import User from './project/user';
+import User from './project/Doner';
 import Stock from './project/stock';
 import Home from './project/Home';
 import Add from './project/Form/Add/Add';
@@ -28,7 +28,7 @@ function App() {
                 <Route path="/Add" element={<Add />} />
                 <Route path="/Update" element={<Update />} />
                 <Route index element={<Home />} />
-                <Route path="/user" element={<User />} />
+                <Route path="/Doner" element={<User />} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="*" element={<Notfound />} />
               </Route>

@@ -5,63 +5,167 @@ export default function Health() {
   const { userData, setUserData } = useContext(StepperContext);
 
   const handleChange = (e) => {
-    const { name, checked } = e.target;
-    const currentDiseases = userData["Diseases"] || [];
-
-    if (checked) {
-      setUserData({ ...userData, Diseases: [...currentDiseases, name] });
-    } else {
-      setUserData({ ...userData, Diseases: currentDiseases.filter(disease => disease !== name) });
-    }
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
   };
 
   return (
-    <div className='flex flex-col'>
-      <div className='flex-1 w-full mx-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-          Blood Type :
+    <div className='flex flex-col space-y-4'>
+      <div className='flex flex-1 w-full mx-2 space-x-4'>
+        <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Blood Type:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <select
+              name='Btype'
+              value={userData["Btype"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            >
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
         </div>
-        <div className='flex my-2 bg-white border border-gray-200 rounded'>
-          <select
-            name='Btype'
-            value={userData["Btype"] || ""}
-            onChange={handleChange}
-            className='w-full p-1 px-2 text-gray-800 outline-none'
-          >
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>
+
+        <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Last Donation Date:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='date'
+              onChange={handleChange}
+              value={userData["lastdonationdate"] || ""}
+              name='lastdonationdate'
+              className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+            />
+          </div>
         </div>
       </div>
 
-      <div className='flex-1 w-full mx-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-          Last Donation Date:
+      <div className='flex flex-1 w-full mx-2 space-x-4'>
+        <div className='w-1/3'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            BP Type:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='text'
+              name='BPtype'
+              value={userData["BPtype"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            />
+          </div>
         </div>
-        <div className='flex my-2 bg-white border border-gray-200 rounded'>
+
+        <div className='w-1/3'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Sugar Type:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='text'
+              name='Sugertype'
+              value={userData["Sugertype"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            />
+          </div>
+        </div>
+
+        <div className='w-1/3'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            HP Type:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='text'
+              name='HPtype'
+              value={userData["HPtype"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className='flex-1 w-1/3 mx-2'>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+          Bottle ID:
+        </div>
+        <div className='flex bg-white border border-gray-200 rounded'>
           <input
-            type='date'
+            type='text'
+            name='BottleID'
+            value={userData["BottleID"] || ""}
             onChange={handleChange}
-            value={userData["lastdonationdate"] || ""}
-            name='lastdonationdate'
-            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+            className='w-full p-1 px-2 text-gray-800 outline-none'
           />
         </div>
       </div>
 
-     
+      <div className='flex flex-1 w-full mx-2 space-x-4'>
+        <div className='w-1/3'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Number of Bottles:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='number'
+              min='0'
+              name='NoOfBottles'
+              value={userData["NoOfBottles"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            />
+          </div>
+        </div>
 
-      <div className='flex-1 w-full mx-2'>
+        <div className='w-1/3'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Date:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='date'
+              name='Date'
+              value={userData["Date"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+            />
+          </div>
+        </div>
+
+        <div className='w-1/3'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Location:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='text'
+              name='Location'
+              value={userData["Location"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            />
+          </div>
+        </div>
+      </div>
+
+    { /* <div className='flex-1 w-full mx-2'>
         <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
           Health History:
         </div>
-        <div className='flex my-2 bg-white border border-gray-200 rounded'>
+        <div className='flex bg-white border border-gray-200 rounded'>
           <textarea
             onChange={handleChange}
             value={userData["Hhitory"] || ""}
@@ -70,25 +174,53 @@ export default function Health() {
             className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
           />
         </div>
-      </div>
+      </div> */}
 
-      <div className='flex-1 w-full mx-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-          Diseases:
+      <div className='flex flex-1 w-full mx-2 space-x-4'>
+        <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Diseases:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <select
+              name='Diseases'
+              value={userData["Diseases"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            >
+              <option value="">Select a disease</option>
+              <option value="Heart Disease">Heart Disease</option>
+              <option value="Diabetes">Diabetes</option>
+              <option value="Fits">Fits</option>
+              <option value="Strokes">Strokes</option>
+              <option value="Asthma">Asthma</option>
+              <option value="Liver Diseases">Liver Diseases</option>
+              <option value="Kidney Diseases">Kidney Diseases</option>
+              <option value="Blood Disorders">Blood Disorders</option>
+              <option value="Cancer">Cancer</option>
+            </select>
+          </div>
         </div>
-        <div className='grid grid-cols-3 gap-2 p-2 my-2 bg-white border border-gray-200 rounded'>
-          {["Heart Disease", "Diabetes", "Fits", "Strokes", "Asthma", "Liver Diseases", "Kidney Diseases", "Blood Disorders", "Cancer"].map(disease => (
-            <label key={disease} className='flex items-center'>
-              <input
-                type='checkbox'
-                name={disease}
-                checked={userData["Diseases"]?.includes(disease) || false}
-                onChange={handleChange}
-                className='mr-2'
-              />
-              {disease}
-            </label>
-          ))}
+
+        <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Visible Marks:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <select
+              name='VisibleMarks'
+              value={userData["VisibleMarks"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            >
+              <option value="">Select a mark</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
