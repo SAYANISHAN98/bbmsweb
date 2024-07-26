@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../layout';
 
-export default function User() {
+export default function Doner() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

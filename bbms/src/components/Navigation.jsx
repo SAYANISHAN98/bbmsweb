@@ -21,12 +21,12 @@ export default function Navigation() {
       </div>
 
       <div className='flex items-center gap-x-5'>
-        <div className='relative md:w-65'>
+       {/* <div className='relative md:w-65'>
           <span className='relative inset-y-0 left-0 flex items-center pl-2 md:absolute'>
             <button className='p-1 text-white focus:outline-none md:text-black'><FaSearch /></button>
           </span>
           <input type="text" className='hidden w-full px-4 py-1 pl-12 rounded shadow outline-none md:block' />
-        </div>
+        </div>*/}
 
         <div className='relative'>
           <button className='text-white group'>
