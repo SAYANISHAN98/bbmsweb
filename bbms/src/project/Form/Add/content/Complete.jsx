@@ -12,7 +12,7 @@ export default function Complete() {
           New User Added Succussfully 
         </div>
   
-        <button onClick={()=>navigate('/user')} className='h-10 px-5 text-red-600 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-red-500 hover:text-red-100'>Close</button>
+        <button onClick={()=>navigate('/Doner')} className='h-10 px-5 text-red-600 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-red-500 hover:text-red-100'>Close</button>
         
        
         
