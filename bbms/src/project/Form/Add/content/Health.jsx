@@ -54,7 +54,7 @@ export default function Health() {
       <div className='flex flex-1 w-full mx-2 space-x-4'>
         <div className='w-1/3'>
           <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-            BP Type:
+            Blood Pressure:
           </div>
           <div className='flex bg-white border border-gray-200 rounded'>
             <input
@@ -69,7 +69,7 @@ export default function Health() {
 
         <div className='w-1/3'>
           <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-            Sugar Type:
+            Sugar Level:
           </div>
           <div className='flex bg-white border border-gray-200 rounded'>
             <input
@@ -84,7 +84,7 @@ export default function Health() {
 
         <div className='w-1/3'>
           <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-            HP Type:
+            Hemoglobin Level:
           </div>
           <div className='flex bg-white border border-gray-200 rounded'>
             <input
@@ -214,11 +214,11 @@ export default function Health() {
               className='w-full p-1 px-2 text-gray-800 outline-none'
             >
               <option value="">Select a mark</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
+              <option value="A">Tatoos</option>
+              <option value="B">Surgery Marks</option>
+              <option value="C">Wounds</option>
+              <option value="D">Injection Marks</option>
+              <option value="E">Permenant Disabilities</option>
             </select>
           </div>
         </div>
