@@ -98,7 +98,9 @@ export default function Health() {
         </div>
       </div>
 
-      <div className='flex-1 w-1/3 mx-2'>
+      <div className='flex flex-1 w-full mx-2 space-x-4'>
+        <div className='w-1/2'>
+
         <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
           Bottle ID:
         </div>
@@ -110,8 +112,27 @@ export default function Health() {
             onChange={handleChange}
             className='w-full p-1 px-2 text-gray-800 outline-none'
           />
+       
+      </div>
+        </div>
+
+        <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Collected By:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <input
+              type='text'
+              onChange={handleChange}
+              value={userData["collectedby"] || ""}
+              name='collectedby'
+              className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+            />
+          </div>
         </div>
       </div>
+
+
 
       <div className='flex flex-1 w-full mx-2 space-x-4'>
         <div className='w-1/3'>
