@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../layout';
+import { useNavigate } from 'react-router-dom';
 
 export default function Doner() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,9 +49,9 @@ export default function Doner() {
             </thead>
          
             <tbody>
-              {users.map((user, index) => (
-                <tr key={user.id} className='font-semibold tracking-wide text-center text-medium'>
-                  <td className='px-2 py-2'>{index + 1}</td>
+              {/*{users.map((user, index) => (
+                 <tr key={user.id} className='font-semibold tracking-wide text-center text-medium'>
+                  { <td className='px-2 py-2'>{index + 1}</td> }
                   <td className='px-2 py-2'>{user.Uname}</td>
                   <td className='px-2 py-2'>{user.Uemail}</td>
                   <td className='px-2 py-2'>{user.Ucontactno}</td>
@@ -66,7 +68,25 @@ export default function Doner() {
                     </a>
                   </td>
                 </tr>
-              ))}
+              ))}*/}
+                  <tr  className='font-semibold tracking-wide text-center text-medium'>
+                  { <td className='px-2 py-2'>1</td> }
+                  <td className='px-2 py-2'>name</td>
+                  <td className='px-2 py-2'>email</td>
+                  <td className='px-2 py-2'>contactno</td>
+                  <td className='px-2 py-2'>type</td>
+                  <td className='px-2 py-2'>date</td>
+                  <td className='px-2 py-2'>
+                  <a href='/ViewDetail'>
+                    <button 
+                      className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-6 rounded-xl text-lg"
+                      onClick={() => handleView()}
+                    >
+                      View
+                    </button>
+                    </a>
+                  </td>
+                </tr>
             </tbody>
           </table>
         </div>
