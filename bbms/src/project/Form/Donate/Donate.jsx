@@ -6,9 +6,7 @@ import Personal from "./content/Personal";
 import Health from "./content/Health";
 import Complete from "./content/Complete";
 
-
-
-export default function Add() {
+export default function Donate() {
   const [currentStep,setCurrentStep]=useState(1);
   const[userData,setUserData]=useState('');
   const[finalData,setFinalData]=useState([]);
@@ -38,9 +36,8 @@ export default function Add() {
   }
   
   return (
-   
 
-    <div className='w-4/5 pb-2 mx-auto bg-white shadow-xl rounded-2xl '>
+    <div className='w-4/5 pb-2 mx-auto bg-white shadow-xl rounded-2xl'>
       <div className='container mt-5 horizontal'>
       <Stepper steps={steps}
       currentStep={currentStep}/>
@@ -69,9 +66,8 @@ export default function Add() {
       steps={steps}
       />
       }
-
+   
   </div>
- 
 
   )
 }

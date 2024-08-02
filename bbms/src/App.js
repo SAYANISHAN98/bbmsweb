@@ -5,6 +5,7 @@ import PrivateRoute from './routes/privateRoute';
 import PublicRoute from './routes/publicRoute';
 
 import Login from './project/login';
+import Finddoner from './project/Finddoner';
 import Layout from './layout';
 import User from './project/Doner';
 import Stock from './project/stock';
@@ -14,6 +15,7 @@ import Update from './project/Form/update/Update';
 import ViewDetail from './project/ViewDetail';
 import Notfound from './Notfound';
 import QueryProvider from './providers/Queryprovider';
+import Donate from './project/Form/Donate/Donate';
 
 function App() {
   return (
@@ -26,9 +28,11 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route path="/ViewDetail" element={<ViewDetail />} />
                 <Route path="/Add" element={<Add />} />
+                <Route path="/Finddoner" element={<Finddoner />} />
                 <Route path="/Update" element={<Update />} />
                 <Route index element={<Home />} />
                 <Route path="/Doner" element={<User />} />
+                <Route path="/Donate" element={<Donate/>} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="*" element={<Notfound />} />
               </Route>

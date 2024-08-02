@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import Layout from '../layout';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Doner() {
-  const [users, setUsers] = useState([]);
+  
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/api/users'); // Adjust the endpoint as needed
-      const data = await response.json();
-      setUsers(data.slice(0, 10)); // Limit to 10 users
-    };
 
-    fetchData();
-  }, []);
 
-  const handleView = (userId) => {
-    // Implement your view logic here (e.g., redirect to a detail page)
-    console.log(`Viewing user with ID: ${userId}`);
-    // Example: window.location.href = `/user/${userId}`;
-  };
+
 
   return (
 
-    <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
+  <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
       <div className='w-4/5'>
-        <div className="flex items-center justify-center py-8">
-          <a href='/Add'>
-            <button className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg">
+          <div className="flex items-center justify-between w-full py-8">
+            <button
+              onClick={() => navigate('/finddoner')}
+              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
+            >
+              Find Donar
+            </button>
+            
+            <button
+              onClick={() => navigate('/Add')}
+              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
+            >
               Add
             </button>
-          </a>
         </div>
+
+      
+
 
         <div className='py-8'>
           <table className='w-full p-3 border-2 border-red-500 shadow-2xl'>
@@ -47,26 +47,52 @@ export default function Doner() {
             </thead>
          
             <tbody>
-              {users.map((user, index) => (
-                <tr key={user.id} className='font-semibold tracking-wide text-center text-medium'>
-                  <td className='px-2 py-2'>{index + 1}</td>
+              {/*{users.map((user, index) => (
+                 <tr key={user.id} className='font-semibold tracking-wide text-center text-medium'>
+                  { <td className='px-2 py-2'>{index + 1}</td> }
                   <td className='px-2 py-2'>{user.Uname}</td>
                   <td className='px-2 py-2'>{user.Uemail}</td>
                   <td className='px-2 py-2'>{user.Ucontactno}</td>
                   <td className='px-2 py-2'>{user.Btype}</td>
                   <td className='px-2 py-2'>{user.lastdonationdate}</td>
-                  <td className='px-2 py-2'>
-                  <a href='/ViewDetail'>
+                  <td className='px-2 py-2 space-x-2'>
                     <button 
-                      className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-6 rounded-xl text-lg"
-                      onClick={() => handleView(user.id)}
+                     onClick={()=>navigate('/ViewDetail')} className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
+                      
                     >
                       View
                     </button>
-                    </a>
+                    <button 
+                      onClick={()=>navigate('/Donate')}className="font-bold text-white bg-green-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
+                      
+                    >
+                          Donate
+                    </button>
                   </td>
                 </tr>
-              ))}
+              ))}*/}
+                  <tr  className='font-semibold tracking-wide text-center text-medium'>
+                  { <td className='px-2 py-2'>1</td> }
+                  <td className='px-2 py-2'>name</td>
+                  <td className='px-2 py-2'>email</td>
+                  <td className='px-2 py-2'>contactno</td>
+                  <td className='px-2 py-2'>type</td>
+                  <td className='px-2 py-2'>date</td>
+                  <td className='px-2 py-2 space-x-2'>
+                    <button 
+                     onClick={()=>navigate('/ViewDetail')} className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
+                      
+                    >
+                      View
+                    </button>
+                    <button 
+                      onClick={()=>navigate('/Donate')}className="font-bold text-white bg-green-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
+                      
+                    >
+                          Donate
+                    </button>
+                  </td>
+                </tr>
             </tbody>
           </table>
         </div>
