@@ -28,7 +28,7 @@ export default function Sidebar() {
           <NavLink to='/Doner'>
             <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
               <FaUsers className='mr-2' />
-              <div className='px-3'>Doner</div>
+              <div className='px-3'>Donar</div>
             </li>
           </NavLink>
           <hr />
