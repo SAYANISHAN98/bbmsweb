@@ -69,11 +69,11 @@ export default function Finddoner() {
 
         <div className='flex items-center space-x-2'>
           <label className='font-semibold'>
-            Name:
+            Search:
           </label>
           <input
             type='text'
-            value='name'
+            value='search'
             
             placeholder='Enter Name'
             className='px-3 py-1 border border-gray-300 rounded-lg'
