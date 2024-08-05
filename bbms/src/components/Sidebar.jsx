@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   FaHome,
   FaUsers,
-  FaList,
   FaDatabase,
   FaChartBar,
   FaCog,
@@ -28,7 +27,7 @@ export default function Sidebar() {
           <NavLink to='/Doner'>
             <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
               <FaUsers className='mr-2' />
-              <div className='px-3'>Donar</div>
+              <div className='px-3'>Donor</div>
             </li>
           </NavLink>
           <hr />
