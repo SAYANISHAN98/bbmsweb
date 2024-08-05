@@ -14,26 +14,26 @@ export default function Request() {
 
   <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
       <div className='w-4/5'>
-          <div className="flex items-center justify-between w-full py-8">
-            <button
-              onClick={() => navigate('/Request')}
-              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-            >
-              New Request
-            </button>
-            <button
-              onClick={() => navigate('/Ongoing')}
-              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-            >
-              On Going
-            </button>
-            
-            <button
-              onClick={() => navigate('/Completed')}
-              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-            >
-             Completed
-            </button>
+      <div className="flex items-center justify-center w-full py-2 space-x-0 px-30">
+        <button
+          onClick={() => navigate('/Request')}
+          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 text-lg rounded-l-xl"
+        >
+          New Request
+        </button>
+        <button
+          onClick={() => navigate('/Ongoing')}
+          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 text-lg"
+        >
+          On Going
+        </button>
+
+        <button
+          onClick={() => navigate('/Completed')}
+          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 text-lg rounded-r-xl"
+        >
+          Completed
+        </button>
         </div>
         <div className="flex items-center justify-center w-full py-4">
           <div className="relative w-3/5">
