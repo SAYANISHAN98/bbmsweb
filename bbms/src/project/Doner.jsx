@@ -19,7 +19,7 @@ export default function Doner() {
               onClick={() => navigate('/finddoner')}
               className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
             >
-              Find Donar
+              Find Donor
             </button>
             
             <button

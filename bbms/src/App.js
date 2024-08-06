@@ -16,6 +16,9 @@ import ViewDetail from './project/ViewDetail';
 import Notfound from './Notfound';
 import QueryProvider from './providers/Queryprovider';
 import Donate from './project/Form/Donate/Donate';
+import Request from './project/Request'
+import Completed from './project/Completed';
+import Ongoing from './project/Ongoing';
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="/Doner" element={<User />} />
                 <Route path="/Donate" element={<Donate/>} />
+                <Route path="/Request" element={<Request/>} />
+                <Route path="/Completed" element={<Completed/>} />
+                <Route path="/Ongoing" element={<Ongoing/>} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="*" element={<Notfound />} />
               </Route>
