@@ -16,7 +16,7 @@ export default function Doner() {
       <div className='w-4/5'>
           <div className="flex items-center justify-between w-full py-8">
             <button
-              onClick={() => navigate('/finddoner')}
+              onClick={() => navigate('/finddonor')}
               className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
             >
               Find Donor
