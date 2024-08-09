@@ -9,7 +9,7 @@ export default function Complete() {
       <div className='flex flex-col items-center'>
         <div className='mt-3 text-xl font-semibold text-red-500 uppercase'> Congratulations!</div>
         <div className='mt-3 text-xl font-semibold text-gray-500'>
-          New User Added Succussfully 
+          New Doner Added Succussfully 
         </div>
   
         <button onClick={()=>navigate('/Doner')} className='h-10 px-5 text-red-600 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-red-500 hover:text-red-100'>Close</button>
