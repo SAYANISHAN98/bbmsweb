@@ -5,7 +5,7 @@ import PrivateRoute from './routes/privateRoute';
 import PublicRoute from './routes/publicRoute';
 
 import Login from './project/login';
-import Finddoner from './project/Finddoner';
+import Finddonor from './project/Finddonor';
 import Layout from './layout';
 import User from './project/Doner';
 import Stock from './project/stock';
@@ -16,6 +16,11 @@ import ViewDetail from './project/ViewDetail';
 import Notfound from './Notfound';
 import QueryProvider from './providers/Queryprovider';
 import Donate from './project/Form/Donate/Donate';
+import Request from './project/Request'
+import Completed from './project/Completed';
+import Ongoing from './project/Ongoing';
+import Accepted from './project/Accepted';
+import Allrequest from './project/Allrequest';
 
 function App() {
   return (
@@ -28,11 +33,16 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route path="/ViewDetail" element={<ViewDetail />} />
                 <Route path="/Add" element={<Add />} />
-                <Route path="/Finddoner" element={<Finddoner />} />
+                <Route path="/Finddonor" element={<Finddonor />} />
                 <Route path="/Update" element={<Update />} />
                 <Route index element={<Home />} />
                 <Route path="/Doner" element={<User />} />
                 <Route path="/Donate" element={<Donate/>} />
+                <Route path="/Request" element={<Request/>} />
+                <Route path="/Completed" element={<Completed/>} />
+                <Route path="/Accepted" element={<Accepted />} />
+                <Route path="/Allrequest" element={<Allrequest/>} />
+                <Route path="/Ongoing" element={<Ongoing/>} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="*" element={<Notfound />} />
               </Route>
