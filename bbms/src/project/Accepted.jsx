@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Accepted() {
@@ -51,7 +51,7 @@ export default function Accepted() {
                   <td className='px-2 py-2'>{userData.lastdonationdate}</td>
                   <td className='px-2 py-2 space-x-2'>
                   <button
-                      onClick={() => navigate('/ViewDetail')}
+                      onClick={() => navigate('/ViewDonor')}
                       className='font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg'
                     >
                       View

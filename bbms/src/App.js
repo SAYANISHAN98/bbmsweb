@@ -13,6 +13,7 @@ import Home from './project/Home';
 import Add from './project/Form/Add/Add';
 import Update from './project/Form/update/Update';
 import ViewDetail from './project/ViewDetail';
+import ViewDonor from './project/ViewDonor';
 import Notfound from './Notfound';
 import QueryProvider from './providers/Queryprovider';
 import Donate from './project/Form/Donate/Donate';
@@ -20,7 +21,7 @@ import Request from './project/Request'
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
-import Allrequest from './project/Allrequest';
+// import Allrequest from './project/Allrequest';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route path="/ViewDetail" element={<ViewDetail />} />
+                <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Add" element={<Add />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
                 <Route path="/Update" element={<Update />} />
@@ -41,7 +43,7 @@ function App() {
                 <Route path="/Request" element={<Request/>} />
                 <Route path="/Completed" element={<Completed/>} />
                 <Route path="/Accepted" element={<Accepted />} />
-                <Route path="/Allrequest" element={<Allrequest/>} />
+                {/* <Route path="/Allrequest" element={<Allrequest/>} /> */}
                 <Route path="/Ongoing" element={<Ongoing/>} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="*" element={<Notfound />} />
