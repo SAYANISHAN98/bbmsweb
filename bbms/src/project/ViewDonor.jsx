@@ -75,17 +75,13 @@ export default function ViewDonor() {
         </div>
 
         <div className='container flex justify-around mt-8 mb-5'>
-          {/* <NavLink to="/Update">
-            <button className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
-              Update
-            </button>
-          </NavLink> */}
+          
           <NavLink to="/Accepted">
             <button className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
               Back
             </button>
-          </NavLink>
-        </div>
+          </NavLink> 
+        </div> 
       </div>
     </div>
   );
