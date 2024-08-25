@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router-dom';
 export default function Finddonor() {
   const navigate = useNavigate();
   const [selectedRows, setSelectedRows] = useState([]);
-  const [bloodGroup, setBloodGroup] = useState('');
-  const [donationDate, setDonationDate] = useState('');
-  const [name, setName] = useState('');
 
   const users = [
     { id: 1, Uname: 'Alice', Btype: 'A+', lastdonationdate: '2024-01-01' },
@@ -86,14 +83,14 @@ export default function Finddonor() {
 
       <div className='w-4/5'>
       <div className='flex justify-between mt-8'>
-          <div className='flex justify-start'>
-            <button
+          {/* <div className='flex justify-start'>
+            { <button
               onClick={() => navigate('/Allrequest')}
               className='font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-8 rounded-xl text-lg'
             >
               All 
-            </button>
-          </div>
+            </button> }
+          </div> */}
           <div className='flex justify-center'>
             <button
               onClick={() => navigate('/Accepted')}
