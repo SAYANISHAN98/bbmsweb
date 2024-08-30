@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 export default function Finddonor() {
   const navigate = useNavigate();
   const [selectedRows, setSelectedRows] = useState([]);
+  const [bloodGroup, setBloodGroup] = useState('');
+  const [donationDate, setDonationDate] = useState('');
+  const [name, setName] = useState('');
 
   const users = [
     { id: 1, Uname: 'Alice', Btype: 'A+', lastdonationdate: '2024-01-01' },
