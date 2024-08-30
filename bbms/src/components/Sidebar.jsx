@@ -58,7 +58,7 @@ export default function Sidebar() {
 
           <hr />
 
-          <NavLink to='/Bloodcamp'>
+          <NavLink to='/bloodcamp'>
             <li className='flex items-center px-2 py-2 mb-1 rounded hover:shadow hover:bg-red-700 hover:text-white'>
               <FaClinicMedical className='mr-2' />
               <div className='px-3'>Blood Camp</div>
