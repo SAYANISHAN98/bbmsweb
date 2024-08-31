@@ -10,7 +10,7 @@ export default function Personal() {
   };
 
   return (
-      <div className='flex flex-col'>
+        <div className='flex flex-col'>
         <div className='flex w-full mx-2'>
           <div className='flex-1 mr-2'>
             <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
@@ -42,8 +42,42 @@ export default function Personal() {
             </div>
           </div>
         </div>
+
+        <div className='flex w-full mx-2'>
+          <div className='flex-1 mr-2'>
+            <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+              NIC no :
+            </div>
+            <div className='flex my-2 bg-white border border-gray-200 rounded'>
+              <input
+                onChange={handleChange}
+                value={userData["nicNo"] || ""}
+                name='nicNo'
+                placeholder='NIC number'
+                className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+              />
+            </div>
+          </div>
+          
+          <div className='flex-1 ml-2'>
+            <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+              Date of Birth :
+            </div>
+            <div className='flex my-2 bg-white border border-gray-200 rounded'>
+              <input
+                onChange={handleChange}
+                type='date'
+                value={userData["dob"] || ""}
+                name='dob'
+                placeholder='Date of Birth'
+                className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+              />
+            </div>
+          </div>
+        </div>
+        
       
-      <div className='flex w-full mx-2'>
+       <div className='flex w-full mx-2'> 
         <div className='flex-1 mr-2'>
           <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
             Email :

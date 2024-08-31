@@ -100,6 +100,54 @@ export default function Health() {
 
       <div className='flex flex-1 w-full mx-2 space-x-4'>
         <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Diseases:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <select
+              name='Diseases'
+              value={userData["Diseases"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            >
+              <option value="">Select a disease</option>
+              <option value="Heart Disease">Heart Disease</option>
+              <option value="Diabetes">Diabetes</option>
+              <option value="Fits">Fits</option>
+              <option value="Strokes">Strokes</option>
+              <option value="Asthma">Asthma</option>
+              <option value="Liver Diseases">Liver Diseases</option>
+              <option value="Kidney Diseases">Kidney Diseases</option>
+              <option value="Blood Disorders">Blood Disorders</option>
+              <option value="Cancer">Cancer</option>
+            </select>
+          </div>
+        </div>
+
+        <div className='w-1/2'>
+          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
+            Visible Marks:
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+            <select
+              name='VisibleMarks'
+              value={userData["VisibleMarks"] || ""}
+              onChange={handleChange}
+              className='w-full p-1 px-2 text-gray-800 outline-none'
+            >
+              <option value="">Select a mark</option>
+              <option value="A">Tatoos</option>
+              <option value="B">Surgery Marks</option>
+              <option value="C">Wounds</option>
+              <option value="D">Injection Marks</option>
+              <option value="E">Permenant Disabilities</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div className='flex flex-1 w-full mx-2 space-x-4'>
+        <div className='w-1/2'>
 
         <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
           Bottle ID:
@@ -182,68 +230,7 @@ export default function Health() {
         </div>
       </div>
 
-    { /* <div className='flex-1 w-full mx-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-          Health History:
-        </div>
-        <div className='flex bg-white border border-gray-200 rounded'>
-          <textarea
-            onChange={handleChange}
-            value={userData["Hhitory"] || ""}
-            name='Hhitory'
-            placeholder='Health history...'
-            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
-          />
-        </div>
-      </div> */}
-
-      <div className='flex flex-1 w-full mx-2 space-x-4'>
-        <div className='w-1/2'>
-          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-            Diseases:
-          </div>
-          <div className='flex bg-white border border-gray-200 rounded'>
-            <select
-              name='Diseases'
-              value={userData["Diseases"] || ""}
-              onChange={handleChange}
-              className='w-full p-1 px-2 text-gray-800 outline-none'
-            >
-              <option value="">Select a disease</option>
-              <option value="Heart Disease">Heart Disease</option>
-              <option value="Diabetes">Diabetes</option>
-              <option value="Fits">Fits</option>
-              <option value="Strokes">Strokes</option>
-              <option value="Asthma">Asthma</option>
-              <option value="Liver Diseases">Liver Diseases</option>
-              <option value="Kidney Diseases">Kidney Diseases</option>
-              <option value="Blood Disorders">Blood Disorders</option>
-              <option value="Cancer">Cancer</option>
-            </select>
-          </div>
-        </div>
-
-        <div className='w-1/2'>
-          <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-            Visible Marks:
-          </div>
-          <div className='flex bg-white border border-gray-200 rounded'>
-            <select
-              name='VisibleMarks'
-              value={userData["VisibleMarks"] || ""}
-              onChange={handleChange}
-              className='w-full p-1 px-2 text-gray-800 outline-none'
-            >
-              <option value="">Select a mark</option>
-              <option value="A">Tatoos</option>
-              <option value="B">Surgery Marks</option>
-              <option value="C">Wounds</option>
-              <option value="D">Injection Marks</option>
-              <option value="E">Permenant Disabilities</option>
-            </select>
-          </div>
-        </div>
-      </div>
+    
     </div>
   );
 }

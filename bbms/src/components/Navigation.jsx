@@ -14,7 +14,7 @@ export default function Navigation() {
   }
 
   return (
-    <div className='flex justify-between w-full px-4 py-1 bg-red-600'>
+    <div className='flex justify-between w-full px-4 py-1' style={{ backgroundColor: '#b22222' }}>
       <div className='flex items-center text-2xl font-bold text-white'>
         <FaTint className='mr-2' />
         Blood Bank Management System
