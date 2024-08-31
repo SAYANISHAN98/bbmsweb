@@ -17,14 +17,14 @@ export default function Doner() {
           <div className="flex items-center justify-between w-full py-8">
             <button
               onClick={() => navigate('/Finddonor')}
-              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-            >
+               className="font-bold text-white active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg" style={{ backgroundColor: '#dc143c' }}>
+            
               Find Donor
             </button>
             
             <button
               onClick={() => navigate('/Add')}
-              className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
+              className="font-bold text-white active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg" style={{ backgroundColor: '#dc143c' }}
             >
               Add
             </button>
@@ -34,7 +34,7 @@ export default function Doner() {
             <input
               type="text"
               placeholder="Search for a donor..."
-              className="w-full px-4 py-2 pr-10 text-gray-700 border-2 border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="w-full px-4 py-2 pr-10 text-gray-700 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
             <FaSearch className="absolute w-5 h-5 text-gray-500 transform -translate-y-1/2 right-3 top-1/2" />
           </div>
@@ -44,7 +44,7 @@ export default function Doner() {
 
 
         <div className='py-8'>
-          <table className='w-full p-3 border-2 border-red-500 shadow-2xl'>
+          <table className='w-full p-3 border-2  shadow-2xl'>
             <thead className='bg-red-100 border-b-2 border-gray-500'>
               <tr className='py-3 font-semibold tracking-wide text-center text-medium'>
                 <th className='px-2 py-2'>No</th>
@@ -91,7 +91,7 @@ export default function Doner() {
                   <td className='px-2 py-2'>date</td>
                   <td className='px-2 py-2 space-x-2'>
                     <button 
-                     onClick={()=>navigate('/ViewDetail')} className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
+                     onClick={()=>navigate('/ViewDetail')} className="font-bold text-white  active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"style={{ backgroundColor: '#dc143c' }}
                       
                     >
                       View
