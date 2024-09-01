@@ -22,6 +22,7 @@ import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
 // import Allrequest from './project/Allrequest';
+import Chatbot from './project/Chatbot';
 
 function App() {
   return (
@@ -46,7 +47,9 @@ function App() {
                 {/* <Route path="/Allrequest" element={<Allrequest/>} /> */}
                 <Route path="/Ongoing" element={<Ongoing/>} />
                 <Route path="/Stock" element={<Stock />} />
+                <Route path="/Chatbot" element={<Chatbot />} />
                 <Route path="*" element={<Notfound />} />
+                
               </Route>
             </Route>
 
