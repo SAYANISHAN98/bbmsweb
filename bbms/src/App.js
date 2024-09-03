@@ -21,6 +21,14 @@ import Request from './project/Request'
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
+import Bloodtest from './project/bloodtest';
+import Bloodcamp from './project/Bloodcamp';
+import Newtest from './project/Form/Newtest';
+import Viewbloodtest from './project/Viewbloodtest';
+import Bloodtestupdate from './project/Bloodtestupdate';
+import NewCamp from './project/Form/NewCamp';
+import Viewcamp from './project/Viewcamp';
+import Bloodcampupdate from './project/Bloodcampupdate';
 // import Allrequest from './project/Allrequest';
 import Chatbot from './project/Chatbot';
 
@@ -43,7 +51,15 @@ function App() {
                 <Route path="/Donate" element={<Donate/>} />
                 <Route path="/Request" element={<Request/>} />
                 <Route path="/Completed" element={<Completed/>} />
-                <Route path="/Accepted" element={<Accepted />} />
+                <Route path="/Accepted" element={<Accepted/>} />
+                <Route path="/Bloodcamp" element={<Bloodcamp/>} />
+                <Route path="/Bloodtest" element={<Bloodtest/>} />
+                <Route path="/Newtest" element={<Newtest/>} />
+                <Route path="/Viewbloodtest" element={<Viewbloodtest/>} />
+                <Route path="/Bloodtestupdate" element={<Bloodtestupdate/>} />
+                <Route path="/NewCamp" element={<NewCamp/>} />
+                <Route path="/Viewcamp" element={<Viewcamp/>} />
+                <Route path="/Bloodcampupdate" element={<Bloodcampupdate/>} />
                 {/* <Route path="/Allrequest" element={<Allrequest/>} /> */}
                 <Route path="/Ongoing" element={<Ongoing/>} />
                 <Route path="/Stock" element={<Stock />} />
