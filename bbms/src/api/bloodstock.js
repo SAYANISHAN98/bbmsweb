@@ -7,9 +7,9 @@ import { supabase } from "../lib/supabase"
 
 export const useBloodStock=()=>{
     return useQuery({
-        queryKey:['bloodstock'],
+        queryKey:['blood_stock'],
         queryFn:async()=>{
-            const {data,error}=await supabase.from('bloodstock').select('*');
+            const {data,error}=await supabase.from('blood_stock').select('*');
             if(error){
                 console.log(error.message)
                 throw new Error(error.message)
