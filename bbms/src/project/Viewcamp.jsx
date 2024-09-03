@@ -6,7 +6,7 @@ export default function Viewcamp() {
     <div className='flex w-3/4 p-10 mx-auto bg-white shadow-xl rounded-2xl'>
          <div className='flex-1 pl-10'>
         <div className='flex items-center justify-center'>
-          <h2 className='text-4xl font-bold text-red-500 uppercase'>User Details</h2>
+          <h2 className='text-4xl font-bold text-red-500 uppercase'>Blood Camp Details</h2>
         </div>
 
         <div className='mt-4'>
@@ -42,11 +42,19 @@ export default function Viewcamp() {
                 Update
               </button>
             </NavLink>
+            
             <NavLink to="/Delete">
               <button className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
                 Delete
               </button>
             </NavLink>
+
+            <NavLink to="/Bloodcamp"> 
+            <button
+            type="button"className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600">
+            Back
+          </button>
+          </NavLink>
           </div>
         </div>
         
