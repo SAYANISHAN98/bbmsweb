@@ -1,26 +1,29 @@
 const http = require('http');
-const url = require('url');
 const { parse } = require('querystring');
 
-const PORT = 3000;
+// Define the port
+const PORT = 5000;
 
+// Create the server
 const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-
-  if (req.method === 'POST' && parsedUrl.pathname === '/api/chat') {
+  if (req.method === 'POST' && req.url === '/query') {
     let body = '';
 
+    // Collect the data
     req.on('data', chunk => {
       body += chunk.toString();
     });
 
     req.on('end', () => {
       const parsedBody = JSON.parse(body);
-      const { query } = parsedBody;
+      const queryText = parsedBody.query;
 
-      // Sample response, adjust logic as needed
+      // Here you can integrate the logic for handling the query
+      // For demonstration, we'll just echo back the query
+      const response = `You asked: ${queryText}`;
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ response: `You asked: ${query}` }));
+      res.end(JSON.stringify({ response }));
     });
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -28,6 +31,7 @@ const server = http.createServer((req, res) => {
   }
 });
 
+// Start the server
 server.listen(PORT, () => {
-  console.log(`Server is listening on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
