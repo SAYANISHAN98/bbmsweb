@@ -7,8 +7,11 @@ export default function Chatbot() {
   // Function to handle sending the prompt to the back-end
   const sendPrompt = async () => {
     try {
-<<<<<<< Updated upstream
-      const result = await axios.post('http://localhost:3000/api/chat', { query });
+
+      const result1 = await axios.post('http://localhost:3000/api/chat', { query });
+
+      const result = await axios.post('http://localhost:3000/query', { query });
+
       setResponse(result.data.response); // Adjust based on your API response structure
     } catch (error) {
       console.error('API request error:', error);
@@ -18,7 +21,7 @@ export default function Chatbot() {
         setResponse('Error occurred: No response from server');
       } else {
         setResponse(`Error occurred: ${error.message}`);
-=======
+
       const res = await fetch('http://localhost:5000/generate', {
         method: 'POST',
         headers: {
@@ -31,11 +34,11 @@ export default function Chatbot() {
         setResponse(data.response);  // Update response state with OpenAI response
       } else if (data.error) {
         setResponse(`Error: ${data.error}`);
->>>>>>> Stashed changes
+
       }
-    } catch (error) {
-      setResponse('An error occurred while fetching the data.');
-    }
+    // } catch (error) {
+    //   setResponse('An error occurred while fetching the data.');
+    // }
   };
 
   return (
@@ -65,4 +68,4 @@ export default function Chatbot() {
       </div>
     </div>
   );
-}
+}}
