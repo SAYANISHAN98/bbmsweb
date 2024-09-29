@@ -39,7 +39,7 @@ export default function Request() {
           <div className="relative w-3/5">
             <input
               type="text"
-              placeholder="Search ..."
+              placeholder="Search for a donor..."
               className="w-full px-4 py-2 pr-10 text-gray-700 border-2 border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
             <FaSearch className="absolute w-5 h-5 text-gray-500 transform -translate-y-1/2 right-3 top-1/2" />
