@@ -6,7 +6,7 @@ import openai
 # Supabase and OpenAI Configuration
 SUPABASE_URL = "https://avxrbyaafllnozptwvaj.supabase.co"
 SUPABASE_KEY =   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2eHJieWFhZmxsbm96cHR3dmFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUwNDA0OTcsImV4cCI6MjA0MDYxNjQ5N30.K4Zj69JWwzU_jFhoWTulNdQ_LHsVDZfXQOEA88su0OQ";
-OPENAI_API_KEY = "sk-Gw9vlXMv8ixLkMV4TfJG9yAAcGYsAYhunDay8dvQAOT3BlbkFJ8WxCwTpG4m4O1cATzfEYsnYjXYSXj4dWG1OlTsJfIA"
+OPENAI_API_KEY = "sk-dMT6dqa_OCeCmrw88C2iYixDQCxX07vspVMerC5REET3BlbkFJxRePoGR6y9QjEggCYeu0N5e8f6x4O67PDq5f4ewBwA"
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 openai.api_key = OPENAI_API_KEY
