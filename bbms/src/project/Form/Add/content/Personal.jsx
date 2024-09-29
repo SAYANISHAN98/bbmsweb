@@ -51,7 +51,7 @@ export default function Personal() {
             <div className='flex my-2 bg-white border border-gray-200 rounded'>
               <input
                 onChange={handleChange}
-                value={userData["nicNo"] || ""}
+                value={userData["nic"] || ""}
                 name='nicNo'
                 placeholder='NIC number'
                 className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
