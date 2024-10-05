@@ -12,7 +12,7 @@ export default function Chatbot() {
 
       const result = await axios.post('http://localhost:3000/query', { query });
 
-      setResponse(result.data.response); // Adjust based on your API response structure
+     setResponse(result.data.response); // Adjust based on your API response structure
     } catch (error) {
       console.error('API request error:', error);
       if (error.response) {
@@ -68,4 +68,6 @@ export default function Chatbot() {
       </div>
     </div>
   );
-}}
+}
+  }
+}

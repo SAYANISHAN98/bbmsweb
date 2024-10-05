@@ -1,4 +1,4 @@
-// NewTestForm.js
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default function NewCamp() {
   return (
     <div className="flex items-center justify-center w-full py-8">
       <form className="w-3/4 p-4 bg-white border-2 border-red-500 rounded-lg shadow-lg">
-        <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Add New Blood Test</h2>
+        <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Add New Blood Camp</h2>
 
         <div >
           <label className="mt-1 text-xs font-bold leading-8 text-gray-600 uppercase bh-6">Camp Name</label>
