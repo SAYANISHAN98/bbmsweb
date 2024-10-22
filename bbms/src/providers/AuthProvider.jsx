@@ -48,7 +48,7 @@ export default function AuthProvider({ children }) {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-  }, []);
+  }, );
 
   return (
     <AuthContext.Provider

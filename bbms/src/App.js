@@ -21,6 +21,7 @@ import Request from './project/Request'
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
+
 import NewCamp from './project/Form/NewCamp';
 import Newtest from './project/Form/Newtest';
 import Bloodcamp from './project/Bloodcamp';
@@ -30,6 +31,9 @@ import Viewcamp from './project/Viewcamp';
 import Bloodcampupdate from './project/Bloodcampupdate';
 import Bloodtestupdate from './project/Bloodtestupdate';
 // import Allrequest from './project/Allrequest';
+import Chatbot from './project/Chatbot';
+import Bloodcamp from './project/Bloodcamp';
+
 
 function App() {
   return (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function Chatbot() {
   const [prompt, setPrompt] = useState('');  // State for the user input prompt
@@ -6,6 +7,7 @@ export default function Chatbot() {
 
   // Function to handle sending the prompt to the back-end
   const sendPrompt = async () => {
+
     try {
 
       const result1 = await axios.post('http://localhost:3000/api/chat', { query });
@@ -22,23 +24,36 @@ export default function Chatbot() {
       } else {
         setResponse(`Error occurred: ${error.message}`);
 
-      const res = await fetch('http://localhost:5000/generate', {
+    if (!prompt.trim()) {
+      setResponse('Please enter a prompt.');  // Check for empty input
+      return;
+    }
+
+    try {
+      const res = await fetch('http://localhost:3000/api/chat', {  // Updated API endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ prompt }),  // Send the user's prompt as JSON
       });
+      
+      if (!res.ok) {
+        // Handle HTTP errors
+        const errorData = await res.json();
+        setResponse(`Error: ${errorData.message || 'Something went wrong'}`);
+        return;
+      }
+
       const data = await res.json();
       if (data.response) {
         setResponse(data.response);  // Update response state with OpenAI response
       } else if (data.error) {
         setResponse(`Error: ${data.error}`);
-
       }
-    // } catch (error) {
-    //   setResponse('An error occurred while fetching the data.');
-    // }
+    } catch (error) {
+      setResponse('An error occurred while fetching the data.');
+    }
   };
 
   return (
@@ -68,6 +83,6 @@ export default function Chatbot() {
       </div>
     </div>
   );
-}
   }
 }
+
