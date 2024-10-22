@@ -9,6 +9,7 @@ export default function Chatbot() {
   const sendPrompt = async () => {
 
     try {
+      const query = { prompt };  // Create a query object with the prompt
 
       const result1 = await axios.post('http://localhost:3000/api/chat', { query });
 
@@ -86,3 +87,4 @@ export default function Chatbot() {
   }
 }
 
+}
