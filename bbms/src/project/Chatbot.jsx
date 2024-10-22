@@ -7,6 +7,23 @@ export default function Chatbot() {
 
   // Function to handle sending the prompt to the back-end
   const sendPrompt = async () => {
+
+    try {
+
+      const result1 = await axios.post('http://localhost:3000/api/chat', { query });
+
+      const result = await axios.post('http://localhost:3000/query', { query });
+
+     setResponse(result.data.response); // Adjust based on your API response structure
+    } catch (error) {
+      console.error('API request error:', error);
+      if (error.response) {
+        setResponse(`Error occurred: ${error.response.status} - ${error.response.statusText}`);
+      } else if (error.request) {
+        setResponse('Error occurred: No response from server');
+      } else {
+        setResponse(`Error occurred: ${error.message}`);
+
     if (!prompt.trim()) {
       setResponse('Please enter a prompt.');  // Check for empty input
       return;
@@ -66,4 +83,6 @@ export default function Chatbot() {
       </div>
     </div>
   );
+  }
 }
+
