@@ -6,10 +6,6 @@ export default function Bloodtest() {
   
   const navigate = useNavigate();
 
-
-
-
-
   return (
 
   <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
