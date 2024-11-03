@@ -6,6 +6,7 @@ import PublicRoute from './routes/publicRoute';
 
 import Login from './project/login';
 import Finddonor from './project/Finddonor';
+import Doner from './project/Doner';
 import Layout from './layout';
 import User from './project/Doner';
 import Stock from './project/stock';
@@ -47,12 +48,13 @@ function App() {
                 <Route path="/ViewDetail/:id" element={<ViewDetail />} />
                 <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
+              
                 <Route path="/Add" element={<Add />} />
                  <Route path="/Update" element={<Update />} />
                 
                <Route path="/Donate" element={<Donate/>} />
                 <Route index element={<Home />} />
-                <Route path="/Doner" element={<User />} />
+                <Route path="/Doner" element={<Doner />} />
                 <Route path="/Request" element={<Request/>} />
                 <Route path="/Completed" element={<Completed/>} />
                 <Route path="/Accepted" element={<Accepted />} />
@@ -65,8 +67,8 @@ function App() {
                 <Route path="/Bloodcamp" element={<Bloodcamp />} />
                 <Route path="/Bloodtest" element={<Bloodtest />} />
                 <Route path="/Viewbloodtest" element={<Viewbloodtest />} />
-                <Route path="/Viewcamp" element={<Viewcamp />} />
-                <Route path="/Bloodcampupdate" element={<Bloodcampupdate />} />
+                <Route path="/Viewcamp/:id" element={<Viewcamp />} />
+                <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
                
 

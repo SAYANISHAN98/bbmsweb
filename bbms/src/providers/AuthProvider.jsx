@@ -1,13 +1,6 @@
-import { supabase } from '../lib/supabase';
+import { supabase } from "../lib/supabase";
 
-import {
-
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   session: null,
@@ -21,6 +14,29 @@ export default function AuthProvider({ children }) {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        // fetch from data.session
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        session && setSession(session.access_token);
+        // console.log(session.access_token);
+        // console.log(session.user.id);
+        setProfile(session.user);
+      } catch (error) {
+        console.log("Error fetching on Session ID: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSession();
+  }, []);
+
+  /*
   useEffect(() => {
     const fetchSession = async () => {
       const {
@@ -44,15 +60,15 @@ export default function AuthProvider({ children }) {
       setLoading(false);
     };
 
-    fetchSession();
+    // fetchSession();
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
   }, );
-
+*/
   return (
     <AuthContext.Provider
-      value={{ session, loading, profile, isAdmin: profile?.group === 'ADMIN'}}
+      value={{ session, loading, profile, isAdmin: profile?.group === "ADMIN" }}
     >
       {children}
     </AuthContext.Provider>

@@ -11,7 +11,7 @@ export default function Finddonor() {
     const [donationDate, setDonationDate] = useState('');
     const [name, setName] = useState('');
 
-    const { data: donors, error, isLoading } = useDonors({ bloodGroup, donationDate, name });
+    const { data:donors, error, isLoading } = useDonors({ bloodGroup, donationDate, name });
 
     const handleCheckboxChange = (id) => {
         setSelectedRows((prevSelectedRows) =>
