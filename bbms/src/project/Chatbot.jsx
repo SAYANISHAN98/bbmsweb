@@ -10,9 +10,9 @@ export default function Chatbot() {
 
     try {
 
-      const result1 = await axios.post('http://localhost:3000/api/chat', { query });
+      const result1 = await axios.post('http://localhost:3000/api/chat', {  });
 
-      const result = await axios.post('http://localhost:3000/query', { query });
+      const result = await axios.post('http://localhost:3000/query', { });
 
      setResponse(result.data.response); // Adjust based on your API response structure
     } catch (error) {
@@ -84,5 +84,5 @@ export default function Chatbot() {
     </div>
   );
   }
-}
+}}
 

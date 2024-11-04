@@ -33,7 +33,7 @@ import Bloodcampupdate from './project/Bloodcampupdate';
 import Bloodtestupdate from './project/Bloodtestupdate';
 // import Allrequest from './project/Allrequest';
 import Chatbot from './project/Chatbot';
-import Bloodcamp from './project/Bloodcamp';
+
 
 
 function App() {
