@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../../lib/supabase';
+import { useEffect } from 'react';
+
 
 export default function Add() {
   const [userData, setUserData] = useState({
@@ -28,34 +30,20 @@ export default function Add() {
     collectedby: '',
     NoOfBottles: '',
     Date: '',
-    Location: ''
+    Location:'',
+    
   });
+  const test_id=null;
   const formattedUserData = {
     ...userData,
     dob: userData.dob || null,  // Send null if dob is empty
-    lastdonationdate: userData.lastdonationdate || null  // Send null if last donation date is empty
+    lastdonationdate: userData.lastdonationdate || null ,
+    Date: userData.Date || null ,
+     // Send null if last donation date is empty
   };
 
-  const insertDonor = async (email) => {
-    try {
-      const { error } = await supabase
-        .from('donors')
-        .insert({
-          email: email,
-          blood_type: formattedUserData.Btype,
-          last_donation_date: formattedUserData.lastdonationdate,
-          visible_marks: formattedUserData.VisibleMarks,
-          diseases: formattedUserData.Diseases,
-          // Add other fields as needed
-        });
-
-      if (error) throw error;
-      console.log("Donor details inserted successfully");
-    } catch (error) {
-      console.error("Error inserting donor details:", error.message);
-    }
-  };
-
+  
+  const [campNames, setCampNames] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,13 +52,80 @@ export default function Add() {
       [name]: value
     }));
   };
+  const insertDonor = async (email) => {
+    try {
+        // Check if formattedUserData is defined
+        if (!formattedUserData) throw new Error('formattedUserData is undefined');
+
+        // Step 1: Get user ID from profiles table using email
+        const { data: profileData, error: profileError } = await supabase
+            .from('profiles')
+            .select('id')
+            .eq('email', email)
+            .single();
+
+        if (profileError || !profileData) throw new Error('User ID not found');
+
+        const userId = profileData.id;
+        console.log(userId)
+
+        // Step 2: Destructure formattedUserData safely
+        
+
+        // Log the values to inspect
+       
+
+
+
+        // Step 3: Insert donor details into donor_donations table using user ID
+        const { error: donationError } = await supabase
+            .from('donor_donations')
+            .insert({
+                donor_id: userId,
+                date: formattedUserData.Date,
+                bottle_id: formattedUserData.bottle_id,
+                collected_by: formattedUserData.collectedby,
+                no_of_bottles: formattedUserData.no_of_bottles,
+                test_id,
+                camp_id: formattedUserData.Location // Ensure Location is a valid UUID
+            });
+
+            const { data, error } = await supabase
+        .from('medical_status')
+        .insert([
+            { 
+                date: formattedUserData.Date,
+                donor_id: userId,
+                blood_pressure: formattedUserData.bloodPressure,
+                sugar_level: formattedUserData.sugarLevel,
+                hb_level: formattedUserData.hbLevel,
+                visible_marks: formattedUserData.visibleMarks,
+                diseases: formattedUserData.diseases
+            }
+        ]);
+
+    if (error) {
+        console.error('Error inserting data:', error);
+        return null; // Handle error appropriately
+    }
+
+
+        if (donationError) throw donationError;
+
+        console.log("Donor and donation details inserted successfully");
+        
+    } catch (error) {
+        console.error("Error inserting donor details:", error.message);
+    }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formattedUserData.Location)
     try {
       const { user, error } = await supabase.auth.signUp({
         email: userData.Uemail,
-        password: userData.password,
+        password: "halo96",
         options: {
           data: {
             f_name: formattedUserData.Fname,
@@ -87,7 +142,7 @@ export default function Add() {
             gender: formattedUserData.Ugender,
             blood_type: formattedUserData.Btype,
             last_donation_date: formattedUserData.lastdonationdate,
-            location: formattedUserData.Location
+          
           }
         }
       });
@@ -103,6 +158,24 @@ export default function Add() {
       console.error("Error signing up:", error.message);
     }
   };
+  
+  useEffect(() => {
+    // Fetch camp names from the bloodcamp table
+    const fetchCampNames = async () => {
+      const { data , error } = await supabase
+        .from('blood_camp')
+        .select('*');
+
+      if (error) {
+        console.error('Error fetching camp names:', error.message);
+      } else {
+        console.log(data)
+        setCampNames(data);
+      }
+    };
+
+    fetchCampNames();
+  }, []);
 
 
   return (
@@ -363,7 +436,7 @@ export default function Add() {
           <div className='flex bg-white border border-gray-200 rounded'>
             <input
               type='date'
-              onChange={handleSubmit}
+              onChange={handleChange}
               value={userData.lastdonationdate}
               name='lastdonationdate'
               className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
@@ -382,7 +455,7 @@ export default function Add() {
               type='text'
               name='BPtype'
               value={userData.BPtype}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
             />
           </div>
@@ -397,7 +470,7 @@ export default function Add() {
               type='text'
               name='Sugertype'
               value={userData.Sugertype}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
             />
           </div>
@@ -412,7 +485,7 @@ export default function Add() {
               type='text'
               name='HPtype'
               value={userData.HPtype}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
             />
           </div>
@@ -428,7 +501,7 @@ export default function Add() {
             <select
               name='Diseases'
               value={userData.Diseases}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
             >
               <option value="">Select a disease</option>
@@ -453,7 +526,7 @@ export default function Add() {
             <select
               name='VisibleMarks'
               value={userData.VisibleMarks}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
             >
               <option value="">Select a mark</option>
@@ -478,7 +551,7 @@ export default function Add() {
             type='text'
             name='BottleID'
             value={userData.BottleID}
-            onChange={handleSubmit}
+            onChange={handleChange}
             className='w-full p-1 px-2 text-gray-800 outline-none'
           />
        
@@ -492,7 +565,7 @@ export default function Add() {
           <div className='flex bg-white border border-gray-200 rounded'>
             <input
               type='text'
-              onChange={handleSubmit}
+              onChange={handleChange}
               value={userData.collectedby}
               name='collectedby'
               className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
@@ -514,7 +587,7 @@ export default function Add() {
               min='0'
               name='NoOfBottles'
               value={userData.NoOfBottles}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
             />
           </div>
@@ -529,7 +602,7 @@ export default function Add() {
               type='date'
               name='Date'
               value={userData.Date}
-              onChange={handleSubmit}
+              onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             />
           </div>
@@ -540,13 +613,23 @@ export default function Add() {
             Location:
           </div>
           <div className='flex bg-white border border-gray-200 rounded'>
-            <input
-              type='text'
-              name='Location'
-              value={userData.Location}
-              onChange={handleSubmit}
-              className='w-full p-1 px-2 text-gray-800 outline-none'
-            />
+         
+              <select
+                name='Location'
+                value={userData.Location}
+                onChange={handleChange}
+                className='w-full p-1 px-2 text-gray-800 outline-none'
+              >
+                <option value="">Select a Camp</option>
+                {campNames.map((camp, index) => (
+                  <option key={index} value={camp.id}>{camp.name}</option>
+                  
+                ))
+                
+                
+                }
+              </select>
+         
           </div>
           </div>
           </div>

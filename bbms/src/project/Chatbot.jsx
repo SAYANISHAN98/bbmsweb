@@ -21,10 +21,16 @@ export default function Chatbot() {
         max_tokens: 150,
       });
 
+
+      const result1 = await axios.post('http://localhost:3000/api/chat', {  });
+
+      const result = await axios.post('http://localhost:3000/query', { });
+
       const openAiQuery = openAiResponse.choices[0].message.content.trim();
 
       // Use the response from OpenAI to query Supabase
       const supabaseResponse = await axios.post('http://localhost:3000/query', { query: openAiQuery });
+
 
       setResponse(supabaseResponse.data.response); // Update state with Supabase response
 
@@ -70,4 +76,10 @@ export default function Chatbot() {
       </div>
     </div>
   );
+
+  }
+}}
+
+
 }
+
