@@ -36,6 +36,10 @@ import Chatbot from './project/Chatbot';
 
 
 
+//import Bloodcamp from './project/Bloodcamp';
+
+
+
 function App() {
   return (
     <AuthProvider>
@@ -61,6 +65,7 @@ function App() {
                 {/* <Route path="/Allrequest" element={<Allrequest/>} /> */}
                 <Route path="/Ongoing" element={<Ongoing/>} />
                 <Route path="/Stock" element={<Stock />} />
+                <Route path="/Chatbot" element={<Chatbot />} />
                 <Route path="/NewCamp" element={<NewCamp />} />
                 <Route path="/Newtest" element={<Newtest />} />
                 <Route path="/Bloodcamp" element={<Bloodcamp />} />
