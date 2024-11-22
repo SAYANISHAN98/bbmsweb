@@ -1,131 +1,133 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useProfilesid } from '../api/profiles'; // Assuming you're using a hook to fetch profile data
-import { supabase } from '../lib/supabase';
+import { supabase } from '../lib/supabase'; // Ensure supabase is properly initialized
 
-export default function ViewDetail() {
-  const navigate = useNavigate();  // For navigation
+export default function ViewProfile() {
   const { id } = useParams(); // Extract the id from the URL params
-  //console.log(id); // This will log the id from the URL to help with debugging
-  
-  // Fetch profile data based on the id
-    const { data: profile, refetch, error, isLoading } = useProfilesid(id);
+  const navigate = useNavigate(); // For navigation
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    nicNo: '',
+    dob: '',
+    email: '',
+    contactNumber: '',
+    homeNumber: '',
+    street: '',
+    city: '',
+    district: '',
+    province: '',
+    userRole: '',
+    gender: '',
+    bloodType: '',
+    lastDonationDate: '',
+  });
 
-const handleDelete = async () => {
-  const confirmed = window.confirm('Are you sure you want to delete this User?');
-  if (confirmed) {
-    const { error } = await supabase
-      .from('profiles')
-      .update({ delete_status: 'deleted' })
-      .eq('id', id)
-      .is('delete_status', null);
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error handling
 
-    if (error) {
-      console.error('Error deleting user:', error.message);
-    } else {
-      console.log('User marked as deleted');
-      refetch(); // Trigger a refetch of the profile data
-      navigate('/Doner'); // Redirect to another page after successful deletion
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true); // Start loading
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', id) // Fetch data where the id matches the one from the URL
+        .single(); // Using `.single()` to ensure only one result is returned
+
+      if (error) {
+        setError(error.message); // Set the error message
+      } else if (data) {
+        const profileData = data;
+        setFormData({
+          firstName: profileData.f_name,
+          lastName: profileData.l_name,
+          nicNo: profileData.nic_no,
+          dob: profileData.dob,
+          email: profileData.email,
+          contactNumber: profileData.contact_number,
+          homeNumber: profileData.home_no,
+          street: profileData.street,
+          city: profileData.city,
+          district: profileData.district,
+          province: profileData.province,
+          userRole: profileData.role,
+          gender: profileData.gender,
+          bloodType: profileData.blood_type,
+          lastDonationDate: profileData.last_donation_date,
+        });
+      }
+      setLoading(false); // Finish loading
+    };
+
+    fetchData(); // Call the fetchData function
+  }, [id]); // Re-run when the id changes
+
+  // Delete button function
+  const handleDelete = async () => {
+    const confirmed = window.confirm('Are you sure you want to delete this User?');
+    if (confirmed) {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ delete_status: 'deleted' })
+        .eq('id', id)
+        .is('delete_status', null);
+
+      if (error) {
+        setError(error.message); // Handle delete error
+      } else {
+        console.log('User marked as deleted');
+        navigate('/Doner'); // Redirect to the donor page after deletion
+      }
     }
-  }
-};
-
- 
+  };
 
   // Handle loading and error states
-  if (isLoading) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
 
   return (
-    <div className="w-1/2 p-10 mx-auto bg-white shadow-xl rounded-2xl">
-      <div className="flex items-center justify-center">
-        <h2 className="text-4xl font-bold text-red-500 uppercase">User Details</h2>
+    <div className="profile-details">
+      <h2>User Details</h2>
+      <div>
+        <p><strong>First Name:</strong> {formData.firstName}</p>
+        <p><strong>Last Name:</strong> {formData.lastName}</p>
+        <p><strong>NIC No:</strong> {formData.nicNo}</p>
+        <p><strong>Date of Birth:</strong> {formData.dob}</p>
+        <p><strong>Email:</strong> {formData.email}</p>
+        <p><strong>Contact Number:</strong> {formData.contactNumber}</p>
+        <p><strong>Home Number:</strong> {formData.homeNumber}</p>
+        <p><strong>Street:</strong> {formData.street}</p>
+        <p><strong>City:</strong> {formData.city}</p>
+        <p><strong>District:</strong> {formData.district}</p>
+        <p><strong>Province:</strong> {formData.province}</p>
+        <p><strong>User Role:</strong> {formData.userRole}</p>
+        <p><strong>Gender:</strong> {formData.gender}</p>
+        <p><strong>Blood Type:</strong> {formData.bloodType}</p>
+        <p><strong>Last Donation Date:</strong> {formData.lastDonationDate}</p>
       </div>
-      <div className="mt-4">
-        {/* Display user details */}
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Name: {profile.f_name} {profile.l_name}</div>
-          </div>
-        </div>
 
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Email: {profile.email}</div>
-          </div>
-        </div>
+      <div className="container flex justify-around mt-8 mb-5">
+        {/* Update Button */}
+        <button
+          onClick={() => navigate(`/Form/Update/${id}`)} // Navigate to the update page
+          className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
+        >
+          Update
+        </button>
 
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Contact Number: {profile.contact_number}</div>
-          </div>
-        </div>
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Address: {profile.address}</div>
-          </div>
-        </div>
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>User Role: {profile.role}</div>
-          </div>
-        </div>
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Age: {profile.age}</div>
-          </div>
-        </div>
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Gender: {profile.gender}</div>
-          </div>
-        </div>
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Blood Type: {profile.blood_type}</div>
-          </div>
-        </div>
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Last Donation Date: {profile.last_donation_date}</div>
-          </div>
-        </div>
-
-        
-
-        <div className="flex-1 w-full mx-2 mt-3">
-          <div className="h-8 font-bold leading-8 text-gray-700">
-            <div>Diseases: {profile.diseases}</div>
-            </div>
-            <div>
-          </div>
-        </div>
-
-        <div className="container flex justify-around mt-8 mb-5">
-          {/* Update button - Use navigate for redirection */}
-          <button
-            onClick={() => navigate(`/Update/${profile.id}`)} // Use the profile.id from the profiles table
-            className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
-          >
-            Update
-          </button>
-
-          {/* Optional Delete button - Can redirect to a delete confirmation page */}
-          <button onClick={handleDelete} className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
-            Delete
-          </button>
-        </div>
+        {/* Delete Button */}
+        <button
+          onClick={handleDelete} // Trigger the delete function
+          className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

@@ -43,18 +43,18 @@ const Update = () => {
         const profileData = data[0];
         setFormData((prevData) => ({
           ...prevData,
-          firstName: profileData.first_name,
-          lastName: profileData.last_name,
+          firstName: profileData.f_name,
+          lastName: profileData.l_name,
           nicNo: profileData.nic_no,
           dob: profileData.dob,
           email: profileData.email,
           contactNumber: profileData.contact_number,
-          homeNumber: profileData.home_number,
+          homeNumber: profileData.home_no,
           street: profileData.street,
           city: profileData.city,
           district: profileData.district,
           province: profileData.province,
-          userRole: profileData.user_role,
+          userRole: profileData.role,
           gender: profileData.gender,
           bloodType: profileData.blood_type,
           lastDonationDate: profileData.last_donation_date,
@@ -150,7 +150,7 @@ const Update = () => {
       <div>
         <label>Email</label>
         <input
-          type="email"
+          type="text"
           name="email"
           value={formData.email}
           onChange={handleChange}
@@ -161,7 +161,7 @@ const Update = () => {
       <div>
         <label>Contact Number</label>
         <input
-          type="tel"
+          type="text"
           name="contactNumber"
           value={formData.contactNumber}
           onChange={handleChange}
@@ -171,7 +171,7 @@ const Update = () => {
       <div>
         <label>Home Number</label>
         <input
-          type="tel"
+          type="text"
           name="homeNumber"
           value={formData.homeNumber}
           onChange={handleChange}

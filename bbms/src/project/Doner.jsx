@@ -63,11 +63,11 @@ export default function Doner() {
               <tr className="py-3 font-semibold tracking-wide text-center text-medium">
                 <th scope="col" className="px-2 py-2 w-12">No</th>
                 <th scope="col" className="px-2 py-2 w-24">Name</th>
-                <th scope="col" className="px-2 py-2 w-40">Email</th>
-                <th scope="col" className="px-2 py-2 w-36">Contact Number</th>
+                 <th scope="col" className="px-2 py-2 w-20">Email</th> 
+                <th scope="col" className="px-2 py-2 w-20">Contact Number</th>
                 <th scope="col" className="px-2 py-2 w-15">Blood Type</th>
-                <th scope="col" className="px-2 py-2 w-32">Last Donation Date</th>
-                <th scope="col" className="px-2 py-2 w-48">Action</th>
+                <th scope="col" className="px-2 py-2 w-20">Last Donated</th>
+                <th scope="col" className="px-2 py-2 w-75">Action</th>
               </tr>
             </thead>
 
@@ -77,7 +77,7 @@ export default function Doner() {
                   <tr key={user.id} className="font-semibold tracking-wide text-center text-medium">
                     <td className="px-2 py-2">{index + 1}</td>
                     <td className="px-2 py-2">{user.f_name} {user.l_name}</td>
-                    <td className="px-2 py-2">{user.email}</td>
+                    <td className="px-2 py-2">{user.email}</td> 
                     <td className="px-2 py-2">{user.contact_number}</td>
                     <td className="px-2 py-2">{user.blood_type}</td>
                     <td className="px-2 py-2">{user.last_donation_date}</td>
