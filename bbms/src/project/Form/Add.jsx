@@ -372,7 +372,7 @@ export default function Add() {
         </div>
       </div>
 
-      <div className='flex flex-1 w-full mx-2 space-x-4'>
+      {/* <div className='flex flex-1 w-full mx-2 space-x-4'>
         <div className='w-1/3'>
           <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
             Blood Pressure:
@@ -549,7 +549,7 @@ export default function Add() {
             />
           </div>
           </div>
-          </div>
+          </div> */}
           
 
           <div className='flex justify-center pt-5'>
