@@ -29,7 +29,7 @@ export default function Bloodcamp() {
 
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
-      <div className="w-4/5">
+      <div className="w-5/6">
         <div className="flex items-center justify-center w-full py-4">
           <div className="relative w-3/5">
             <input
