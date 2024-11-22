@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthProvider from './providers/AuthProvider';
-import PrivateRoute from './routes/privateRoute';
-import PublicRoute from './routes/publicRoute';
+import PrivateRoute from './routes/privateRoute';  // Import PrivateRoute
+import PublicRoute from './routes/publicRoute';    // Import PublicRoute
 
 import Login from './project/login';
 import Finddonor from './project/Finddonor';
@@ -18,7 +18,7 @@ import ViewDonor from './project/ViewDonor';
 import Notfound from './Notfound';
 import QueryProvider from './providers/Queryprovider';
 import Donate from './project/Form/Donate';
-import Request from './project/Request'
+import Request from './project/Request';
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
@@ -31,14 +31,7 @@ import Viewbloodtest from './project/Viewbloodtest';
 import Viewcamp from './project/Viewcamp';
 import Bloodcampupdate from './project/Bloodcampupdate';
 import Bloodtestupdate from './project/Bloodtestupdate';
-// import Allrequest from './project/Allrequest';
 import Chatbot from './project/Chatbot';
-
-
-
-//import Bloodcamp from './project/Bloodcamp';
-
-
 
 function App() {
   return (
@@ -46,24 +39,21 @@ function App() {
       <QueryProvider>
         <BrowserRouter>
           <Routes>
-       
+            {/* Protected Routes wrapped in PrivateRoute */}
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route path="/ViewDetail/:id" element={<ViewDetail />} />
                 <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
-              
                 <Route path="/Add" element={<Add />} />
-                 <Route path="/Update" element={<Update />} />
-                
-               <Route path="/Donate" element={<Donate/>} />
+                <Route path="/Form/Update/:id" element={<Update />} />
+                <Route path="/Donate/:id" element={<Donate />} />
                 <Route index element={<Home />} />
                 <Route path="/Doner" element={<Doner />} />
-                <Route path="/Request" element={<Request/>} />
-                <Route path="/Completed" element={<Completed/>} />
+                <Route path="/Request" element={<Request />} />
+                <Route path="/Completed" element={<Completed />} />
                 <Route path="/Accepted" element={<Accepted />} />
-                {/* <Route path="/Allrequest" element={<Allrequest/>} /> */}
-                <Route path="/Ongoing" element={<Ongoing/>} />
+                <Route path="/Ongoing" element={<Ongoing />} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="/Chatbot" element={<Chatbot />} />
                 <Route path="/NewCamp" element={<NewCamp />} />
@@ -74,13 +64,11 @@ function App() {
                 <Route path="/Viewcamp/:id" element={<Viewcamp />} />
                 <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
-               
-
                 <Route path="*" element={<Notfound />} />
               </Route>
             </Route>
 
-           
+            {/* Public Route for Login */}
             <Route path="/login" element={<PublicRoute />}>
               <Route path="/login" element={<Login />} />
             </Route>
