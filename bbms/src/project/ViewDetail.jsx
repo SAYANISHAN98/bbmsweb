@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { supabase } from '../lib/supabase'; // Ensure supabase is properly initialized
+import { supabase } from '../lib/supabase';
 
 export default function ViewProfile() {
-  const { id } = useParams(); // Extract the id from the URL params
-  const navigate = useNavigate(); // For navigation
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,22 +23,21 @@ export default function ViewProfile() {
     lastDonationDate: '',
   });
 
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error handling
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Start loading
-      const { data, error } = await supabase
+      setLoading(true);
+      const { data: profileData, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', id) // Fetch data where the id matches the one from the URL
-        .single(); // Using `.single()` to ensure only one result is returned
+        .eq('id', id)
+        .single();
 
       if (error) {
-        setError(error.message); // Set the error message
-      } else if (data) {
-        const profileData = data;
+        setError(error.message);
+      } else if (profileData) {
         setFormData({
           firstName: profileData.f_name,
           lastName: profileData.l_name,
@@ -57,13 +56,12 @@ export default function ViewProfile() {
           lastDonationDate: profileData.last_donation_date,
         });
       }
-      setLoading(false); // Finish loading
+      setLoading(false);
     };
 
-    fetchData(); // Call the fetchData function
-  }, [id]); // Re-run when the id changes
+    fetchData();
+  }, [id]);
 
-  // Delete button function
   const handleDelete = async () => {
     const confirmed = window.confirm('Are you sure you want to delete this User?');
     if (confirmed) {
@@ -74,59 +72,57 @@ export default function ViewProfile() {
         .is('delete_status', null);
 
       if (error) {
-        setError(error.message); // Handle delete error
+        setError(error.message);
       } else {
         console.log('User marked as deleted');
-        navigate('/Doner'); // Redirect to the donor page after deletion
+        navigate('/Doner');
       }
     }
   };
 
-  // Handle loading and error states
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  if (loading) return <div className="mt-10 text-center">Loading...</div>;
+  if (error) return <div className="mt-10 text-center text-red-500">Error: {error}</div>;
 
   return (
-    <div className="profile-details">
-      <h2>User Details</h2>
-      <div>
-        <p><strong>First Name:</strong> {formData.firstName}</p>
-        <p><strong>Last Name:</strong> {formData.lastName}</p>
-        <p><strong>NIC No:</strong> {formData.nicNo}</p>
-        <p><strong>Date of Birth:</strong> {formData.dob}</p>
-        <p><strong>Email:</strong> {formData.email}</p>
-        <p><strong>Contact Number:</strong> {formData.contactNumber}</p>
-        <p><strong>Home Number:</strong> {formData.homeNumber}</p>
-        <p><strong>Street:</strong> {formData.street}</p>
-        <p><strong>City:</strong> {formData.city}</p>
-        <p><strong>District:</strong> {formData.district}</p>
-        <p><strong>Province:</strong> {formData.province}</p>
-        <p><strong>User Role:</strong> {formData.userRole}</p>
-        <p><strong>Gender:</strong> {formData.gender}</p>
-        <p><strong>Blood Type:</strong> {formData.bloodType}</p>
-        <p><strong>Last Donation Date:</strong> {formData.lastDonationDate}</p>
+    <div className="max-w-5xl p-6 mx-auto mt-10 bg-white border border-gray-300 shadow-2xl rounded-3xl">
+      
+      <h2 className="mb-8 text-3xl font-bold text-center text-red-600 uppercase">User Profile</h2>
+
+    
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {Object.entries(formData).map(([key, value]) => (
+          <div
+            key={key}
+            className="p-2 transition duration-300 border rounded-lg shadow-md bg-gradient-to-br from-gray-100 to-gray-50 hover:shadow-lg"
+          >
+            <p className="pl-4 text-sm font-medium tracking-wide text-gray-600 uppercase">
+              {key.replace(/([A-Z])/g, ' $1')}
+            </p>
+            <p className="mt-1 text-base font-semibold text-center text-gray-800">
+              {value || <span className="italic text-gray-400">Not Provided</span>}
+            </p>
+          </div>
+        ))}
       </div>
 
-      <div className="container flex justify-around mt-8 mb-5">
-        {/* Update Button */}
+      <div className="flex flex-wrap justify-center gap-6 mt-6">
         <button
-          onClick={() => navigate(`/Form/Update/${id}`)} // Navigate to the update page
-          className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
+          onClick={() => navigate(`/Form/Update/${id}`)}
+          className="px-8 py-3 font-semibold text-white uppercase transition duration-300 bg-blue-500 shadow-md rounded-xl hover:bg-blue-600"
         >
           Update
         </button>
-
-        {/* Delete Button */}
         <button
-          onClick={handleDelete} // Trigger the delete function
-          className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
+          onClick={handleDelete}
+          className="px-8 py-3 font-semibold text-white uppercase transition duration-300 bg-red-500 shadow-md rounded-xl hover:bg-red-600"
         >
           Delete
+        </button>
+        <button
+          onClick={() => navigate('/Doner')}
+          className="px-8 py-3 font-semibold text-white uppercase transition duration-300 bg-gray-500 shadow-md rounded-xl hover:bg-gray-600"
+        >
+          Back
         </button>
       </div>
     </div>
