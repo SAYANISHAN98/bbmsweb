@@ -51,7 +51,7 @@ export default function Chatbot() {
   return (
     <div className="flex flex-col items-center h-full p-4 bg-gray-100">
       <div className="flex w-full mb-6 space-x-4 h-4/5">
-        <div className="justify-center flex-1 p-4 bg-white rounded-lg shadow-md flex flex-col">
+        <div className="flex flex-col justify-center flex-1 p-4 bg-white rounded-lg shadow-md">
           <h1>Enter a prompt</h1>
           <div className="flex-grow"></div> {/* Spacer to push input to the bottom */}
           <input
@@ -78,8 +78,3 @@ export default function Chatbot() {
   );
 
   }
-}}
-
-
-}
-
