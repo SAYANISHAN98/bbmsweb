@@ -7,13 +7,12 @@ export default function Doner() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Fetch profiles with searchTerm as a parameter
+  
   const { data: profiles, error, isLoading } = useProfiles(searchTerm);
 
-  // Pagination state: limit initial rows to 10
   const [visibleRows, setVisibleRows] = useState(10);
 
-  // Handle loading and error states
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -29,7 +28,7 @@ export default function Doner() {
 
   return (
     <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
-      <div className='w-4/5'>
+      <div className='w-5/6'>
         <div className="flex items-center justify-between w-full py-8">
           <button
             onClick={() => navigate('/Finddonor')}
@@ -49,7 +48,7 @@ export default function Doner() {
             <input
               type="text"
               placeholder="Search for a donor..."
-              className="w-full px-4 py-2 pr-10 text-gray-700 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+              className="w-full px-4 py-2 pr-10 text-gray-700 border-2 border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -58,15 +57,15 @@ export default function Doner() {
         </div>
 
         <div className='py-8'>
-          <table className="w-full p-3 border-2 shadow-2xl">
+          <table className="w-full p-3 border-2 border-red-500 shadow-2xl">
             <thead className="bg-red-100 border-b-2 border-gray-500">
-              <tr className="py-3 font-semibold tracking-wide text-center text-medium">
-                <th scope="col" className="px-2 py-2 w-12">No</th>
-                <th scope="col" className="px-2 py-2 w-24">Name</th>
-                 <th scope="col" className="px-2 py-2 w-20">Email</th> 
-                <th scope="col" className="px-2 py-2 w-20">Contact Number</th>
+              <tr className="py-3 tracking-wide text-center font-base semibold text-">
+                <th scope="col" className="w-12 px-2 py-2">No</th>
+                <th scope="col" className="px-2 py-2 w-22">Name</th>
+                 <th scope="col" className="w-20 px-2 py-2">Email</th> 
+                <th scope="col" className="px-2 py-2 w-22">Contact Number</th>
                 <th scope="col" className="px-2 py-2 w-15">Blood Type</th>
-                <th scope="col" className="px-2 py-2 w-20">Last Donated</th>
+                <th scope="col" className="px-2 py-2 w-25">Last Donated</th>
                 <th scope="col" className="px-2 py-2 w-75">Action</th>
               </tr>
             </thead>
@@ -74,7 +73,7 @@ export default function Doner() {
             <tbody>
               {profiles && profiles.length > 0 ? (
                 profiles.slice(0, visibleRows).map((user, index) => (
-                  <tr key={user.id} className="font-semibold tracking-wide text-center text-medium">
+                  <tr key={user.id} className="text-base font-semibold tracking-wide text-left">
                     <td className="px-2 py-2">{index + 1}</td>
                     <td className="px-2 py-2">{user.f_name} {user.l_name}</td>
                     <td className="px-2 py-2">{user.email}</td> 
@@ -97,7 +96,7 @@ export default function Doner() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="text-center py-4">No donors found</td>
+                  <td colSpan="7" className="py-4 text-center">No donors found</td>
                 </tr>
               )}
             </tbody>
@@ -108,7 +107,7 @@ export default function Doner() {
             <div className="flex justify-center mt-4">
               <button
                 onClick={loadMore}
-                className="px-6 py-2 bg-red-500 text-white rounded-xl hover:bg-blue-600">
+                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-blue-600">
                 More
               </button>
             </div>
