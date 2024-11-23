@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 
 export default function Add() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     Fname: '',
     Lname: '',
@@ -51,6 +54,7 @@ export default function Add() {
 
       if (error) throw error;
       console.log("Donor details inserted successfully");
+      navigate(`/ViewDetail/${id}`);
     } catch (error) {
       console.error("Error inserting donor details:", error.message);
     }
