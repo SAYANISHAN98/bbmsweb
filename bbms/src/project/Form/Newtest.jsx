@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
@@ -26,40 +27,72 @@ export default function Newtest() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { date, results, bottle_id, tested_by, flag, report } = formData;
-
+  
     try {
       let reportUrl = null;
-
-      
+  
+      // Step 1: Upload the report if provided
       if (report) {
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('reports')
           .upload(`reports/${Date.now()}_${report.name}`, report);
-
+  
         if (uploadError) {
           throw new Error(uploadError.message);
         }
-
-        reportUrl = uploadData.Key;
+  
+        reportUrl = supabase.storage.from('reports').getPublicUrl(uploadData.path).publicUrl;
       }
-
-      
-      const { data, error } = await supabase
+  
+      // Step 2: Validate `bottle_id` existence
+      const { data: bottleData, error: bottleError } = await supabase
+        .from('donor_donations')
+        .select('bottle_id')
+        .eq('bottle_id', bottle_id);
+  
+      if (bottleError || bottleData.length === 0) {
+        alert('Bottle ID does not exist in the donations table.');
+        return;
+      }
+  
+      // Step 3: Insert into `blood_test` table
+      const { data: bloodTestData, error: bloodTestError } = await supabase
         .from('blood_test')
-        .insert([{ date, results, bottle_id, tested_by, flag, report_url: reportUrl }]);
-
-      if (error) {
-        alert('Error adding blood test: ' + error.message);
-        console.error('Error inserting blood test:', error);
-      } else {
-        console.log('Blood test added successfully:', data);
-        navigate('/Bloodtest');
+        .insert([{ date, results, bottle_id, tested_by, flag, report_url: reportUrl }])
+        .select(); // `.select()` fetches the inserted data, including `test_id`.
+  
+      if (bloodTestError) {
+        alert('Error adding blood test: ' + bloodTestError.message);
+        console.error('Error inserting blood test:', bloodTestError);
+        return;
       }
+  
+      const testId = bloodTestData[0]?.test_id; // Retrieve the `test_id` from the inserted data
+  
+      // Step 4: If the test result is "Pass", add a record to `stock`
+      if (results === 'Pass') {
+        const { data: stockData, error: stockError } = await supabase
+          .from('blood_stock')
+          .insert([{ test_id: testId, bottle_id, flag }]);
+  
+        if (stockError) {
+          alert('Error adding to stock: ' + stockError.message);
+          console.error('Error inserting into stock:', stockError);
+          return;
+        }
+  
+        console.log('Stock entry added successfully:', stockData);
+      }
+  
+      console.log('Blood test added successfully:', bloodTestData);
+      navigate('/Bloodtest');
     } catch (err) {
       console.error('Unexpected error:', err);
       alert('An unexpected error occurred. Please try again.');
     }
   };
+  
+  
 
   return (
     <div className="flex items-center justify-center w-full py-8">
