@@ -60,27 +60,27 @@ export default function Doner() {
           <table className="w-full p-3 border-2 border-red-500 shadow-2xl">
             <thead className="bg-red-100 border-b-2 border-gray-500">
               <tr className="py-3 tracking-wide text-center font-base semibold text-">
-                <th scope="col" className="w-12 px-2 py-2">No</th>
-                <th scope="col" className="px-2 py-2 w-22">Name</th>
-                 <th scope="col" className="w-20 px-2 py-2">Email</th> 
-                <th scope="col" className="px-2 py-2 w-22">Contact Number</th>
-                <th scope="col" className="px-2 py-2 w-15">Blood Type</th>
-                <th scope="col" className="px-2 py-2 w-25">Last Donated</th>
-                <th scope="col" className="px-2 py-2 w-75">Action</th>
+                <th scope="col" className="w-12 p-2">No</th>
+                <th scope="col" className="p-2 w-22">Name</th>
+                 <th scope="col" className="w-20 p-2">Email</th> 
+                <th scope="col" className="p-2 w-22">Contact Number</th>
+                <th scope="col" className="p-2 w-15">Blood Type</th>
+                <th scope="col" className="p-2 w-25">Last Donated</th>
+                <th scope="col" className="p-2 w-75">Action</th>
               </tr>
             </thead>
 
             <tbody>
               {profiles && profiles.length > 0 ? (
                 profiles.slice(0, visibleRows).map((user, index) => (
-                  <tr key={user.id} className="text-base font-semibold tracking-wide text-left">
-                    <td className="px-2 py-2">{index + 1}</td>
-                    <td className="px-2 py-2">{user.f_name} {user.l_name}</td>
-                    <td className="px-2 py-2">{user.email}</td> 
-                    <td className="px-2 py-2">{user.contact_number}</td>
-                    <td className="px-2 py-2">{user.blood_type}</td>
-                    <td className="px-2 py-2">{user.last_donation_date}</td>
-                    <td className="px-2 py-2 space-x-2">
+                  <tr key={user.id} className="text-base font-semibold tracking-wide text-left border-b border-gray-300 hover:bg-red-50">
+                    <td className="p-2">{index + 1}</td>
+                    <td className="p-2">{user.f_name} {user.l_name}</td>
+                    <td className="p-2">{user.email}</td> 
+                    <td className="p-2">{user.contact_number}</td>
+                    <td className="p-2">{user.blood_type}</td>
+                    <td className="p-2">{user.last_donation_date}</td>
+                    <td className="p-2 space-x-2">
                       <button
                         onClick={() => navigate(`/ViewDetail/${user.id}`)}
                         className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg">

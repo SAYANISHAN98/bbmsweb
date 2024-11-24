@@ -32,6 +32,7 @@ import Viewcamp from './project/Viewcamp';
 import Bloodcampupdate from './project/Bloodcampupdate';
 import Bloodtestupdate from './project/Bloodtestupdate';
 import Chatbot from './project/Chatbot';
+import BloodGroupDetail from './project/BloodGroupDetail';
 
 function App() {
   return (
@@ -65,6 +66,8 @@ function App() {
                 <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
                 <Route path="*" element={<Notfound />} />
+                <Route path="/blood/:group" element={<BloodGroupDetail />} />
+
               </Route>
             </Route>
 
