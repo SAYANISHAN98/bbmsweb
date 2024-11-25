@@ -22,6 +22,8 @@ import Request from './project/Request';
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
+import Notifications from './project/Form/Notifications';
+import BloodGroupNotificationForm from './project/Form/SendBloodRequest';
 
 import NewCamp from './project/Form/NewCamp';
 import Newtest from './project/Form/Newtest';
@@ -46,6 +48,8 @@ function App() {
                 <Route path="/ViewDetail/:id" element={<ViewDetail />} />
                 <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/sendbloodrequest" element={<BloodGroupNotificationForm />} />
                 <Route path="/Add" element={<Add />} />
                 <Route path="/Form/Update/:id" element={<Update />} />
                 <Route path="/Donate/:id" element={<Donate />} />
