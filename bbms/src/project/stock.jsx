@@ -8,12 +8,13 @@ export default function Stock() {
   const navigate = useNavigate();
   const { data: bloodstock, error, isLoading } = useBloodStock();
 
-  // Group blood stock by blood type and sum quantities
+  // Group blood stock by blood type, sum quantities, and count the entries
   const groupedBloodStock = bloodstock?.reduce((acc, blooddetail) => {
     if (!acc[blooddetail.blood_type]) {
-      acc[blooddetail.blood_type] = 0;
+      acc[blooddetail.blood_type] = { totalQuantity: 0, count: 0 };
     }
-    acc[blooddetail.blood_type] += blooddetail.quantity;
+    acc[blooddetail.blood_type].totalQuantity += blooddetail.quantity;
+    acc[blooddetail.blood_type].count += 1;
     return acc;
   }, {});
 
@@ -45,7 +46,7 @@ export default function Stock() {
           >
             <div>
               <h2 className="text-2xl font-bold text-red-700">{bloodType}</h2>
-              <p className="text-gray-700">Available units: {groupedBloodStock[bloodType]}</p>
+              <p className="text-gray-700">Available units: {groupedBloodStock[bloodType].count}</p>
             </div>
             <FontAwesomeIcon icon={faTint} size="2x" className="text-red-500" />
           </div>
