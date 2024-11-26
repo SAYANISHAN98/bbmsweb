@@ -28,7 +28,7 @@ export default function BloodTests() {
 
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
-      <div className="w-4/5">
+      <div className="w-5/6">
         <div className="flex items-center justify-center w-full py-4">
           <div className="relative w-3/5">
             <input
@@ -53,26 +53,26 @@ export default function BloodTests() {
           <table className="w-full p-3 border-2 border-red-500 shadow-2xl">
             <thead className="bg-red-100 border-b-2 border-gray-500">
               <tr className="py-3 font-semibold tracking-wide text-center text-medium">
-                <th className="px-2 py-2">No</th>
-                <th className="px-2 py-2">Date</th>
-                <th className="px-2 py-2">Results</th>
-                <th className="px-2 py-2">Donation ID</th>
-                <th className="px-2 py-2">Donor ID</th>
-                <th className="px-2 py-2">Tested By</th>
-                <th className="px-2 py-2">Action</th>
+                <th className="p-2 ">No</th>
+                <th className="p-2">Date</th>
+                <th className="p-2">Results</th>
+                <th className="p-2">Donation ID</th>
+                <th className="p-2">Donor ID</th>
+                <th className="p-2">Tested By</th>
+                <th className="p-2">Action</th>
               </tr>
             </thead>
 
             <tbody>
               {tests.map((test, index) => (
-                <tr key={test.id} className="font-semibold tracking-wide text-center text-medium">
-                  <td className="px-2 py-2">{index + 1}</td>
-                  <td className="px-2 py-2">{test.date}</td>
-                  <td className="px-2 py-2">{test.results}</td>
-                  <td className="px-2 py-2">{test.donation_id}</td>
-                  <td className="px-2 py-2">{test.donor_id}</td>
-                  <td className="px-2 py-2">{test.tested_by}</td>
-                  <td className="px-2 py-2 space-x-2">
+                <tr key={test.id} className="font-semibold tracking-wide text-center border-b border-gray-300 text-medium hover:bg-red-50">
+                  <td className="p-2">{index + 1}</td>
+                  <td className="p-2">{test.date}</td>
+                  <td className="p-2">{test.results}</td>
+                  <td className="p-2">{test.donation_id}</td>
+                  <td className="p-2">{test.donor_id}</td>
+                  <td className="p-2">{test.tested_by}</td>
+                  <td className="p-2 space-x-2">
                     <button
                       onClick={() => navigate(`/ViewbloodTest/${test.id}`)}
                       className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"

@@ -6,8 +6,7 @@ export default function ViewProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    fullName: '',
     nicNo: '',
     dob: '',
     email: '',
@@ -39,8 +38,7 @@ export default function ViewProfile() {
         setError(error.message);
       } else if (profileData) {
         setFormData({
-          firstName: profileData.f_name,
-          lastName: profileData.l_name,
+          fullName: `${profileData.f_name} ${profileData.l_name}`,
           nicNo: profileData.nic_no,
           dob: profileData.dob,
           email: profileData.email,
@@ -84,43 +82,69 @@ export default function ViewProfile() {
   if (error) return <div className="mt-10 text-center text-red-500">Error: {error}</div>;
 
   return (
-    <div className="max-w-5xl p-6 mx-auto mt-10 bg-white border border-gray-300 shadow-2xl rounded-3xl">
+    <div className="max-w-3xl p-6 mx-auto mt-10 bg-white border border-gray-300 rounded-lg shadow-lg">
       
-      <h2 className="mb-8 text-3xl font-bold text-center text-red-600 uppercase">User Profile</h2>
+      <h2 className="mb-6 text-2xl font-bold text-center text-red-500">Profile Details</h2>
 
-    
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {Object.entries(formData).map(([key, value]) => (
-          <div
-            key={key}
-            className="p-2 transition duration-300 border rounded-lg shadow-md bg-gradient-to-br from-gray-100 to-gray-50 hover:shadow-lg"
-          >
-            <p className="pl-4 text-sm font-medium tracking-wide text-gray-600 uppercase">
-              {key.replace(/([A-Z])/g, ' $1')}
-            </p>
-            <p className="mt-1 text-base font-semibold text-center text-gray-800">
-              {value || <span className="italic text-gray-400">Not Provided</span>}
-            </p>
-          </div>
-        ))}
+      
+      <div className="items-center w-5/6 mx-auto space-y-4 text-center ">
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Full Name</span>
+          <span className="text-gray-800">{formData.fullName || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Email</span>
+          <span className="text-gray-800">{formData.email || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Phone</span>
+          <span className="text-gray-800">{formData.contactNumber || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Address</span>
+          <span className="text-gray-800">No :
+            {`${formData.homeNumber},${formData.street}, ${formData.city}, ${formData.district}, ${formData.province}` || 'Not Provided'}
+          </span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">User Role</span>
+          <span className="text-gray-800">{formData.userRole || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Phone</span>
+          <span className="text-gray-800">{formData.contactNumber || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Gender</span>
+          <span className="text-gray-800">{formData.gender || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Blood Type</span>
+          <span className="text-gray-800">{formData.bloodType || 'Not Provided'}</span>
+        </div>
+        <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Last Donation Date</span>
+          <span className="text-gray-800">{formData.lastDonationDate || 'Not Provided'}</span>
+        </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 mt-6">
+      
+      <div className="flex justify-center gap-4 mt-6">
         <button
           onClick={() => navigate(`/Form/Update/${id}`)}
-          className="px-8 py-3 font-semibold text-white uppercase transition duration-300 bg-blue-500 shadow-md rounded-xl hover:bg-blue-600"
+          className="px-6 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
         >
           Update
         </button>
         <button
           onClick={handleDelete}
-          className="px-8 py-3 font-semibold text-white uppercase transition duration-300 bg-red-500 shadow-md rounded-xl hover:bg-red-600"
+          className="px-6 py-2 font-semibold text-white bg-red-500 rounded hover:bg-red-600"
         >
           Delete
         </button>
         <button
           onClick={() => navigate('/Doner')}
-          className="px-8 py-3 font-semibold text-white uppercase transition duration-300 bg-gray-500 shadow-md rounded-xl hover:bg-gray-600"
+          className="px-6 py-2 font-semibold text-white bg-gray-500 rounded hover:bg-gray-600"
         >
           Back
         </button>
