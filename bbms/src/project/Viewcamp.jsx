@@ -7,6 +7,7 @@ export default function Viewcamp() {
   const navigate = useNavigate();
   const [camp, setCamp] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [donorCount, setDonorCount] = useState(0); // State for donor count
 
   useEffect(() => {
     const fetchCamp = async () => {
@@ -15,7 +16,7 @@ export default function Viewcamp() {
         .select('*')
         .eq('id', id)
         .single();
-        
+
       if (error) {
         console.error('Error fetching camp details:', error);
       } else {
@@ -24,7 +25,21 @@ export default function Viewcamp() {
       setLoading(false);
     };
 
+    const fetchDonorCount = async () => {
+      const { count, error } = await supabase
+        .from('donor_donation')
+        .select('id', { count: 'exact' })
+        .eq('camp_id', id);
+
+      if (error) {
+        console.error('Error fetching donor count:', error);
+      } else {
+        setDonorCount(count);
+      }
+    };
+
     fetchCamp();
+    fetchDonorCount();
   }, [id]);
 
   const deleteCamp = async () => {
@@ -34,7 +49,7 @@ export default function Viewcamp() {
         .from('blood_camp')
         .delete()
         .eq('id', id);
-        
+
       if (error) {
         console.error('Error deleting camp:', error);
       } else {
@@ -70,13 +85,19 @@ export default function Viewcamp() {
 
           <div className="flex-1 w-full mx-2 mt-3">
             <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Location: {camp?.location || 'N/A'}</div>
+              <div>Address: {camp?.address || 'N/A'}</div>
             </div>
           </div>
 
           <div className="flex-1 w-full mx-2 mt-3">
             <div className="h-8 font-bold leading-8 text-gray-700">
               <div>Status: {camp?.status || 'N/A'}</div>
+            </div>
+          </div>
+
+          <div className="flex-1 w-full mx-2 mt-3">
+            <div className="h-8 font-bold leading-8 text-gray-700">
+              <div>Number of Donors: {donorCount || 0}</div>
             </div>
           </div>
 
@@ -87,12 +108,12 @@ export default function Viewcamp() {
               </button>
             </NavLink>
 
-            <button
+            {/* <button
               onClick={deleteCamp}
               className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
             >
               Delete
-            </button>
+            </button> */}
 
             <NavLink to="/Bloodcamp">
               <button type="button" className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600">
