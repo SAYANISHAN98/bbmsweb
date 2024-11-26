@@ -80,6 +80,7 @@ export default function Sidebar() {
               }`
             }
           >
+             
             <li className='flex items-center'>
               <FaVial className='mr-2' />
               <div className='px-3'>Blood Test</div>
@@ -111,6 +112,20 @@ export default function Sidebar() {
             <li className='flex items-center'>
               <FaChartBar className='mr-2' />
               <div className='px-3'>Data Analysis</div>
+            </li>
+          </NavLink>
+          <hr />
+          <NavLink
+            to='/notifications'
+            className={({ isActive }) =>
+              `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
+                isActive ? 'bg-red-700 text-white' : ''
+              }`
+            }
+          >
+            <li className='flex items-center'>
+              <FaChartBar className='mr-2' />
+              <div className='px-3'>Notifications</div>
             </li>
           </NavLink>
         </ul>

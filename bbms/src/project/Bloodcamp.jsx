@@ -65,7 +65,7 @@ export default function Bloodcamp() {
 
             <tbody>
               {camps.map((camp, index) => (
-                <tr key={camp.id} className="font-semibold tracking-wide text-center text-medium">
+                <tr key={camp.id} className="font-semibold tracking-wide text-center border-b border-gray-300 text-medium hover:bg-red-50">
                   <td className="px-2 py-2">{index + 1}</td>
                   <td className="px-2 py-2">{camp.name}</td>
                   <td className="px-2 py-2">{camp.date}</td>

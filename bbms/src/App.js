@@ -22,6 +22,8 @@ import Request from './project/Request';
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
+import Notifications from './project/Form/Notifications';
+import BloodGroupNotificationForm from './project/Form/SendBloodRequest';
 
 import NewCamp from './project/Form/NewCamp';
 import Newtest from './project/Form/Newtest';
@@ -32,6 +34,7 @@ import Viewcamp from './project/Viewcamp';
 import Bloodcampupdate from './project/Bloodcampupdate';
 import Bloodtestupdate from './project/Bloodtestupdate';
 import Chatbot from './project/Chatbot';
+import BloodGroupDetail from './project/BloodGroupDetail';
 
 function App() {
   return (
@@ -45,6 +48,8 @@ function App() {
                 <Route path="/ViewDetail/:id" element={<ViewDetail />} />
                 <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/sendbloodrequest" element={<BloodGroupNotificationForm />} />
                 <Route path="/Add" element={<Add />} />
                 <Route path="/Form/Update/:id" element={<Update />} />
                 <Route path="/Donate/:id" element={<Donate />} />
@@ -65,6 +70,8 @@ function App() {
                 <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
                 <Route path="*" element={<Notfound />} />
+                <Route path="/blood/:group" element={<BloodGroupDetail />} />
+
               </Route>
             </Route>
 

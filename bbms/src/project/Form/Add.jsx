@@ -49,7 +49,7 @@ export default function Add() {
           last_donation_date: formattedUserData.lastdonationdate,
           visible_marks: formattedUserData.VisibleMarks,
           diseases: formattedUserData.Diseases,
-          // Add other fields as needed
+          
         });
 
       if (error) throw error;
