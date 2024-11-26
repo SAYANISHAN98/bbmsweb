@@ -43,6 +43,21 @@ export default function Sidebar() {
               <div className='px-3'>Donor</div>
             </li>
           </NavLink>
+          
+          <hr />
+          <NavLink
+            to='/notifications'
+            className={({ isActive }) =>
+              `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
+                isActive ? 'bg-red-700 text-white' : ''
+              }`
+            }
+          >
+            <li className='flex items-center'>
+              <FaChartBar className='mr-2' />
+              <div className='px-3'>Find Donor</div>
+            </li>
+          </NavLink>
           <hr />
           <NavLink
             to='/request'
@@ -55,6 +70,20 @@ export default function Sidebar() {
             <li className='flex items-center'>
               <FaUsers className='mr-2' />
               <div className='px-3'>Requests</div>
+            </li>
+          </NavLink>
+          <hr />
+          <NavLink
+            to='/chatbot'
+            className={({ isActive }) =>
+              `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
+                isActive ? 'bg-red-700 text-white' : ''
+              }`
+            }
+          >
+            <li className='flex items-center'>
+              <FaChartBar className='mr-2' />
+              <div className='px-3'>Donor Donations</div>
             </li>
           </NavLink>
           <hr />
@@ -100,34 +129,7 @@ export default function Sidebar() {
               <div className='px-3'>Blood Camp</div>
             </li>
           </NavLink>
-          <hr />
-          <NavLink
-            to='/chatbot'
-            className={({ isActive }) =>
-              `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
-                isActive ? 'bg-red-700 text-white' : ''
-              }`
-            }
-          >
-            <li className='flex items-center'>
-              <FaChartBar className='mr-2' />
-              <div className='px-3'>Data Analysis</div>
-            </li>
-          </NavLink>
-          <hr />
-          <NavLink
-            to='/notifications'
-            className={({ isActive }) =>
-              `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
-                isActive ? 'bg-red-700 text-white' : ''
-              }`
-            }
-          >
-            <li className='flex items-center'>
-              <FaChartBar className='mr-2' />
-              <div className='px-3'>Notifications</div>
-            </li>
-          </NavLink>
+          
         </ul>
       </div>
       <NavLink
