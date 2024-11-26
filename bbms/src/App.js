@@ -65,7 +65,7 @@ function App() {
                 <Route path="/Newtest" element={<Newtest />} />
                 <Route path="/Bloodcamp" element={<Bloodcamp />} />
                 <Route path="/Bloodtest" element={<Bloodtest />} />
-                <Route path="/Viewbloodtest" element={<Viewbloodtest />} />
+                <Route path="/Viewbloodtest/:id" element={<Viewbloodtest />} />
                 <Route path="/Viewcamp/:id" element={<Viewcamp />} />
                 <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />

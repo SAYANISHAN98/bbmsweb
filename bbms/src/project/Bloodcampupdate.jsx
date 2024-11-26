@@ -27,7 +27,7 @@ export default function Bloodcampupdate() {
         setFormData({
           name: data.name,
           date: data.date,
-          location: data.location,
+          address: data.address,
           status: data.status,
         });
       }
@@ -54,7 +54,7 @@ export default function Bloodcampupdate() {
       .update({
         name: formData.name,
         date: formData.date,
-        location: formData.location,
+        address: formData.address,
         status: formData.status,
       })
       .eq('id', id);
@@ -97,11 +97,11 @@ export default function Bloodcampupdate() {
         </div>
 
         <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Location</label>
+          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Address</label>
           <input
             type="text"
             name="location"
-            value={formData.location}
+            value={formData.address}
             onChange={handleChange}
             placeholder="Enter location"
             className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
