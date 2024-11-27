@@ -26,7 +26,7 @@ export default function Newtest() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { date, results, bottle_id, tested_by, flag, report } = formData;
+    const { date,blood_type, donation_date, results, bottle_id, tested_by, flag, report } = formData;
   
     try {
       let reportUrl = null;
@@ -58,7 +58,7 @@ export default function Newtest() {
       // Step 3: Insert into `blood_test` table
       const { data: bloodTestData, error: bloodTestError } = await supabase
         .from('blood_test')
-        .insert([{ date, results, bottle_id, tested_by, flag, report_url: reportUrl }])
+        .insert([{ date,blood_type, donation_date, results, bottle_id, tested_by, flag, report_url: reportUrl }])
         .select(); // `.select()` fetches the inserted data, including `test_id`.
   
       if (bloodTestError) {
@@ -69,11 +69,14 @@ export default function Newtest() {
   
       const testId = bloodTestData[0]?.test_id; // Retrieve the `test_id` from the inserted data
   
-      // Step 4: If the test result is "Pass", add a record to `stock`
+      // Step 4: Calculate `exp_date` and add a record to `blood_stock` if test result is "Pass"
       if (results === 'Pass') {
+        const expDate = new Date(donation_date); // Create a date object from `donation_date`
+        expDate.setDate(expDate.getDate() + 120); // Add 120 days
+  
         const { data: stockData, error: stockError } = await supabase
           .from('blood_stock')
-          .insert([{ test_id: testId, bottle_id, flag }]);
+          .insert([{ test_id: testId, blood_type,bottle_id, flag, exp_date: expDate.toISOString().split('T')[0] }]);
   
         if (stockError) {
           alert('Error adding to stock: ' + stockError.message);
@@ -91,6 +94,7 @@ export default function Newtest() {
       alert('An unexpected error occurred. Please try again.');
     }
   };
+  
   
   
 
@@ -111,6 +115,42 @@ export default function Newtest() {
             required
           />
         </div>
+
+        <div>
+          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Donated DATE</label>
+          <input
+            type="date"
+            name="donation_date"
+            value={formData.donation_date}
+            onChange={handleChange}
+            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            required
+          />
+        </div>
+
+        <div className='flex-1 mr-2'>
+              <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
+                Blood Type:
+              </div>
+              <div className='flex my-2 bg-white border border-gray-200 rounded'>
+                <select
+                  name='blood_type'
+                  value={formData.blood_type}
+                  onChange={handleChange}
+                  className='w-full p-1 px-2 text-gray-800 outline-none'
+                >
+                  <option value=''>Select Blood Type</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                </select>
+              </div>
+            </div>
 
        
         <div>

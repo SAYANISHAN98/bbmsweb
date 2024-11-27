@@ -7,12 +7,10 @@ export default function Doner() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   
-  
   const { data: profiles, error, isLoading } = useProfiles(searchTerm);
 
   const [visibleRows, setVisibleRows] = useState(10);
 
-  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -26,16 +24,26 @@ export default function Doner() {
     setVisibleRows(prev => prev + 10);
   };
 
+  // Filter profiles based on search term
+  // Filter profiles based on search term
+const filteredProfiles = profiles?.filter((user) => {
+  const term = searchTerm.toLowerCase();
+  const name = `${user.f_name} ${user.l_name}`.toLowerCase();
+  const bloodType = user.blood_type?.toLowerCase() || ''; // Use empty string if blood_type is null or undefined
+  const lastDonation = user.last_donation_date?.toLowerCase() || ''; // Use empty string if last_donation_date is null or undefined
+
+  return (
+    name.includes(term) ||
+    bloodType.includes(term) ||
+    lastDonation.includes(term)
+  );
+});
+
+
   return (
     <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
       <div className='w-5/6'>
         <div className="flex items-center justify-between w-full py-8">
-          <button
-            onClick={() => navigate('/Finddonor')}
-            className="font-bold text-white active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg" style={{ backgroundColor: '#dc143c' }}>
-            Find Donor
-          </button>
-
           <button
             onClick={() => navigate('/Add')}
             className="font-bold text-white active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg" style={{ backgroundColor: '#dc143c' }}>
@@ -47,7 +55,7 @@ export default function Doner() {
           <div className="relative w-3/5">
             <input
               type="text"
-              placeholder="Search for a donor..."
+              placeholder="Search with Name, Blood type, Last donated date...."
               className="w-full px-4 py-2 pr-10 text-gray-700 border-2 border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -62,8 +70,8 @@ export default function Doner() {
               <tr className="py-3 tracking-wide text-center font-base semibold text-">
                 <th scope="col" className="w-12 p-2">No</th>
                 <th scope="col" className="p-2 w-22">Name</th>
-                 <th scope="col" className="w-20 p-2">Email</th> 
-                <th scope="col" className="p-2 w-22">Contact Number</th>
+                <th scope="col" className="w-20 p-2">Email</th>
+                <th scope="col" className="p-2 w-22">NIC no</th>
                 <th scope="col" className="p-2 w-15">Blood Type</th>
                 <th scope="col" className="p-2 w-25">Last Donated</th>
                 <th scope="col" className="p-2 w-75">Action</th>
@@ -71,13 +79,13 @@ export default function Doner() {
             </thead>
 
             <tbody>
-              {profiles && profiles.length > 0 ? (
-                profiles.slice(0, visibleRows).map((user, index) => (
+              {filteredProfiles && filteredProfiles.length > 0 ? (
+                filteredProfiles.slice(0, visibleRows).map((user, index) => (
                   <tr key={user.id} className="text-base font-semibold tracking-wide text-left border-b border-gray-300 hover:bg-red-50">
                     <td className="p-2">{index + 1}</td>
                     <td className="p-2">{user.f_name} {user.l_name}</td>
-                    <td className="p-2">{user.email}</td> 
-                    <td className="p-2">{user.contact_number}</td>
+                    <td className="p-2">{user.email}</td>
+                    <td className="p-2">{user.nic_no}</td> {/* Changed from contact_number to nic_no */}
                     <td className="p-2">{user.blood_type}</td>
                     <td className="p-2">{user.last_donation_date}</td>
                     <td className="p-2 space-x-2">
@@ -85,11 +93,6 @@ export default function Doner() {
                         onClick={() => navigate(`/ViewDetail/${user.id}`)}
                         className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg">
                         View
-                      </button>
-                      <button
-                        onClick={() => navigate(`/Donate/${user.id}`)}
-                        className="font-bold text-white bg-green-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg">
-                        Donate
                       </button>
                     </td>
                   </tr>
@@ -100,10 +103,11 @@ export default function Doner() {
                 </tr>
               )}
             </tbody>
+
           </table>
 
           {/* Button to load more data */}
-          {profiles.length > visibleRows && (
+          {filteredProfiles.length > visibleRows && (
             <div className="flex justify-center mt-4">
               <button
                 onClick={loadMore}

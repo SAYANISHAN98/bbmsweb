@@ -34,7 +34,7 @@ export default function Navigation() {
             <div className='absolute right-0 z-10 hidden w-40 bg-white rounded-lg shadow group-focus:block top-full'>
               <ul className='px-3 py-2 text-base font-bold text-gray-600'>
                 
-                <li className='flex items-center mb-3'>
+                {/* <li className='flex items-center mb-3'>
                   <FaUser className='mr-2' />
                   <a href=''>Profile</a>
                 </li>
@@ -46,7 +46,7 @@ export default function Navigation() {
                   <FaCog className='mr-2' />
                   <a href=''>Settings</a>
                 </li>
-                <hr className='bg-gray-600' />
+                <hr className='bg-gray-600' />*/}
                
                 <li  onClick={Logout} className='flex items-center mt-1 mb-3'>
                   <FaSignOutAlt  className='mr-2' />
