@@ -40,7 +40,7 @@ export default function Sidebar() {
           >
             <li className='flex items-center'>
               <FaUsers className='mr-2' />
-              <div className='px-3'>Donor</div>
+              <div className='px-3'>Donor Details</div>
             </li>
           </NavLink>
           
@@ -69,12 +69,12 @@ export default function Sidebar() {
           >
             <li className='flex items-center'>
               <FaUsers className='mr-2' />
-              <div className='px-3'>Requests</div>
+              <div className='px-3'>Blood Requests</div>
             </li>
           </NavLink>
           <hr />
           <NavLink
-            to='/chatbot'
+            to='/donordonations'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -132,7 +132,7 @@ export default function Sidebar() {
           
         </ul>
       </div>
-      <NavLink
+      {/* <NavLink
         to='/settings'
         className={({ isActive }) =>
           `flex items-center px-2 py-2 mb-1 font-bold text-gray-600 rounded transform transition-transform duration-200 hover:scale-105 ${
@@ -144,7 +144,7 @@ export default function Sidebar() {
           <FaCog className='mr-2' />
           Settings
         </div>
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 }
