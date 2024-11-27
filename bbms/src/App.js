@@ -33,8 +33,10 @@ import Viewbloodtest from './project/Viewbloodtest';
 import Viewcamp from './project/Viewcamp';
 import Bloodcampupdate from './project/Bloodcampupdate';
 import Bloodtestupdate from './project/Bloodtestupdate';
-import Chatbot from './project/Chatbot';
+import Donordonations from './project/donordonations';
 import BloodGroupDetail from './project/BloodGroupDetail';
+import Viewdonations from './project/viewdonations';
+
 
 function App() {
   return (
@@ -60,7 +62,7 @@ function App() {
                 <Route path="/Accepted" element={<Accepted />} />
                 <Route path="/Ongoing" element={<Ongoing />} />
                 <Route path="/Stock" element={<Stock />} />
-                <Route path="/Chatbot" element={<Chatbot />} />
+                <Route path="/donordonations" element={<Donordonations />} />
                 <Route path="/NewCamp" element={<NewCamp />} />
                 <Route path="/Newtest" element={<Newtest />} />
                 <Route path="/Bloodcamp" element={<Bloodcamp />} />
@@ -68,6 +70,8 @@ function App() {
                 <Route path="/Viewbloodtest/:id" element={<Viewbloodtest />} />
                 <Route path="/Viewcamp/:id" element={<Viewcamp />} />
                 <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
+                <Route path="/viewdonations/:id" element={<Viewdonations />} />
+
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
                 <Route path="*" element={<Notfound />} />
                 <Route path="/blood/:group" element={<BloodGroupDetail />} />

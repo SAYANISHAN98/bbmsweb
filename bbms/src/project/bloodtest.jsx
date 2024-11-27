@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
 
 export default function BloodTests() {
-  const [searchQuery, setSearchQuery] = useState(""); // Store the NIC No search query
+  const [searchQuery, setSearchQuery] = useState(""); // Store the search query
   const [filteredTests, setFilteredTests] = useState([]); // Store filtered and sorted blood test data
 
   const [tests, setTests] = useState([]); // Store all fetched tests
@@ -70,16 +70,17 @@ export default function BloodTests() {
     fetchTests();
   }, []);
 
-  const searchAndSortByNICNo = (query) => {
+  const searchAndFilter = (query) => {
     if (query) {
       const filtered = tests.filter(test =>
-        test.nic_no && test.nic_no.toLowerCase().includes(query.toLowerCase())
+        (test.nic_no && test.nic_no.toLowerCase().includes(query.toLowerCase())) ||
+        (test.results && test.results.toLowerCase().includes(query.toLowerCase())) ||
+        (test.tested_by && test.tested_by.toLowerCase().includes(query.toLowerCase())) ||
+        (test.date && test.date.toLowerCase().includes(query.toLowerCase()))
       );
 
-      // Sort by NIC No
-      filtered.sort((a, b) => a.nic_no.localeCompare(b.nic_no));
-
-      setFilteredTests(filtered); // Update the filtered and sorted results
+      // Optionally, you can also sort the filtered results here if required
+      setFilteredTests(filtered); // Update the filtered results
     } else {
       // If no search query, just reset to all tests
       setFilteredTests(tests);
@@ -89,7 +90,7 @@ export default function BloodTests() {
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query); // Update search query
-    searchAndSortByNICNo(query); // Filter and sort the tests based on NIC No
+    searchAndFilter(query); // Filter the tests based on the query
   };
 
   return (
@@ -101,7 +102,7 @@ export default function BloodTests() {
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
-              placeholder="Search by NIC No"
+              placeholder="Search by Date, Results, NIC No, Tested By"
               className="w-full px-4 py-2 pr-10 text-gray-700 border-2 border-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
             />
             <FaSearch className="absolute w-5 h-5 text-gray-500 transform -translate-y-1/2 right-3 top-1/2" />

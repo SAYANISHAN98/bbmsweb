@@ -176,7 +176,7 @@ const Update = () => {
       console.error('Error updating data:', profileError || medicalError || donationError);
     } else {
       console.log('Data updated successfully');
-      navigate(`/Doner`);
+      navigate(`/donordonations`);
     }
   };
 
