@@ -12,6 +12,11 @@ export default function Donordonations() {
   const [modalOpen, setModalOpen] = useState(false); // Modal visibility state
   const [error, setError] = useState(''); // Error message for NIC validation
   const navigate = useNavigate();
+  const [visibleRows, setVisibleRows] = useState(10); 
+  
+  const loadMore = () => {
+    setVisibleRows((prev) => prev + 10); 
+    };
 
   useEffect(() => {
     const fetchdonations = async () => {
@@ -115,8 +120,16 @@ export default function Donordonations() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6">
-        <div className="flex items-center justify-center w-full py-4">
-          <div className="relative w-3/5">
+
+        <div className="flex items-center justify-between w-full py-6">
+       
+          <button
+            onClick={() => setModalOpen(true)} // Open the modal when Donate button is clicked
+            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
+          >
+            Donate
+          </button>
+          <div className="relative w-3/5 ">
             <input
               type="text"
               value={searchQuery}
@@ -128,38 +141,29 @@ export default function Donordonations() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end w-full">
-          <button
-            onClick={() => setModalOpen(true)} // Open the modal when Donate button is clicked
-            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-          >
-            Donate
-          </button>
-        </div>
-
         {/* Modal for NIC input */}
         {modalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg w-1/3">
-              <h2 className="text-xl font-bold mb-4">Enter NIC Number</h2>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="w-1/3 p-6 bg-white rounded-lg">
+              <h2 className="mb-4 text-xl font-bold">Enter NIC Number</h2>
               <input
                 type="text"
                 value={nic}
                 onChange={(e) => setNic(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg mb-4"
+                className="w-full px-4 py-2 mb-4 border-2 border-gray-300 rounded-lg"
                 placeholder="NIC Number"
               />
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+              {error && <p className="text-sm text-red-500">{error}</p>}
               <div className="flex justify-between mt-4">
                 <button
                   onClick={() => setModalOpen(false)} // Close the modal
-                  className="bg-gray-500 text-white py-2 px-6 rounded-lg"
+                  className="px-6 py-2 text-white bg-gray-500 rounded-lg"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleDonate} // Validate and navigate
-                  className="bg-red-500 text-white py-2 px-6 rounded-lg"
+                  className="px-6 py-2 text-white bg-red-500 rounded-lg"
                 >
                   Submit
                 </button>
@@ -169,15 +173,15 @@ export default function Donordonations() {
         )}
 
         <div className="py-8">
-          <table className="w-full p-3 border-2 border-red-500 shadow-2xl">
-            <thead className="bg-red-100 border-b-2 border-gray-500">
-              <tr className="py-3 font-semibold tracking-wide text-center text-medium">
-                <th className="p-2 ">Name</th>
-                <th className="p-2">Donation Date</th>
-                <th className="p-2">Blood Group</th>
-                <th className="p-2">NIC No</th>
-                <th className="p-2">Location</th>
-                <th className="p-2">Action</th>
+        <table className="w-full overflow-hidden bg-white border-collapse rounded-lg shadow-md">
+            <thead className="">
+              <tr className="">
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Name</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Donation Date</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Blood Group</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">NIC No</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Location</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Action</th>
               </tr>
             </thead>
 
@@ -187,18 +191,17 @@ export default function Donordonations() {
                   <td colSpan="6" className="text-center">Loading...</td>
                 </tr>
               ) : filtereddonations.length > 0 ? (
-                filtereddonations.map((donation) => (
-                  <tr key={donation.id} className="font-semibold tracking-wide text-center border-b border-gray-300 text-medium hover:bg-red-50">
-                    <td className="p-2">{donation.f_name}</td>
-                    <td className="p-2">{donation.date}</td>
-                    <td className="p-2">{donation.blood_type}</td>
-                    <td className="p-2">{donation.nic_no}</td>
-                    <td className="p-2">{donation.location}</td>
-                    <td className="p-2">
+                filtereddonations.slice(0,visibleRows).map((donation) => (
+                  <tr key={donation.id} className="border-b hover:bg-red-50">
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{donation.f_name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{donation.date}</td>
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{donation.blood_type}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{donation.nic_no}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{donation.location}</td>
+                    <td className="p-2 space-x-2">
                       <button
                         onClick={() => navigate(`/viewdonations/${donation.id}`)}
-                        className="py-1 px-4 text-white bg-red-500 rounded-md"
-                      >
+                        className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                         View
                       </button>
                     </td>
@@ -211,6 +214,15 @@ export default function Donordonations() {
               )}
             </tbody>
           </table>
+          {filtereddonations.length > visibleRows && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={loadMore}
+                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700">
+                More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

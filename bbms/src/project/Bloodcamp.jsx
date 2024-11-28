@@ -9,6 +9,10 @@ export default function Bloodcamp() {
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [visibleRows, setVisibleRows] = useState(10); 
+  const loadMore = () => {
+    setVisibleRows((prev) => prev + 10); 
+    };
 
   useEffect(() => {
     // Fetch camps data from Supabase
@@ -45,7 +49,14 @@ export default function Bloodcamp() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6">
-        <div className="flex items-center justify-center w-full py-4">
+
+        <div className="flex items-center justify-between w-full pt-8">
+          <button
+            onClick={() => navigate('/NewCamp')}
+            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
+          >
+            Add
+          </button>
           <div className="relative w-3/5">
             <input
               type="text"
@@ -58,44 +69,44 @@ export default function Bloodcamp() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end w-full">
-          <button
-            onClick={() => navigate('/NewCamp')}
-            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-          >
-            Add
-          </button>
-        </div>
-
         <div className="py-8">
-          <table className="w-full p-3 border-2 border-red-500 shadow-2xl">
-            <thead className="bg-red-100 border-b-2 border-gray-500">
-              <tr className="py-3 font-semibold tracking-wide text-center text-medium">
-                <th className="px-2 py-2">No</th>
-                <th className="px-2 py-2">Camp Name</th>
-                <th className="px-2 py-2">Camp date</th>
-                <th className="px-2 py-2">Address</th>
-                <th className="px-2 py-2">Status</th>
-                <th className="px-2 py-2">Action</th>
+        <table className="w-full overflow-hidden bg-white border-collapse rounded-lg shadow-md">
+            <thead className="">
+              <tr className="">
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">No</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Camp Name</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Camp date</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Address</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Action</th>
               </tr>
             </thead>
 
             <tbody>
-              {filteredCamps.map((camp, index) => (
+              {filteredCamps.slice(0,visibleRows).map((camp, index) => (
                 <tr
                   key={camp.id}
-                  className="font-semibold tracking-wide text-center border-b border-gray-300 text-medium hover:bg-red-50"
+                  className="border-b hover:bg-red-50"
                 >
-                  <td className="px-2 py-2">{index + 1}</td>
-                  <td className="px-2 py-2">{camp.name}</td>
-                  <td className="px-2 py-2">{camp.date}</td>
-                  <td className="px-2 py-2">{camp.address}</td>
-                  <td className="px-2 py-2">{camp.status}</td>
+                  <td className="px-6 py-4 font-medium whitespace-nowrap">{index + 1}</td>
+                  <td className="px-6 py-4 font-medium whitespace-nowrap">{camp.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{camp.date}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{camp.address}</td>
+                  <td className="px-6 py-4 whitespace-nowrap"><span
+                  className={`px-2 inline-flex text-base leading-5 font-semibold rounded-full ${
+                    camp.status === 'inactive'
+                      ? 'bg-red-100 text-red-800'
+                      : camp.status === 'active'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                  }`}
+                >
+                  {camp.status}
+                </span></td>
                   <td className="px-2 py-2 space-x-2">
                     <button
                       onClick={() => navigate(`/Viewcamp/${camp.id}`)}
-                      className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
-                    >
+                      className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                       View
                     </button>
                   </td>
@@ -103,6 +114,16 @@ export default function Bloodcamp() {
               ))}
             </tbody>
           </table>
+          {filteredCamps.length > visibleRows && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={loadMore}
+                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700"
+              >
+                More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
