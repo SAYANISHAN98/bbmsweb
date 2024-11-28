@@ -1,40 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Activity, Droplet, Users } from 'lucide-react';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
 
-// Mock Data (From First Code)
-const bloodStockData = [
-  { bloodGroup: 'A+', units: 50, status: 'Normal' },
-  { bloodGroup: 'A-', units: 15, status: 'Low' },
-  { bloodGroup: 'B+', units: 45, status: 'Normal' },
-  { bloodGroup: 'B-', units: 12, status: 'Low' },
-  { bloodGroup: 'AB+', units: 25, status: 'Normal' },
-  { bloodGroup: 'AB-', units: 8, status: 'Low' },
-  { bloodGroup: 'O+', units: 80, status: 'High' },
-  { bloodGroup: 'O-', units: 30, status: 'Normal' },
-];
+// Register the scales and other necessary components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const donationStats = [
-  { bloodGroup: 'A+', count: 25 },
-  { bloodGroup: 'A-', count: 8 },
-  { bloodGroup: 'B+', count: 20 },
-  { bloodGroup: 'B-', count: 5 },
-  { bloodGroup: 'AB+', count: 12 },
-  { bloodGroup: 'AB-', count: 3 },
-  { bloodGroup: 'O+', count: 35 },
-  { bloodGroup: 'O-', count: 15 },
-];
-
-const requestStats = [
-  { bloodGroup: 'A+', count: 22 },
-  { bloodGroup: 'A-', count: 10 },
-  { bloodGroup: 'B+', count: 18 },
-  { bloodGroup: 'B-', count: 7 },
-  { bloodGroup: 'AB+', count: 9 },
-  { bloodGroup: 'AB-', count: 4 },
-  { bloodGroup: 'O+', count: 30 },
-  { bloodGroup: 'O-', count: 20 },
-];
 
 // StatsCard Component
 function StatsCard({ title, value, icon }) {
@@ -52,14 +32,14 @@ function StatsCard({ title, value, icon }) {
 }
 
 // BloodStockTable Component
-function BloodStockTable({ stocks }) {
+function BloodStockTable({ bloodGroups, stockData }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <table className="min-w-full">
         <thead className="bg-gray-50">
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Blood Group
+              Blood Type
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Units Available
@@ -70,86 +50,234 @@ function BloodStockTable({ stocks }) {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {stocks.map((stock) => (
-            <tr key={stock.bloodGroup}>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span className="font-medium">{stock.bloodGroup}</span>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">{stock.units}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <span
-                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                    stock.status === 'Low'
-                      ? 'bg-red-100 text-red-800'
-                      : stock.status === 'Normal'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-blue-100 text-blue-800'
-                  }`}
-                >
-                  {stock.status}
-                </span>
-              </td>
-            </tr>
-          ))}
+          {bloodGroups.map((group) => {
+            const bloodStock = stockData[group] || { totalUnits: 0, status: 'Low' };
+            return (
+              <tr key={group}>
+                <td className="px-6 py-4 whitespace-nowrap">{group}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{bloodStock.totalUnits}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span
+                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      bloodStock.status === 'Low'
+                        ? 'bg-red-100 text-red-800'
+                        : bloodStock.status === 'Normal'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-blue-100 text-blue-800'
+                    }`}
+                  >
+                    {bloodStock.status}
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
 }
 
-// StatsChart Component
-function StatsChart({ donations, requests }) {
-  const maxValue = Math.max(
-    ...donations.map((d) => d.count),
-    ...requests.map((r) => r.count)
-  );
+function DonationsRequestsChart({ donationsData, requestsData, bloodGroups }) {
+  const data = {
+    labels: bloodGroups,
+    datasets: [
+      {
+        label: 'Donations',
+        data: bloodGroups.map((group) => donationsData[group] || 0),
+        backgroundColor: 'rgba(34, 197, 94, 0.7)', // Green
+        borderColor: 'rgba(34, 197, 94, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Requests',
+        data: bloodGroups.map((group) => requestsData[group] || 0),
+        backgroundColor: 'rgba(239, 68, 68, 0.7)', // Red
+        borderColor: 'rgba(239, 68, 68, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    },
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h3 className="text-lg font-semibold mb-4">Monthly Statistics</h3>
-      <div className="space-y-4">
-        {donations.map((donation, index) => (
-          <div key={donation.bloodGroup} className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>{donation.bloodGroup}</span>
-              <span className="text-gray-500">
-                Donations: {donation.count} | Requests: {requests[index].count}
-              </span>
-            </div>
-            <div className="relative h-4 bg-gray-200 rounded">
-              <div
-                className="absolute left-0 top-0 h-full bg-green-500 rounded"
-                style={{ width: `${(donation.count / maxValue) * 100}%` }}
-              />
-              <div
-                className="absolute left-0 top-0 h-full bg-red-500 rounded opacity-75"
-                style={{ width: `${(requests[index].count / maxValue) * 100}%` }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="flex gap-4 mt-4 text-sm">
-        <div className="flex items-center">
-          <div className="w-3 h-3 bg-green-500 rounded mr-2" />
-          <span>Donations</span>
-        </div>
-        <div className="flex items-center">
-          <div className="w-3 h-3 bg-red-500 rounded mr-2" />
-          <span>Requests</span>
-        </div>
-      </div>
+      <h2 className="text-lg font-semibold mb-4">Monthly Statistics</h2>
+      <Bar data={data} options={options} />
     </div>
   );
 }
 
-// Home Component (Integrated)
+// Home Component (Updated)
 export default function Home() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [totalDonations, setTotalDonations] = useState(0);
+  const [totalRequests, setTotalRequests] = useState(0);
+  const [bloodStockData, setBloodStockData] = useState({}); // To hold dynamic stock data
+  const [donationsData, setDonationsData] = useState({});
+  const [requestsData, setRequestsData] = useState({});
+
+  // Static blood groups
+  const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   useEffect(() => {
+    const fetchBloodStockData = async () => {
+      try {
+        const currentDate = new Date().toISOString();
+
+        const { data, error } = await supabase
+          .from('blood_stock')
+          .select('blood_type, no_of_bottles, exp_date')
+          .gt('exp_date', currentDate); // Filter by future expiration dates
+
+        if (error) {
+          setError('Error fetching blood stock data: ' + error.message);
+        } else {
+          // Group by blood type and calculate total units
+          const groupedData = data.reduce((acc, curr) => {
+            if (!acc[curr.blood_type]) {
+              acc[curr.blood_type] = { totalUnits: 0, bloodType: curr.blood_type };
+            }
+            acc[curr.blood_type].totalUnits += parseInt(curr.no_of_bottles, 10);
+            return acc;
+          }, {});
+
+          // Assign status for each group based on total units
+          const updatedStockData = bloodGroups.reduce((acc, group) => {
+            const totalUnits = groupedData[group] ? groupedData[group].totalUnits : 0;
+            let status = 'Low';
+            if (totalUnits > 50) status = 'High';
+            else if (totalUnits >= 40) status = 'Normal';
+            acc[group] = { totalUnits, status };
+            return acc;
+          }, {});
+
+          setBloodStockData(updatedStockData);
+        }
+      } catch (error) {
+        setError('Error fetching blood stock data: ' + error.message);
+      }
+    };
+
+    const fetchGroupedDonationsRequests = async () => {
+      try {
+        // Fetch all donations (donor_id) from donor_donations
+        const { data: donations, error: donationsError } = await supabase
+          .from('donor_donations')
+          .select('donor_id');
+    
+        if (donationsError) throw new Error('Error fetching donations: ' + donationsError.message);
+    
+        // Fetch all profiles (id, blood_type) from profiles
+        const { data: profiles, error: profilesError } = await supabase
+          .from('profiles')
+          .select('id, blood_type');
+    
+        if (profilesError) throw new Error('Error fetching profiles: ' + profilesError.message);
+    
+        // Map donor_id to blood_type from profiles
+        const donorBloodTypes = profiles.reduce((acc, profile) => {
+          acc[profile.id] = profile.blood_type;
+          return acc;
+        }, {});
+    
+        // Group and count donations by blood type
+        const donationsByBloodType = donations.reduce((acc, curr) => {
+          const bloodType = donorBloodTypes[curr.donor_id]; // Get blood_type using donor_id
+          if (bloodType) {
+            if (!acc[bloodType]) {
+              acc[bloodType] = 0;
+            }
+            acc[bloodType] += 1; // Increment the count for this blood type
+          }
+          return acc;
+        }, {});
+    
+        // Fetch all requests
+        const { data: requests, error: requestsError } = await supabase
+          .from('requests')
+          .select('blood_type');
+    
+        if (requestsError) throw new Error('Error fetching requests: ' + requestsError.message);
+    
+        // Group and count requests by blood type
+        const requestsByBloodType = requests.reduce((acc, curr) => {
+          if (!acc[curr.blood_type]) {
+            acc[curr.blood_type] = 0;
+          }
+          acc[curr.blood_type] += 1; // Increment the count for this blood type
+          return acc;
+        }, {});
+    
+        // Update state with grouped data
+        setDonationsData(donationsByBloodType);
+        setRequestsData(requestsByBloodType);
+      } catch (error) {
+        setError('Error fetching chart data: ' + error.message);
+      }
+    };
+    
+    
+    
+
+    const fetchTotalDonations = async () => {
+      try {
+        const currentDate = new Date();
+        const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+        const { data, error } = await supabase
+          .from('donor_donations')
+          .select('id')
+          .gte('date', firstDayOfMonth.toISOString().split('T')[0])
+          .lte('date', lastDayOfMonth.toISOString().split('T')[0]);
+
+        if (error) {
+          setError('Error fetching donations data: ' + error.message);
+        } else {
+          setTotalDonations(data.length);
+        }
+      } catch (error) {
+        setError('Error fetching donations data: ' + error.message);
+      }
+    };
+
+    const fetchTotalRequests = async () => {
+      try {
+        const currentDate = new Date();
+        const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+        const { data, error } = await supabase
+          .from('requests')
+          .select('id')
+          .gte('request_date', firstDayOfMonth.toISOString().split('T')[0])
+          .lte('request_date', lastDayOfMonth.toISOString().split('T')[0]);
+          console.log('Data:', data);
+        if (error) {
+          setError('Error fetching requests data: ' + error.message);
+        } else {
+          console.log('First Day of Month:', firstDayOfMonth.toISOString().split('T')[0]);
+          console.log('Last Day of Month:', lastDayOfMonth.toISOString().split('T')[0]);
+
+         
+          setTotalRequests(data.length);
+        }
+      } catch (error) {
+        setError('Error fetching requests data: ' + error.message);
+      }
+    };
+
     const fetchUserData = async () => {
       try {
         const { data: { user } } = await supabase.auth.getUser();
@@ -159,48 +287,61 @@ export default function Home() {
             .select('f_name')
             .eq('id', user.id)
             .single();
-          if (error) {
-            setError(error.message);
-            setLoading(false);
-            return;
-          }
+          if (error) throw error;
           setUser(data);
         } else {
-          setError('No user logged in');
+          setUser(null);
         }
-        setLoading(false);
       } catch (error) {
         setError('Error fetching user data: ' + error.message);
+      } finally {
         setLoading(false);
       }
     };
 
+    fetchBloodStockData();
+    fetchGroupedDonationsRequests();
+    fetchTotalDonations();
+    fetchTotalRequests();
     fetchUserData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-  if (!user) return <div>User data not found!</div>;
-
-  const totalDonations = donationStats.reduce((sum, stat) => sum + stat.count, 0);
-  const totalRequests = requestStats.reduce((sum, stat) => sum + stat.count, 0);
-  const totalStock = bloodStockData.reduce((sum, stock) => sum + stock.units, 0);
+  // Calculate total units available
+  const totalUnitsAvailable = Object.values(bloodStockData).reduce((sum, stock) => sum + stock.totalUnits, 0);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold">Welcome, {user.f_name}!</h1>
-        <p className="text-gray-600">Role: ADMIN</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <StatsCard title="Total Donations" value={totalDonations} icon={<Droplet size={24} />} />
-          <StatsCard title="Total Requests" value={totalRequests} icon={<Users size={24} />} />
-          <StatsCard title="Available Stock" value={totalStock} icon={<Activity size={24} />} />
+    <div className="space-y-6">
+      {loading && <p>Loading...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      {user && (
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <p className="text-xl font-semibold">Hello, {user.f_name}</p>
+          <p className="mt-2 text-gray-600">
+            Welcome to your Blood Bank Management Dashboard
+          </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <BloodStockTable stocks={bloodStockData} />
-          <StatsChart donations={donationStats} requests={requestStats} />
-        </div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <StatsCard title="Total Donations" value={totalDonations} icon={<Droplet size={24} />} />
+        <StatsCard title="Total Requests" value={totalRequests} icon={<Users size={24} />} />
+        <StatsCard title="Total Units Available" value={totalUnitsAvailable} icon={<Activity size={24} />} />
       </div>
+
+      <div className="my-6 grid grid-cols-1 md:grid-cols-2 gap-6 h-[500px]">
+  <div className="flex flex-col h-full">
+    <BloodStockTable bloodGroups={bloodGroups} stockData={bloodStockData} />
+  </div>
+  
+  <div className="flex flex-col h-618px w-413px">
+    <DonationsRequestsChart
+      donationsData={donationsData}
+      requestsData={requestsData}
+      bloodGroups={bloodGroups}
+    />
+  </div>
+</div>
+
     </div>
   );
 }
