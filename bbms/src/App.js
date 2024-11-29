@@ -56,7 +56,7 @@ function App() {
                 <Route path="/Form/Update/:id" element={<Update />} />
                 <Route path="/Donate/:id" element={<Donate />} />
                 <Route index element={<Home />} />
-                <Route path="/Donor" element={<Donor />} />
+                <Route path="/Doner" element={<Donor />} />
                 <Route path="/Request" element={<Request />} />
                 <Route path="/Completed" element={<Completed />} />
                 <Route path="/Accepted" element={<Accepted />} />
