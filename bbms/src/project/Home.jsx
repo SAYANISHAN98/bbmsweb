@@ -101,11 +101,31 @@ function DonationsRequestsChart({ donationsData, requestsData, bloodGroups }) {
 
   const options = {
     responsive: true,
+    indexAxis: 'y', // Converts the chart to horizontal
     plugins: {
       legend: {
         position: 'top',
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          padding: 20,
+          stepSize : 40, // Adds padding to the labels for better readability
+        },
+      },
+      x: {
+        grid: {
+          drawBorder: false,
+          drawOnChartArea: true,
+        },
+        ticks: {
+          stepSize: 10, // Controls the interval between grid lines
+        },
+      },
+    },
+    barThickness: 10, // Controls the thickness of the bars
+    categoryPercentage: 0.8, // Adjusts the spacing between the categories (0.8 = 80%)
   };
 
   return (
@@ -115,6 +135,7 @@ function DonationsRequestsChart({ donationsData, requestsData, bloodGroups }) {
     </div>
   );
 }
+
 
 // Home Component (Updated)
 export default function Home() {
@@ -263,13 +284,11 @@ export default function Home() {
           .select('id')
           .gte('request_date', firstDayOfMonth.toISOString().split('T')[0])
           .lte('request_date', lastDayOfMonth.toISOString().split('T')[0]);
-          console.log('Data:', data);
+          
         if (error) {
           setError('Error fetching requests data: ' + error.message);
         } else {
-          console.log('First Day of Month:', firstDayOfMonth.toISOString().split('T')[0]);
-          console.log('Last Day of Month:', lastDayOfMonth.toISOString().split('T')[0]);
-
+          
          
           setTotalRequests(data.length);
         }
