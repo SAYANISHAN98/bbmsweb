@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 
 export default function Completed() {
   
   const navigate = useNavigate();
+  
+  const [completes, setcomplete] = useState([
+    { id: 1, hospitalName: 'Hospital A', wardNo: '101', bloodType: 'A+', quantity: '2 Units', requestDate: '2024-11-01' },
+    { id: 2, hospitalName: 'Hospital B', wardNo: '102', bloodType: 'B-', quantity: '1 Unit', requestDate: '2024-11-05' },
+    
+  ]);
 
-
+  const [visibleRows, setVisibleRows] = useState(10); 
+  const loadMore = () => {
+    setVisibleRows((prev) => prev + 10); 
+    };
 
 
 
@@ -17,20 +26,20 @@ export default function Completed() {
            <div className="flex items-center justify-center w-full py-2 space-x-0 px-30">
         <button
           onClick={() => navigate('/Request')}
-          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 text-lg rounded-l-xl"
+          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10  rounded-l-md"
         >
           New Request
         </button>
         <button
           onClick={() => navigate('/Ongoing')}
-          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 text-lg"
+          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 "
         >
           On Going
         </button>
 
         <button
           onClick={() => navigate('/Completed')}
-          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 text-lg rounded-r-xl"
+          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10  rounded-r-md"
         >
           Completed
         </button>
@@ -49,57 +58,43 @@ export default function Completed() {
       
 
 
-        <div className='py-8'>
-          <table className='w-full p-3 border-2 border-red-500 shadow-2xl'>
-            <thead className='bg-red-100 border-b-2 border-gray-500'>
-              <tr className='py-3 font-semibold tracking-wide text-center text-medium'>
-                <th className='px-2 py-2'>No</th>
-                <th className='px-2 py-2'>Hospital_Name</th>
-                <th className='px-2 py-2'>Ward_No</th>
-                <th className='px-2 py-2'>Blood_Type</th>
-                <th className='px-2 py-2'>Quantity</th>
-                <th className='px-2 py-2'>Request_Date</th>
-                {/*<th className='px-2 py-2'>Action</th>*/}
+        <div className="py-8">
+        <table className="w-full overflow-hidden bg-white border-collapse rounded-lg shadow-md">
+            <thead className="">
+              <tr className="">
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">No</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Hospital Name</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Ward No</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Blood Type</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Quantity</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Request Date</th>
+                
               </tr>
             </thead>
-         
             <tbody>
-              {/*{users.map((user, index) => (
-                 <tr key={user.id} className='font-semibold tracking-wide text-center text-medium'>
-                  { <td className='px-2 py-2'>{index + 1}</td> }
-                  <td className='px-2 py-2'>{userData.Uname}</td>
-                  <td className='px-2 py-2'>{userData.Uemail}</td>
-                  <td className='px-2 py-2'>{userData.Ucontactno}</td>
-                  <td className='px-2 py-2'>{userData.Btype}</td>
-                  <td className='px-2 py-2'>{userData.lastdonationdate}</td>
-                  <td className='px-2 py-2 space-x-2'>
-                    <button 
-                     onClick={()=>navigate('')} className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
-                      
-                    >
-                       Accept
-                    </button>
-                  </td>
+              {completes.slice(0, visibleRows).map((complete, index) => (
+                <tr key={complete.id} className="border-b hover:bg-red-50">
+                  <td className="px-6 py-4 font-medium whitespace-nowrap">{index + 1}</td>
+                  <td className="px-6 py-4 font-medium whitespace-nowrap">{complete.hospitalName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{complete.wardNo}</td>
+                  <td className="px-6 py-4 font-medium whitespace-nowrap">{complete.bloodType}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{complete.quantity}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{complete.requestDate}</td>
                 </tr>
-              ))}*/}
-                  <tr  className='font-semibold tracking-wide text-center text-medium'>
-                  { <td className='px-2 py-2'>1</td> }
-                  <td className='px-2 py-2'>name</td>
-                  <td className='px-2 py-2'>email</td>
-                  <td className='px-2 py-2'>contactno</td>
-                  <td className='px-2 py-2'>type</td>
-                  <td className='px-2 py-2'>date</td>
-                 {/* <td className='px-2 py-2 space-x-2'>
-                    <button 
-                     onClick={()=>navigate('')} className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
-                      
-                    >
-                      Accept
-                    </button>
-                    </td>*/}
-                </tr>
+              ))}
             </tbody>
           </table>
+          
+          {completes.length > visibleRows && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={loadMore}
+                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700"
+              >
+                More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
