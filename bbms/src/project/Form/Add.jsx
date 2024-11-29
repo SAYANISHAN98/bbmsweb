@@ -127,6 +127,7 @@ export default function Add() {
                   name='Fname'
                   placeholder='First name'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -141,6 +142,7 @@ export default function Add() {
                   name='Lname'
                   placeholder='Last name'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -158,6 +160,7 @@ export default function Add() {
                   name='nicNo'
                   placeholder='NIC number'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -172,6 +175,7 @@ export default function Add() {
                   value={userData.dob}
                   name='dob'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -189,6 +193,7 @@ export default function Add() {
                   name='Uemail'
                   placeholder='User email'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -203,6 +208,7 @@ export default function Add() {
                   name='Ucontactno'
                   placeholder='User contact No'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -220,6 +226,7 @@ export default function Add() {
                   name='UhomeNo'
                   placeholder='Home number'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -234,6 +241,7 @@ export default function Add() {
                   name='Ustreet'
                   placeholder='Street'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -248,6 +256,7 @@ export default function Add() {
                   name='Ucity'
                   placeholder='City'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -265,6 +274,7 @@ export default function Add() {
                   name='Udistrict'
                   placeholder='District'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -279,6 +289,7 @@ export default function Add() {
                   name='Uprovince'
                   placeholder='Province'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -295,6 +306,7 @@ export default function Add() {
                   value={userData.Urole}
                   onChange={handleChange}
                   className='w-full p-1 px-2 text-gray-800 outline-none'
+                  required
                 >
                   <option value="Admin">Admin</option>
                   <option value="Doner">Doner</option>
@@ -314,6 +326,7 @@ export default function Add() {
                   type='number'
                   placeholder='User Age'
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+                  required
                 />
               </div>
             </div>
@@ -330,6 +343,7 @@ export default function Add() {
                   value={userData.Ugender}
                   onChange={handleChange}
                   className='w-full p-1 px-2 text-gray-800 outline-none'
+                  required
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -346,6 +360,7 @@ export default function Add() {
                   value={userData.Btype}
                   onChange={handleChange}
                   className='w-full p-1 px-2 text-gray-800 outline-none'
+                  required
                 >
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
@@ -371,6 +386,7 @@ export default function Add() {
               value={userData.lastdonationdate}
               name='lastdonationdate'
               className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+              required
             />
           </div>
         </div>

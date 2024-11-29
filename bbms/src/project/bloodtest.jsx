@@ -10,6 +10,11 @@ export default function BloodTests() {
   const [tests, setTests] = useState([]); // Store all fetched tests
   const [loading, setLoading] = useState(true); // Loading state for fetching data
   const navigate = useNavigate();
+  const [visibleRows, setVisibleRows] = useState(10); 
+  const loadMore = () => {
+    setVisibleRows((prev) => prev + 10); 
+    };
+
 
   useEffect(() => {
     const fetchTests = async () => {
@@ -95,8 +100,16 @@ export default function BloodTests() {
 
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
-      <div className="w-5/6">
-        <div className="flex items-center justify-center w-full py-4">
+      <div className="w-5/6 pt-8">
+
+
+        <div className="flex items-center justify-between w-full">
+          <button
+            onClick={() => navigate('/NewTest')}
+            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
+          >
+            Add
+          </button>
           <div className="relative w-3/5">
             <input
               type="text"
@@ -109,25 +122,16 @@ export default function BloodTests() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end w-full">
-          <button
-            onClick={() => navigate('/NewTest')}
-            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-xl text-lg"
-          >
-            Add
-          </button>
-        </div>
-
         <div className="py-8">
-          <table className="w-full p-3 border-2 border-red-500 shadow-2xl">
-            <thead className="bg-red-100 border-b-2 border-gray-500">
-              <tr className="py-3 font-semibold tracking-wide text-center text-medium">
-                <th className="p-2 ">No</th>
-                <th className="p-2">Date</th>
-                <th className="p-2">Results</th>
-                <th className="p-2">NIC No</th>
-                <th className="p-2">Tested By</th>
-                <th className="p-2">Action</th>
+        <table className="w-full overflow-hidden bg-white border-collapse rounded-lg shadow-md">
+            <thead className="">
+              <tr className="">
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">No</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Date</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Results</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">NIC No</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Tested By</th>
+                <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Action</th>
               </tr>
             </thead>
 
@@ -137,18 +141,17 @@ export default function BloodTests() {
                   <td colSpan="6" className="text-center">Loading...</td>
                 </tr>
               ) : filteredTests.length > 0 ? (
-                filteredTests.map((test, index) => (
-                  <tr key={test.id} className="font-semibold tracking-wide text-center border-b border-gray-300 text-medium hover:bg-red-50">
-                    <td className="p-2">{index + 1}</td>
-                    <td className="p-2">{test.date}</td>
-                    <td className="p-2">{test.results}</td>
-                    <td className="p-2">{test.nic_no}</td>
-                    <td className="p-2">{test.tested_by}</td>
+                filteredTests.slice(0,visibleRows).map((test, index) => (
+                  <tr key={test.id} className="border-b hover:bg-red-50">
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{index + 1}</td>
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{test.date}</td>
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{test.results}</td>
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{test.nic_no}</td>
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{test.tested_by}</td>
                     <td className="p-2 space-x-2">
                       <button
                         onClick={() => navigate(`/ViewbloodTest/${test.id}`)}
-                        className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-xl text-lg"
-                      >
+                        className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                         View
                       </button>
                     </td>
@@ -161,6 +164,16 @@ export default function BloodTests() {
               )}
             </tbody>
           </table>
+          {filteredTests.length > visibleRows && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={loadMore}
+                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700"
+              >
+                More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

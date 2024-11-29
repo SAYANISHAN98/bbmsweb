@@ -6,7 +6,7 @@ import PublicRoute from './routes/publicRoute';    // Import PublicRoute
 
 import Login from './project/login';
 import Finddonor from './project/Finddonor';
-import Doner from './project/Doner';
+import Donor from './project/Doner';
 import Layout from './layout';
 import User from './project/Doner';
 import Stock from './project/stock';
@@ -22,7 +22,7 @@ import Request from './project/Request';
 import Completed from './project/Completed';
 import Ongoing from './project/Ongoing';
 import Accepted from './project/Accepted';
-import Notifications from './project/Form/Notifications';
+import Notifications from './project/Notifications';
 import BloodGroupNotificationForm from './project/Form/SendBloodRequest';
 
 import NewCamp from './project/Form/NewCamp';
@@ -56,7 +56,7 @@ function App() {
                 <Route path="/Form/Update/:id" element={<Update />} />
                 <Route path="/Donate/:id" element={<Donate />} />
                 <Route index element={<Home />} />
-                <Route path="/Doner" element={<Doner />} />
+                <Route path="/Donor" element={<Donor />} />
                 <Route path="/Request" element={<Request />} />
                 <Route path="/Completed" element={<Completed />} />
                 <Route path="/Accepted" element={<Accepted />} />

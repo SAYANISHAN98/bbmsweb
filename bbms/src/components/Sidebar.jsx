@@ -31,7 +31,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/doner'
+            to='/donor'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-1 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''

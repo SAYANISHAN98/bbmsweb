@@ -276,6 +276,7 @@ const Update = () => {
           value={formData.contactNumber}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -292,6 +293,7 @@ const Update = () => {
           value={formData.homeNumber}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -306,6 +308,7 @@ const Update = () => {
           value={formData.street}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -320,6 +323,7 @@ const Update = () => {
           value={formData.city}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
           </div>
@@ -336,6 +340,7 @@ const Update = () => {
           value={formData.district}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -350,6 +355,7 @@ const Update = () => {
           value={formData.province}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
      </div>
           </div>
@@ -366,6 +372,7 @@ const Update = () => {
           value={formData.userRole}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -381,6 +388,7 @@ const Update = () => {
           value={formData.gender}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none '
+           required
         >
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -401,6 +409,7 @@ const Update = () => {
           value={formData.bloodType}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -415,6 +424,7 @@ const Update = () => {
           value={formData.lastDonationDate}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
           </div>
@@ -431,6 +441,7 @@ const Update = () => {
           value={formData.blood_pressure}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -445,6 +456,7 @@ const Update = () => {
           value={formData.sugarLevel}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
       </div>
@@ -460,6 +472,7 @@ const Update = () => {
           value={formData.hb_level}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
       </div>
           </div>
@@ -476,6 +489,7 @@ const Update = () => {
           value={formData.diseases}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           
         />
       </div>
       </div>
@@ -490,6 +504,7 @@ const Update = () => {
               value={formData.visibleMarks}
               onChange={handleChange}
               className='w-full p-1 px-2 text-gray-800 outline-none'
+              
             >
               <option value="">Select a mark</option>
               <option value="A">Tatoos</option>
@@ -512,6 +527,7 @@ const Update = () => {
             value={formattedformData.bottle_id}
             onChange={handleChange}
              className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+             required
           />
        
       </div>
@@ -527,6 +543,7 @@ const Update = () => {
           value={formattedformData.no_of_bottles}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           required
         />
        </div>
           </div>
@@ -542,6 +559,7 @@ const Update = () => {
           value={formattedformData.collectedby}
           name='collectedby'
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
         </div>
         </div>
@@ -555,6 +573,7 @@ const Update = () => {
               value={formattedformData.Location}
               onChange={handleChange}
                className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+               required
             >
               <option value="">Select a Camp</option>
               {campNames.map((camp, index) => (
