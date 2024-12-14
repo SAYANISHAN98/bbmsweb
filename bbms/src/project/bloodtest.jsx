@@ -101,7 +101,7 @@ export default function BloodTests() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6 pt-8">
-
+      <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Blood Test</h2>
 
         <div className="flex items-center justify-between w-full">
           <button

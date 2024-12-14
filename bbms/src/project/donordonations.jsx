@@ -120,6 +120,7 @@ export default function Donordonations() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6">
+      <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Donor Donations</h2>
 
         <div className="flex items-center justify-between w-full py-6">
        

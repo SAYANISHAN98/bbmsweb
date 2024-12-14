@@ -3,13 +3,13 @@ import { supabase } from '../../lib/supabase';
 
 export default function NotificationForm() {
   const [bloodGroup, setBloodGroup] = useState('');
-  const [message, setMessage] = useState('');
+  const [body, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!bloodGroup || !message) {
+    if (!bloodGroup || !body) {
       alert('Please select a blood group and enter a message.');
       return;
     }
@@ -51,7 +51,7 @@ export default function NotificationForm() {
   const insertNotification = async (userId) => {
     const { error } = await supabase
       .from('notifications')
-      .insert([{ user_id: userId, blood_type: bloodGroup, message }]);
+      .insert([{ user_id: userId, blood_type: bloodGroup, body }]);
 
     if (error) {
       console.error('Error inserting notification:', error);
@@ -86,9 +86,10 @@ export default function NotificationForm() {
             </select>
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-bold text-gray-700">Message</label>
+            
+            <label  className="block mb-2 font-bold text-gray-700">Message</label>
             <textarea
-              value={message}
+              value={body}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="Enter the message to send with the notification"

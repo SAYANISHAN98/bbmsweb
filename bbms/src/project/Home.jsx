@@ -54,9 +54,9 @@ function BloodStockTable({ bloodGroups, stockData }) {
             const bloodStock = stockData[group] || { totalUnits: 0, status: 'Low' };
             return (
               <tr key={group}>
-                <td className="px-6 py-4 whitespace-nowrap">{group}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{bloodStock.totalUnits}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-6 py-2 whitespace-nowrap">{group}</td>
+                <td className="px-6 py-2 whitespace-nowrap">{bloodStock.totalUnits}</td>
+                <td className="px-6 py-2 whitespace-nowrap">
                   <span
                     className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                       bloodStock.status === 'Low'
@@ -101,20 +101,41 @@ function DonationsRequestsChart({ donationsData, requestsData, bloodGroups }) {
 
   const options = {
     responsive: true,
+    indexAxis: 'y', // Converts the chart to horizontal
     plugins: {
       legend: {
         position: 'top',
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          padding: 20,
+          stepSize : 40, // Adds padding to the labels for better readability
+        },
+      },
+      x: {
+        grid: {
+          drawBorder: false,
+          drawOnChartArea: true,
+        },
+        ticks: {
+          stepSize: 10, // Controls the interval between grid lines
+        },
+      },
+    },
+    barThickness: 10, // Controls the thickness of the bars
+    categoryPercentage: 0.8, // Adjusts the spacing between the categories (0.8 = 80%)
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-lg font-semibold mb-4">Monthly Statistics</h2>
-      <Bar data={data} options={options} />
+    <div className="bg-white rounded-lg shadow-md p-4">
+      <h2 className="text-left text-lg font-medium text-gray-500 uppercase  mb-4">Monthly Statistics</h2>
+    <div className=''><Bar data={data} options={options} /></div>
     </div>
   );
 }
+
 
 // Home Component (Updated)
 export default function Home() {
@@ -263,13 +284,11 @@ export default function Home() {
           .select('id')
           .gte('request_date', firstDayOfMonth.toISOString().split('T')[0])
           .lte('request_date', lastDayOfMonth.toISOString().split('T')[0]);
-          console.log('Data:', data);
+          
         if (error) {
           setError('Error fetching requests data: ' + error.message);
         } else {
-          console.log('First Day of Month:', firstDayOfMonth.toISOString().split('T')[0]);
-          console.log('Last Day of Month:', lastDayOfMonth.toISOString().split('T')[0]);
-
+          
          
           setTotalRequests(data.length);
         }
@@ -328,19 +347,19 @@ export default function Home() {
         <StatsCard title="Total Units Available" value={totalUnitsAvailable} icon={<Activity size={24} />} />
       </div>
 
-      <div className="my-6 grid grid-cols-1 md:grid-cols-2 gap-6 h-[500px]">
-  <div className="flex flex-col h-full">
-    <BloodStockTable bloodGroups={bloodGroups} stockData={bloodStockData} />
-  </div>
-  
-  <div className="flex flex-col h-618px w-413px">
-    <DonationsRequestsChart
-      donationsData={donationsData}
-      requestsData={requestsData}
-      bloodGroups={bloodGroups}
-    />
-  </div>
-</div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+      <div className="flex flex-col h-full">
+        <BloodStockTable bloodGroups={bloodGroups} stockData={bloodStockData} />
+      </div>
+      
+      <div className="flex flex-col h-full">
+        <DonationsRequestsChart
+          donationsData={donationsData}
+          requestsData={requestsData}
+          bloodGroups={bloodGroups}
+        />
+      </div>
+    </div>
 
     </div>
   );

@@ -49,7 +49,7 @@ export default function Bloodcamp() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6">
-
+      <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Blood Camp</h2>
         <div className="flex items-center justify-between w-full pt-8">
           <button
             onClick={() => navigate('/Bloodcamp/NewCamp')}
