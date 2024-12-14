@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useNavigate,useParams, NavLink } from 'react-router-dom';
 import { supabase } from '../lib/supabase';  // Ensure you have your Supabase client set up correctly
 
 export default function Viewbloodtest() {
   const { id } = useParams(); // Get the blood test ID from the URL
   const [testDetails, setTestDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTestDetails = async () => {
@@ -74,75 +75,49 @@ export default function Viewbloodtest() {
   }
 
   return (
-    <div className="flex w-3/4 p-10 mx-auto bg-white shadow-xl rounded-2xl">
-      <div className="flex-1 pl-10">
-        <div className="flex items-center justify-center">
-          <h2 className="text-4xl font-bold text-red-500 uppercase">Test Details</h2>
-        </div>
+    <div className="max-w-3xl p-6 mx-auto mt-10 bg-white border border-gray-300 rounded-lg shadow-lg">
+  
+        <h2 className="mb-6 text-2xl font-bold text-center text-red-500">Test Details</h2>
+        <div className="items-center w-5/6 mx-auto space-y-4 text-center ">
 
-        <div className="mt-4">
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Test Date: {testDetails.date}</div>
-            </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Test Date</span>
+            <span className="text-gray-800">{testDetails.date || 'Not Provided'}</span>
           </div>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Donor Name: {testDetails.donor_name}</div>
-            </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Donor Name</span>
+            <span className="text-gray-800">{testDetails.donor_name || 'Not Provided'}</span>
           </div>
 
-          {/* <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Location: {testDetails.location}</div>
-            </div>
-          </div> */}
-
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Result: {testDetails.results}</div>
-            </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Result</span>
+            <span className="text-gray-800">{testDetails.results || 'Not Provided'}</span>
           </div>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Blood Type: {testDetails.blood_type}</div>
-            </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Blood Type</span>
+            <span className="text-gray-800">{testDetails.blood_type || 'Not Provided'}</span>
           </div>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Donation Date: {testDetails.donation_date}</div>
-            </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Donation Date</span>
+            <span className="text-gray-800">{testDetails.donation_date || 'Not Provided'}</span>
           </div>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>NIC No: {testDetails.donor_nic}</div>
-            </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">NIC NO</span>
+            <span className="text-gray-800">{testDetails.donor_nic || 'Not Provided'}</span>
           </div>
+        
+        
 
-          <div className="container flex justify-around mt-8 mb-5">
-            {/* <NavLink to="/Bloodtestupdate">
-              <button className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
-                Update
-              </button>
-            </NavLink>
-            <NavLink to="/Delete">
-              <button className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
-                Delete
-              </button>
-            </NavLink> */}
-            <NavLink to="/bloodtest">
-              <button type="button" className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600">
-                Back
-              </button>
-            </NavLink>
-          </div>
-        </div>
-      </div>
-      <div className="flex-1">
+          {/*
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Location</span>
+            <span className="text-gray-800">{testDetails.location || 'Not Provided'}</span>
+          </div>*/}
+           <div className="flex-1">
         <div className="flex items-center justify-center h-full">
           <img
             src="path-to-test-report-image.jpg"
@@ -151,6 +126,18 @@ export default function Viewbloodtest() {
           />
         </div>
       </div>
+     
+
+          <button
+            onClick={() => navigate('/Bloodtest')}
+            className="px-6 py-2 font-semibold text-white bg-gray-500 rounded hover:bg-gray-600"
+          >
+          Back
+        </button>
+        
+        </div>
+       
+     
     </div>
   );
 }
