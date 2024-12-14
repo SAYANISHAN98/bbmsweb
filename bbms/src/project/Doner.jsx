@@ -45,7 +45,7 @@ const filteredProfiles = profiles?.filter((user) => {
       <div className='w-5/6'>
         <div className="flex items-center justify-between w-full py-6">
           <button
-            onClick={() => navigate('/Add')}
+            onClick={() => navigate('/Donor/Add')}
             className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md">
             Add
           </button>
@@ -89,7 +89,7 @@ const filteredProfiles = profiles?.filter((user) => {
                     <td className="px-6 py-4 whitespace-nowrap ">{user.last_donation_date}</td>
                     <td className="p-2 space-x-2">
                       <button
-                        onClick={() => navigate(`/ViewDetail/${user.id}`)}
+                        onClick={() => navigate(`/Donor/ViewDetail/${user.id}`)}
                         className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                         View
                       </button>

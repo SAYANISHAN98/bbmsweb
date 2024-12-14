@@ -47,34 +47,34 @@ function App() {
             {/* Protected Routes wrapped in PrivateRoute */}
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Layout />}>
-                <Route path="/ViewDetail/:id" element={<ViewDetail />} />
+                <Route path="Donor/ViewDetail/:id" element={<ViewDetail />} />
                 <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
                 <Route path="/notifications" element={<Notifications />} />
-                <Route path="/sendbloodrequest" element={<BloodGroupNotificationForm />} />
-                <Route path="/Add" element={<Add />} />
-                <Route path="/Form/Update/:id" element={<Update />} />
+                <Route path="/Notifications/sendbloodrequest" element={<BloodGroupNotificationForm />} />
+                <Route path="/Donor/Add" element={<Add />} />
+                <Route path="/Donor/ViewDetail/Form/Update/:id" element={<Update />} />
                 <Route path="/Donate/:id" element={<Donate />} />
                 <Route index element={<Home />} />
                 <Route path="/Donor" element={<Donor />} />
                 <Route path="/Request" element={<Request />} />
-                <Route path="/Completed" element={<Completed />} />
+                <Route path="/Request/Completed" element={<Completed />} />
                 <Route path="/Accepted" element={<Accepted />} />
-                <Route path="/Ongoing" element={<Ongoing />} />
+                <Route path="/Request/Ongoing" element={<Ongoing />} />
                 <Route path="/Stock" element={<Stock />} />
                 <Route path="/donordonations" element={<Donordonations />} />
-                <Route path="/NewCamp" element={<NewCamp />} />
-                <Route path="/Newtest" element={<Newtest />} />
+                <Route path="/Bloodcamp/NewCamp" element={<NewCamp />} />
+                <Route path="/Bloodtest/Newtest" element={<Newtest />} />
                 <Route path="/Bloodcamp" element={<Bloodcamp />} />
                 <Route path="/Bloodtest" element={<Bloodtest />} />
-                <Route path="/Viewbloodtest/:id" element={<Viewbloodtest />} />
-                <Route path="/Viewcamp/:id" element={<Viewcamp />} />
+                <Route path="/Bloodtest/Viewbloodtest/:id" element={<Viewbloodtest />} />
+                <Route path="/Bloodcamp/Viewcamp/:id" element={<Viewcamp />} />
                 <Route path="/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
-                <Route path="/viewdonations/:id" element={<Viewdonations />} />
+                <Route path="/Donordonations/viewdonations/:id" element={<Viewdonations />} />
 
                 <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
                 <Route path="*" element={<Notfound />} />
-                <Route path="/blood/:group" element={<BloodGroupDetail />} />
+                <Route path="/Stock/blood/:group" element={<BloodGroupDetail />} />
 
               </Route>
             </Route>

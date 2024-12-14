@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 import {
   FaHome,
   FaUsers,
@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa';
 
 export default function Sidebar() {
+  
   return (
     <div className='flex flex-col justify-between h-full bg-white w-58'>
       <div>
@@ -31,7 +32,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/donor'
+            to='/Donor'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-1 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -46,7 +47,7 @@ export default function Sidebar() {
           
           <hr />
           <NavLink
-            to='/notifications'
+            to='/Notifications'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -60,7 +61,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/request'
+            to='/Request'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-1 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -74,7 +75,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/donordonations'
+            to='/Donordonations'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-2 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -88,7 +89,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/stock'
+            to='/Stock'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-1 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -102,7 +103,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/bloodtest'
+            to='/Bloodtest'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-1 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''
@@ -117,7 +118,7 @@ export default function Sidebar() {
           </NavLink>
           <hr />
           <NavLink
-            to='/bloodcamp'
+            to='/Bloodcamp'
             className={({ isActive }) =>
               `flex items-center px-2 py-2 mb-1 rounded transform transition-transform duration-200 hover:scale-105 ${
                 isActive ? 'bg-red-700 text-white' : ''

@@ -20,29 +20,28 @@ export default function Completed() {
 
 
   return (
-
-  <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
-      <div className='w-4/5'>
-           <div className="flex items-center justify-center w-full py-2 space-x-0 px-30">
-        <button
-          onClick={() => navigate('/Request')}
-          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10  rounded-l-md"
-        >
-          New Request
-        </button>
-        <button
-          onClick={() => navigate('/Ongoing')}
-          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 "
-        >
-          On Going
-        </button>
-
-        <button
-          onClick={() => navigate('/Completed')}
-          className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10  rounded-r-md"
-        >
-          Completed
-        </button>
+    <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
+      <div className="w-4/5">
+        <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Completed Requests</h2>
+        <div className="flex items-center justify-center w-full py-2 space-x-0 px-30">
+          <button
+            onClick={() => navigate('/Request')}
+            className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-l-md"
+          >
+            New Request
+          </button>
+          <button
+            onClick={() => navigate('/Request/Ongoing')}
+            className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10"
+          >
+            On Going
+          </button>
+          <button
+            onClick={() => navigate('/Request/Completed')}
+            className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-r-md"
+          >
+            Completed
+          </button>
         </div>
         <div className="flex items-center justify-center w-full py-4">
           <div className="relative w-3/5">

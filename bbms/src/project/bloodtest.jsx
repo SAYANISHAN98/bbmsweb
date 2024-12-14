@@ -105,7 +105,7 @@ export default function BloodTests() {
 
         <div className="flex items-center justify-between w-full">
           <button
-            onClick={() => navigate('/NewTest')}
+            onClick={() => navigate('/Bloodtest/NewTest')}
             className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
           >
             Add
@@ -150,7 +150,7 @@ export default function BloodTests() {
                     <td className="px-6 py-4 font-medium whitespace-nowrap">{test.tested_by}</td>
                     <td className="p-2 space-x-2">
                       <button
-                        onClick={() => navigate(`/ViewbloodTest/${test.id}`)}
+                        onClick={() => navigate(`/Bloodtest/ViewbloodTest/${test.id}`)}
                         className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                         View
                       </button>
