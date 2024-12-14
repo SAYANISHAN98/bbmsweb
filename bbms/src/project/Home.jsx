@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { supabase } from '../lib/supabase';
 import { Activity, Droplet, Users } from 'lucide-react';
 import { Bar } from 'react-chartjs-2';
