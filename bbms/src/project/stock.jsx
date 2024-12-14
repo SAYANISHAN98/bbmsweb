@@ -19,7 +19,7 @@ export default function Stock() {
   }, {});
 
   const handleCardClick = (group) => {
-    navigate(`/blood/${group}`);
+    navigate(`/Stock/blood/${group}`);
   };
 
   if (isLoading) {

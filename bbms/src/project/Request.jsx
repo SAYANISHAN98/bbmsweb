@@ -77,13 +77,13 @@ export default function Request() {
             New Request
           </button>
           <button
-            onClick={() => navigate('/Ongoing')}
+            onClick={() => navigate('/Request/Ongoing')}
             className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 "
           >
             On Going
           </button>
           <button
-            onClick={() => navigate('/Completed')}
+            onClick={() => navigate('/Request/Completed')}
             className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10  rounded-r-md"
           >
             Completed

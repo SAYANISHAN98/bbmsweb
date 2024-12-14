@@ -52,7 +52,7 @@ export default function Bloodcamp() {
       <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Blood Camp</h2>
         <div className="flex items-center justify-between w-full pt-8">
           <button
-            onClick={() => navigate('/NewCamp')}
+            onClick={() => navigate('/Bloodcamp/NewCamp')}
             className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
           >
             Add
@@ -105,7 +105,7 @@ export default function Bloodcamp() {
                 </span></td>
                   <td className="px-2 py-2 space-x-2">
                     <button
-                      onClick={() => navigate(`/Viewcamp/${camp.id}`)}
+                      onClick={() => navigate(`/Bloodcamp/Viewcamp/${camp.id}`)}
                       className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                       View
                     </button>

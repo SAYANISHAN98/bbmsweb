@@ -47,7 +47,7 @@ export default function Notifications() {
 
         
           <button
-            onClick={() => navigate('/sendbloodrequest')}
+            onClick={() => navigate('/Notifications/sendbloodrequest')}
             className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-4 rounded-md ">
             Add New Blood Request
           </button>
