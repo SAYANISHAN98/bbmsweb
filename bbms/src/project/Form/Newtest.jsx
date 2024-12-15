@@ -148,6 +148,7 @@ export default function Newtest() {
                   value={formData.blood_type}
                   onChange={handleChange}
                   className='w-full p-1 px-2 text-gray-800 outline-none'
+                  required
                 >
                   <option value=''>Select Blood Type</option>
                   <option value="A+">A+</option>

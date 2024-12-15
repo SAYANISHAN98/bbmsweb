@@ -199,6 +199,7 @@ const Update = () => {
           value={formData.contactNumber}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
          </div>
           </div>
@@ -215,6 +216,7 @@ const Update = () => {
           value={formData.homeNumber}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
       </div>
       </div>
@@ -229,6 +231,7 @@ const Update = () => {
           value={formData.street}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
       </div>
       </div>
@@ -259,6 +262,7 @@ const Update = () => {
           value={formData.district}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
       </div>
       </div>
@@ -273,6 +277,7 @@ const Update = () => {
           value={formData.province}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
          </div>
           </div>
@@ -292,6 +297,7 @@ const Update = () => {
           value={formData.gender}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none '
+          required
         >
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -310,6 +316,7 @@ const Update = () => {
           value={formData.bloodType}
           onChange={handleChange}
           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+          required
         />
       </div>
       </div>

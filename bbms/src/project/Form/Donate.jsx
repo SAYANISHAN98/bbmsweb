@@ -491,7 +491,7 @@ const Update = () => {
           value={formData.diseases}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
-           
+           required
         />
       </div>
       </div>
@@ -507,7 +507,7 @@ const Update = () => {
           value={formData.visibleMarks}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
-           
+           required
         />
             </div>
           </div>
