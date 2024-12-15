@@ -101,22 +101,52 @@ export default function Donordonations() {
       setError('NIC number is required');
       return;
     }
-
-    const { data, error } = await supabase
+  
+    const { data: profileData, error: profileError } = await supabase
       .from('profiles')
       .select('id')
       .eq('nic_no', nic)
       .single();
-
-    if (error) {
+  
+    if (profileError) {
       setError('Error checking NIC or NIC not found');
-    } else if (data) {
-      // If the user is found, navigate to /Donate/${user.id}
-      navigate(`/Donate/${data.id}`);
-      setModalOpen(false); // Close the modal after navigation
+      return;
+    }
+  
+    if (profileData) {
+      // Fetch the latest donation for this donor from the donor_donations table
+      const { data: donationsData, error: donationsError } = await supabase
+        .from('donor_donations')
+        .select('date')
+        .eq('donor_id', profileData.id)
+        .order('date', { ascending: false }) // Order by latest date
+        .limit(1); // Fetch only the latest donation
+  
+      if (donationsError) {
+        setError('Error fetching donation data');
+        return;
+      }
+  
+      if (donationsData.length > 0) {
+        const latestDonationDate = new Date(donationsData[0].date);
+        const currentDate = new Date();
+        const diffInTime = currentDate - latestDonationDate;
+        const diffInDays = diffInTime / (1000 * 3600 * 24); // Convert time difference to days
+  
+        if (diffInDays <= 120) {
+          setError('You can only donate after 120 days from your last donation.');
+          return;
+        } else {
+          // If donation is allowed, navigate to the donation page
+          navigate(`/Donate/${profileData.id}`);
+          setModalOpen(false); // Close the modal after navigation
+        }
+      } else {
+        setError('No donation record found for this NIC.');
+      }
     }
   };
-
+  
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6">
@@ -201,7 +231,7 @@ export default function Donordonations() {
                     <td className="px-6 py-4 whitespace-nowrap">{donation.location}</td>
                     <td className="p-2 space-x-2">
                       <button
-                        onClick={() => navigate(`/Donordonations/viewdonations/${donation.id}`)}
+                        onClick={() => navigate(`/viewdonations/${donation.id}`)}
                         className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
                         View
                       </button>
