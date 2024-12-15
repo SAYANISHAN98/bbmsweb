@@ -64,65 +64,59 @@ export default function Viewcamp() {
   }
 
   return (
-    <div className="flex w-3/4 p-10 mx-auto bg-white shadow-xl rounded-2xl">
-      <div className="flex-1 pl-10">
-        <div className="flex items-center justify-center">
-          <h2 className="text-4xl font-bold text-red-500 uppercase">Blood Camp Details</h2>
-        </div>
+    <div className="max-w-3xl p-6 mx-auto mt-10 bg-white border border-gray-300 rounded-lg shadow-lg">
 
-        <div className="mt-4">
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Camp Name: {camp?.name || 'N/A'}</div>
-            </div>
-          </div>
+        <h2 className="mb-6 text-2xl font-bold text-center text-red-500">Blood Camp Details</h2>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Camp Date: {camp?.date || 'N/A'}</div>
-            </div>
-          </div>
+        <div className="items-center w-5/6 mx-auto space-y-4 text-center ">
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Address: {camp?.address || 'N/A'}</div>
-            </div>
-          </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Camp Name</span>
+            <span className="text-gray-800">{camp?.name || 'Not Provided'}</span>
+         </div>
+         
+         <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Camp Date</span>
+            <span className="text-gray-800">{camp?.date || 'Not Provided'}</span>
+         </div>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Status: {camp?.status || 'N/A'}</div>
-            </div>
-          </div>
+         <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Address</span>
+            <span className="text-gray-800">{camp?.address || 'Not Provided'}</span>
+         </div>
 
-          <div className="flex-1 w-full mx-2 mt-3">
-            <div className="h-8 font-bold leading-8 text-gray-700">
-              <div>Number of Donors: {donorCount || 0}</div>
-            </div>
-          </div>
+         <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Status</span>
+            <span className="text-gray-800">{camp?.status || 'Not Provided'}</span>
+         </div>
 
-          <div className="container flex justify-around mt-8 mb-5">
-            <NavLink to={`/Bloodcampupdate/${id}`}>
-              <button className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl">
-                Update
-              </button>
-            </NavLink>
+         <div className="flex items-center justify-between pb-2 border-b">
+            <span className="font-medium text-gray-500">Number of Donors</span>
+            <span className="text-gray-800">{camp?.donorCount || 'Not Provided'}</span>
+         </div>
 
-            {/* <button
-              onClick={deleteCamp}
-              className="px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl"
-            >
-              Delete
-            </button> */}
-
-            <NavLink to="/Bloodcamp">
-              <button type="button" className="px-4 py-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600">
-                Back
-              </button>
-            </NavLink>
-          </div>
-        </div>
+        <div className="flex justify-center gap-4 mt-6">
+          <button
+            onClick={() => navigate(`/Bloodcamp/Viewcamp/Bloodcampupdate/${id}`)}
+            className="px-6 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
+          >
+            Update
+        </button>
+        {/*<button
+          onClick={deleteCamp}
+          className="px-6 py-2 font-semibold text-white bg-red-500 rounded hover:bg-red-600"
+        >
+          Delete
+        </button>*/}
+        <button
+          onClick={() => navigate('/Bloodcamp')}
+          className="px-6 py-2 font-semibold text-white bg-gray-500 rounded hover:bg-gray-600"
+        >
+          Back
+        </button>
       </div>
+        </div>
+      
     </div>
   );
 }

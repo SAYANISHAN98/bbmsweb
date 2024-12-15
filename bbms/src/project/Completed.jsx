@@ -64,7 +64,7 @@ export default function Completed() {
           <button
 
             onClick={() => navigate('/Request/Ongoing')}
-            onClick={() => navigate('/Ongoing')}
+            
             className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10"
           >
             On Going
@@ -72,7 +72,7 @@ export default function Completed() {
           <button
 
             onClick={() => navigate('/Request/Completed')}
-            onClick={() => navigate('/Completed')}
+           
             className="font-bold text-white bg-red-500 active:scale-[.98] hover:bg-slate-700 active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-r-md"
           >
             Completed
