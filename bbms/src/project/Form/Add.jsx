@@ -21,17 +21,8 @@ export default function Add() {
     Uage: '',
     Ugender: '',
     Btype: '',
-    lastdonationdate: '',
-    BPtype: '',
-    Sugertype: '',
-    HPtype: '',
-    Diseases: '',
-    VisibleMarks: '',
-    BottleID: '',
-    collectedby: '',
-    NoOfBottles: '',
-    Date: '',
-    Location: ''
+    lastdonationdate: ''
+    
   });
   const formattedUserData = {
     ...userData,
@@ -42,13 +33,23 @@ export default function Add() {
   const insertDonor = async (email) => {
     try {
       const { error } = await supabase
-        .from('donors')
+        .from('profiles')
         .insert({
-          email: email,
+          f_name: formattedUserData.Fname,
+          l_name: formattedUserData.Lname,
+          dob: formattedUserData.dob,
+          nic: formattedUserData.nicNo,
+          email: formattedUserData.Uemail,
+          home_no: formattedUserData.UhomeNo,
           blood_type: formattedUserData.Btype,
           last_donation_date: formattedUserData.lastdonationdate,
-          visible_marks: formattedUserData.VisibleMarks,
-          diseases: formattedUserData.Diseases,
+          contact_number: formattedUserData.Ucontactno,
+          street: formattedUserData.Ustreet,
+          city: formattedUserData.Ucity,
+          district: formattedUserData.Udistrict,
+          province: formattedUserData.Uprovince,
+          role: formattedUserData.Urole,
+          
           
         });
 
@@ -74,7 +75,7 @@ export default function Add() {
     try {
       const { user, error } = await supabase.auth.signUp({
         email: userData.Uemail,
-        password: userData.password,
+        password: 'halo96',
         options: {
           data: {
             f_name: formattedUserData.Fname,
@@ -86,12 +87,13 @@ export default function Add() {
             home_no: formattedUserData.UhomeNo,
             street: formattedUserData.Ustreet,
             city: formattedUserData.Ucity,
+            district : formattedUserData.Udistrict,
             province: formattedUserData.Uprovince,
             role: formattedUserData.Urole,
             gender: formattedUserData.Ugender,
             blood_type: formattedUserData.Btype,
-            last_donation_date: formattedUserData.lastdonationdate,
-            location: formattedUserData.Location
+            last_donation_date: formattedUserData.lastdonationdate
+            //location: formattedUserData.Location
           }
         }
       });
@@ -308,8 +310,9 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
-                  <option value="Admin">Admin</option>
+                  <option value="role">-Select A Role -</option>
                   <option value="Doner">Doner</option>
+                  <option value="Admin">Admin</option>
                   <option value="Staff">Staff</option>
                 </select>
               </div>
@@ -386,7 +389,7 @@ export default function Add() {
               value={userData.lastdonationdate}
               name='lastdonationdate'
               className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
-              required
+              //required
             />
           </div>
         </div>

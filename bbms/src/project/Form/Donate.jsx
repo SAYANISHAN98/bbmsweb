@@ -41,7 +41,9 @@ const Update = () => {
     const fetchCampNames = async () => {
       const { data , error } = await supabase
         .from('blood_camp')
-        .select('*');
+        .select('*')
+        .eq('status', 'active'); // Adjust the column and value based on your schema
+
 
       if (error) {
         console.error('Error fetching camp names:', error.message);
@@ -154,7 +156,7 @@ const Update = () => {
         hb_level: formData.hb_level,
         diseases: formData.diseases,
         visible_marks: formData.visibleMarks,
-        date: new Date().toISOString(),
+        date: formattedformData.Date,
       });
       
 
@@ -163,9 +165,9 @@ const Update = () => {
             .insert({
                 donor_id: id,
                 date: formattedformData.Date,
-                bottle_id: formattedformData.bottle_id,
+                bottle_id: formattedformData.BottleID,
                 collected_by: formattedformData.collectedby,
-                no_of_bottles: formattedformData.no_of_bottles,
+                no_of_bottles: formattedformData.NoOfBottles,
                 test_id,
                 camp_id: formattedformData.Location // Ensure Location is a valid UUID
             });
@@ -415,13 +417,13 @@ const Update = () => {
       </div>
 
       <div className='flex-1 mr-2'>
-            <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'><label>Last Donation Date</label></div>
+            <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'><label>Date</label></div>
             <div className='flex my-2 bg-white border border-gray-200 rounded'>
        
         <input
           type="date"
-          name="lastDonationDate"
-          value={formData.lastDonationDate}
+          name="Date"
+          value={formData.Date}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
            required
@@ -499,20 +501,14 @@ const Update = () => {
             <div className='flex my-2 bg-white border border-gray-200 rounded'>
               
         
-        <select
-              name='VisibleMarks'
-              value={formData.visibleMarks}
-              onChange={handleChange}
-              className='w-full p-1 px-2 text-gray-800 outline-none'
-              
-            >
-              <option value="">Select a mark</option>
-              <option value="A">Tatoos</option>
-              <option value="B">Surgery Marks</option>
-              <option value="C">Wounds</option>
-              <option value="D">Injection Marks</option>
-              <option value="E">Permenant Disabilities</option>
-            </select>
+            <input
+          type="text"
+          name="visibleMarks"
+          value={formData.visibleMarks}
+          onChange={handleChange}
+           className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
+           
+        />
             </div>
           </div>
         </div>
@@ -524,7 +520,7 @@ const Update = () => {
           <input
             type='text'
             name='BottleID'
-            value={formattedformData.bottle_id}
+            value={formattedformData.BottleID}
             onChange={handleChange}
              className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
              required
@@ -540,7 +536,7 @@ const Update = () => {
           type='number'
           min='0'
           name='NoOfBottles'
-          value={formattedformData.no_of_bottles}
+          value={formattedformData.NoOfBottles}
           onChange={handleChange}
            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
            required
