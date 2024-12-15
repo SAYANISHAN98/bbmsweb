@@ -99,39 +99,51 @@ export default function Newtest() {
   
 
   return (
-    <div className="flex items-center justify-center w-full py-8">
-      <form onSubmit={handleSubmit} className="w-3/4 p-4 bg-white border-2 border-red-500 rounded-lg shadow-lg">
+    <div className='container w-5/6 p-6 pb-2 mx-auto mt-5 bg-white shadow-xl rounded-2xl horizontal'>
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Add New Blood Test</h2>
 
         
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">DATE</label>
+        <div className='flex w-full mx-2 '>
+        <div className='flex-1 mr-2'>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        DATE : 
+              </div>
+          <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
+          </div>
         </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Donated DATE</label>
+        <div className='flex-1 ml-2'>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Donated DATE : 
+              </div>
+      
+          <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="date"
             name="donation_date"
             value={formData.donation_date}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
+          </div>
+        </div>
         </div>
 
-        <div className='flex-1 mr-2'>
-              <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Blood Type:
+        <div className='w-full mx-2 '>
+        <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
+                Blood Type :
               </div>
+          
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <select
                   name='blood_type'
@@ -150,39 +162,56 @@ export default function Newtest() {
                   <option value="AB-">AB-</option>
                 </select>
               </div>
+              
             </div>
 
        
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">BOTTLE ID</label>
+        
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        BOTTLE ID :
+              </div>
+              <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="bottle_id"
             value={formData.bottle_id}
             onChange={handleChange}
             placeholder="Enter Bottle ID"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
+      
 
         
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">TESTED BY</label>
+        
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+           TESTED BY :
+              </div>
+          <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="tested_by"
             value={formData.tested_by}
             onChange={handleChange}
             placeholder="Enter Tester Name"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
         
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">RESULTS</label>
+        
+        <div className='flex w-full mx-2 '>
+        <div className='flex-1 mr-2'>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        RESULTS :
+              </div>
+          
           <div className="flex gap-4">
             <label className="flex items-center">
               <input
@@ -210,8 +239,11 @@ export default function Newtest() {
         </div>
 
        
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">FLAG</label>
+        
+        <div className='flex-1 ml-2'>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        FLAG :
+              </div>
           <div className="flex gap-4">
             <label className="flex items-center">
               <input
@@ -248,16 +280,22 @@ export default function Newtest() {
             </label>
           </div>
         </div>
+        </div>
 
        
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">REPORT</label>
+        
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+           REPORT :
+           </div>
+           <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="file"
             accept="image/*"
             onChange={handleFileUpload}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+             className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
           />
+        </div>
         </div>
 
         

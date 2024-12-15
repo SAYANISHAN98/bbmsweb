@@ -118,7 +118,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                First Name:
+                First Name :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -133,7 +133,7 @@ export default function Add() {
             </div>
             <div className='flex-1 ml-2'>
               <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Last Name:
+                Last Name :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -151,7 +151,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                NIC no:
+                NIC NO :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -166,7 +166,7 @@ export default function Add() {
             </div>
             <div className='flex-1 ml-2'>
               <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Date of Birth:
+                Date of Birth :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -184,7 +184,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Email:
+                Email :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -199,7 +199,7 @@ export default function Add() {
             </div>
             <div className='flex-1 ml-2'>
               <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Contact Number:
+                Contact Number :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -217,7 +217,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Home No:
+                Home No :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -232,7 +232,7 @@ export default function Add() {
             </div>
             <div className='flex-1 ml-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Street:
+                Street :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -247,7 +247,7 @@ export default function Add() {
             </div>
             <div className='flex-1 ml-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                City:
+                City :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -265,7 +265,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                District:
+                District :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -280,7 +280,7 @@ export default function Add() {
             </div>
             <div className='flex-1 ml-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Province:
+                Province :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -298,7 +298,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                User Role:
+                User Role :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <select
@@ -316,7 +316,7 @@ export default function Add() {
             </div>
             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Age:
+                Age :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <input
@@ -335,7 +335,7 @@ export default function Add() {
           <div className='flex w-full mx-2'>
             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Gender:
+                Gender :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <select
@@ -352,7 +352,7 @@ export default function Add() {
             </div>
             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
-                Blood Type:
+                Blood Type :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
                 <select
@@ -377,7 +377,7 @@ export default function Add() {
 
             <div className='w-1/2'>
           <div className='h-6 text-xs font-bold leading-8 text-gray-500 uppercase'>
-            Last Donation Date:
+            Last Donation Date :
           </div>
           <div className='flex bg-white border border-gray-200 rounded'>
             <input

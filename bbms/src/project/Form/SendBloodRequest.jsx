@@ -62,16 +62,17 @@ export default function NotificationForm() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full mx-4">
-      <div className="w-5/6">
-        <h2 className="text-2xl font-bold text-center text-red-500 mb-4">Send Blood Group Notification</h2>
-        <form onSubmit={handleSubmit} className="p-4 bg-white border-2 border-red-500 rounded-lg shadow-lg">
-          <div className="mb-4">
-            <label className="block mb-2 font-bold text-gray-700">Blood Group</label>
-            <select
+    <div className='w-2/3 pb-2 mx-auto bg-white shadow-xl rounded-2xl '>
+      <div className='container p-6 mt-5 horizontal'>
+        <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
+        <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Send Blood Group Notification </h2>
+        <div className='w-full mx-2 '>
+              <label  className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>Blood Group : </label>
+              <div className='flex my-2 bg-white border border-gray-200 rounded'>
+              <select
               value={bloodGroup}
               onChange={(e) => setBloodGroup(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className='w-full p-1 px-2 text-gray-800 outline-none'
               required
             >
               <option value="">Select Blood Group</option>
@@ -84,17 +85,21 @@ export default function NotificationForm() {
               <option value="AB+">AB+</option>
               <option value="AB-">AB-</option>
             </select>
+            </div>
+           
           </div>
-          <div className="mb-4">
+          <div className="w-full mx-2">
             
-            <label  className="block mb-2 font-bold text-gray-700">Message</label>
+            <label  className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>Message :</label>
+            <div className='flex my-2 bg-white border border-gray-200 rounded'>
             <textarea
               value={body}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+              className='w-full p-1 px-2 text-gray-800 outline-none'
               placeholder="Enter the message to send with the notification"
               required
             />
+          </div>
           </div>
           <div className="flex justify-center">
             <button
