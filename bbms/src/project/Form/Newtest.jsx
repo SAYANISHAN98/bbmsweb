@@ -26,12 +26,12 @@ export default function Newtest() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { date,blood_type, donation_date, results, bottle_id, tested_by, flag, report } = formData;
+    const { date,blood_type, donation_date, results, bottle_id, tested_by, flag, report ,no_of_bottles} = formData;
   
     try {
       let reportUrl = null;
   
-      // Step 1: Upload the report if provided
+      
       if (report) {
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('reports')
@@ -44,7 +44,7 @@ export default function Newtest() {
         reportUrl = supabase.storage.from('reports').getPublicUrl(uploadData.path).publicUrl;
       }
   
-      // Step 2: Validate `bottle_id` existence
+      
       const { data: bottleData, error: bottleError } = await supabase
         .from('donor_donations')
         .select('bottle_id')
@@ -55,11 +55,11 @@ export default function Newtest() {
         return;
       }
   
-      // Step 3: Insert into `blood_test` table
+      
       const { data: bloodTestData, error: bloodTestError } = await supabase
         .from('blood_test')
-        .insert([{ date,blood_type, donation_date, results, bottle_id, tested_by, flag, report_url: reportUrl }])
-        .select(); // `.select()` fetches the inserted data, including `test_id`.
+        .insert([{ date,blood_type, donation_date, results,no_of_bottles, bottle_id, tested_by, flag, report_url: reportUrl }])
+        .select(); 
   
       if (bloodTestError) {
         alert('Error adding blood test: ' + bloodTestError.message);
@@ -67,16 +67,14 @@ export default function Newtest() {
         return;
       }
   
-      const testId = bloodTestData[0]?.test_id; // Retrieve the `test_id` from the inserted data
-  
-      // Step 4: Calculate `exp_date` and add a record to `blood_stock` if test result is "Pass"
+      const testId = bloodTestData[0]?.test_id; 
+      
       if (results === 'Pass') {
-        const expDate = new Date(donation_date); // Create a date object from `donation_date`
-        expDate.setDate(expDate.getDate() + 120); // Add 120 days
-  
+        const expDate = new Date(donation_date); 
+        expDate.setDate(expDate.getDate() + 120); 
         const { data: stockData, error: stockError } = await supabase
           .from('blood_stock')
-          .insert([{ test_id: testId, blood_type,bottle_id, flag, exp_date: expDate.toISOString().split('T')[0] }]);
+          .insert([{ test_id: testId, blood_type,no_of_bottles,bottle_id, flag, exp_date: expDate.toISOString().split('T')[0] }]);
   
         if (stockError) {
           alert('Error adding to stock: ' + stockError.message);
@@ -159,6 +157,19 @@ export default function Newtest() {
             type="text"
             name="bottle_id"
             value={formData.bottle_id}
+            onChange={handleChange}
+            placeholder="Enter Bottle ID"
+            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">No of Bottles</label>
+          <input
+            type="text"
+            name="no_of_bottles"
+            value={formData.no_of_bottles}
             onChange={handleChange}
             placeholder="Enter Bottle ID"
             className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
