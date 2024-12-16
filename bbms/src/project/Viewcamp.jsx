@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { supabase } from '../lib/supabase'; // Assuming Supabase is set up
+import CustomButton from './Custombutton';
 
 export default function Viewcamp() {
   const { id } = useParams();
@@ -96,24 +97,24 @@ export default function Viewcamp() {
          </div>
 
         <div className="flex justify-center gap-4 mt-6">
-          <button
+          
+          <CustomButton
+            label="Update"
             onClick={() => navigate(`/Bloodcamp/Viewcamp/Bloodcampupdate/${id}`)}
-            className="px-6 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
-          >
-            Update
-        </button>
-        {/*<button
-          onClick={deleteCamp}
-          className="px-6 py-2 font-semibold text-white bg-red-500 rounded hover:bg-red-600"
-        >
-          Delete
-        </button>*/}
-        <button
+            color="blue"
+          />
+        {/*
+         <CustomButton
+            label="Delete"
+            onClick={deleteCamp}
+            color="red"
+          />*/}
+        
+        <CustomButton
+          label="Back"
           onClick={() => navigate('/Bloodcamp')}
-          className="px-6 py-2 font-semibold text-white bg-gray-500 rounded hover:bg-gray-600"
-        >
-          Back
-        </button>
+          color="gray"
+        />
       </div>
         </div>
       

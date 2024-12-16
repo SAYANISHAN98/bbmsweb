@@ -590,7 +590,7 @@ const Update = () => {
         <div className='flex justify-center pt-5'>
             <button
               type='submit'
-              className='px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl'
+              className='px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 rounded-lg cursor-pointer hover:bg-slate-700 hover:text-white'
             >
               Submit
             </button>

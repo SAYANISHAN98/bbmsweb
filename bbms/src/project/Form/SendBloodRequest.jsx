@@ -104,7 +104,7 @@ export default function NotificationForm() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600"
+              className='px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 rounded-lg cursor-pointer hover:bg-slate-700 hover:text-white'
             >
               Send Notification
             </button>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CustomButton from './Custombutton';
 
 export default function Bloodtestupdate() {
   const navigate = useNavigate();
@@ -35,55 +36,73 @@ export default function Bloodtestupdate() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full py-8">
-      <form onSubmit={handleSubmit} className="w-3/4 p-4 bg-white border-2 border-red-500 rounded-lg shadow-lg">
+    <div className='container w-5/6 p-6 pb-2 mx-auto mt-5 bg-white shadow-xl rounded-2xl horizontal'>
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Update Blood Test</h2>
 
-        <div>
-          <label className="mt-1 text-xs font-bold leading-8 text-gray-600 uppercase bh-6">Test Date</label>
+        <div className='flex w-full mx-2'>
+            <div className='flex-1 mr-2'>
+            <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+              Test Date :
+            </div>
+            <div className='flex bg-white border border-gray-200 rounded'>
           <input
             type="date"
             name="testDate"
             value={formData.testDate}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Donor Name</label>
+        <div className='flex-1 mr-2'>
+        <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+            Donor Name :
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="donorName"
             value={formData.donorName}
             onChange={handleChange}
             placeholder="Enter donor's name"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Location</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+          Location :
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="location"
             value={formData.location}
             onChange={handleChange}
             placeholder="Enter location"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Status</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Status :
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+          
           <select
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           >
             <option value="">Select Status</option>
@@ -92,27 +111,35 @@ export default function Bloodtestupdate() {
             <option value="Cancelled">Cancelled</option>
           </select>
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Result</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Result :
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="result"
             value={formData.result}
             onChange={handleChange}
             placeholder="Enter test result"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Blood Type</label>
-          <select
+        <div className='w-full mx-2 '>
+        <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Blood Type :
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
+           <select
             name="bloodType"
             value={formData.bloodType}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           >
             <option value="">Select Blood Type</option>
@@ -126,33 +153,34 @@ export default function Bloodtestupdate() {
             <option value="O-">O-</option>
           </select>
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Report Photo</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 mb-2 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Report Photo :
+          </div>
+          <div className='flex bg-white border border-gray-200 rounded'>
           <input
             type="file"
             name="reportPhoto"
             accept="image/*"
             onChange={handleFileChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
           />
         </div>
+        </div>
 
-        <div className="flex items-center justify-between mt-4">
-          <button
-            type="button"
+        <div className="flex justify-between m-6">
+          <CustomButton
+            label="Back"
             onClick={() => navigate('/Bloodtest')}
-            className="px-4 py-1 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
-          >
-            Back
-          </button>
-          <button
-            type="submit"
+            color="gray"
+          />
+          <CustomButton
+            label="Update"
             onClick={() => navigate('/Viewbloodtest')}
-            className="px-4 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600"
-          >
-            Update
-          </button>
+            color="blue"
+          />
         </div>
       </form>
     </div>

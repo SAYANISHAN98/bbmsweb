@@ -104,7 +104,7 @@ export default function Newtest() {
         
         <div className='flex w-full mx-2 '>
         <div className='flex-1 mr-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
         DATE : 
               </div>
           <div className='flex my-2 bg-white border border-gray-200 rounded'>
@@ -120,7 +120,7 @@ export default function Newtest() {
         </div>
 
         <div className='flex-1 ml-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
         Donated DATE : 
               </div>
       
@@ -138,7 +138,7 @@ export default function Newtest() {
         </div>
 
         <div className='w-full mx-2 '>
-        <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        <div className='h-4 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
                 Blood Type :
               </div>
           
@@ -166,9 +166,10 @@ export default function Newtest() {
 
        
         
-        <div className='w-full mx-2 '>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-        BOTTLE ID :
+        <div className='flex w-full mx-2 '>
+        <div className='flex-1 mr-2'>
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Bottle ID :
               </div>
               <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
@@ -184,24 +185,29 @@ export default function Newtest() {
         </div>
       
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">No of Bottles</label>
+        <div className='flex-1 mr-2'>
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        No of Bottles :
+        </div>
+          <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="no_of_bottles"
             value={formData.no_of_bottles}
             onChange={handleChange}
             placeholder="Enter Bottle ID"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
+        </div>
+        </div>
         </div>
 
         
         
         <div className='w-full mx-2 '>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-           TESTED BY :
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
+           Tested BY :
               </div>
           <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
@@ -220,11 +226,11 @@ export default function Newtest() {
         
         <div className='flex w-full mx-2 '>
         <div className='flex-1 mr-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-        RESULTS :
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Result :
               </div>
           
-          <div className="flex gap-4">
+          <div className="flex gap-4 mt-2 ml-8">
             <label className="flex items-center">
               <input
                 type="radio"
@@ -253,10 +259,10 @@ export default function Newtest() {
        
         
         <div className='flex-1 ml-2'>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
-        FLAG :
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Flage :
               </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 mt-2 ml-8">
             <label className="flex items-center">
               <input
                 type="radio"
@@ -297,7 +303,7 @@ export default function Newtest() {
        
         
         <div className='w-full mx-2 '>
-        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
            REPORT :
            </div>
            <div className='flex my-2 bg-white border border-gray-200 rounded'>
@@ -315,13 +321,13 @@ export default function Newtest() {
           <button
             type="button"
             onClick={() => navigate('/Bloodtest')}
-            className="px-4 py-1 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+            className="px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-gray-500 rounded-lg cursor-pointer hover:bg-gray-600 hover:text-white"
           >
             Back
           </button>
           <button
             type="submit"
-            className="px-4 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600"
+            className='px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 rounded-lg cursor-pointer hover:bg-slate-700 hover:text-white'
           >
             Add Test
           </button>

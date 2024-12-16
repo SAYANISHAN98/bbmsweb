@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import CustomButton from './Custombutton';
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState([]);
@@ -45,12 +46,11 @@ export default function Notifications() {
         <div className="py-4">
           <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Find Donor</h2>
 
-        
-          <button
-            onClick={() => navigate('/Notifications/sendbloodrequest')}
-            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-4 rounded-md ">
-            Add New Blood Request
-          </button>
+          <CustomButton
+                label="Add New Blood Request"
+                onClick={() => navigate('/Notifications/sendbloodrequest')}
+                color="red"
+              />
         </div>
 
         {/* Notifications Table */}
@@ -85,12 +85,11 @@ export default function Notifications() {
           {/* Button to load more rows */}
           {notifications.length > visibleRows && (
             <div className="flex justify-center mt-4">
-              <button
+              <CustomButton
+                label="More"
                 onClick={loadMore}
-                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700"
-              >
-                More
-              </button>
+                color="red"
+              />
             </div>
           )}
         </div>

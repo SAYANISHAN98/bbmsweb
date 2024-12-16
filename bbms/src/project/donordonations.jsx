@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
+import CustomButton from './Custombutton';
 
 export default function Donordonations() {
   const [searchQuery, setSearchQuery] = useState(""); // Store the search query
@@ -138,7 +139,7 @@ export default function Donordonations() {
           return;
         } else {
           // If donation is allowed, navigate to the donation page
-          navigate(`/Donate/${profileData.id}`);
+          navigate(`/Donordonations/Donate/${profileData.id}`);
           setModalOpen(false); // Close the modal after navigation
         }
       } else {
@@ -150,16 +151,16 @@ export default function Donordonations() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-5/6">
-      <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Donor Donations</h2>
+      <h2 className="mt-4 mb-4 text-3xl font-bold text-center text-red-700">Donor Donations</h2>
 
         <div className="flex items-center justify-between w-full py-6">
        
-          <button
-            onClick={() => setModalOpen(true)} // Open the modal when Donate button is clicked
-            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
-          >
-            Donate
-          </button>
+          <CustomButton
+              label="Donate"
+              onClick={() => setModalOpen(true)}
+               color="red"
+               className="!px-10"
+            />
           <div className="relative w-3/5 ">
             <input
               type="text"
@@ -186,18 +187,18 @@ export default function Donordonations() {
               />
               {error && <p className="text-sm text-red-500">{error}</p>}
               <div className="flex justify-between mt-4">
-                <button
-                  onClick={() => setModalOpen(false)} // Close the modal
-                  className="px-6 py-2 text-white bg-gray-500 rounded-lg"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleDonate} // Validate and navigate
-                  className="px-6 py-2 text-white bg-red-500 rounded-lg"
-                >
-                  Submit
-                </button>
+                
+                <CustomButton
+                  label="Cancel"
+                  onClick={() => setModalOpen(false)}
+                  color="gray"
+                />
+                <CustomButton
+                  label="Submit"
+                  onClick={handleDonate}
+                  color="red"
+                  
+                />
               </div>
             </div>
           </div>
@@ -230,12 +231,14 @@ export default function Donordonations() {
                     <td className="px-6 py-4 whitespace-nowrap">{donation.nic_no}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{donation.location}</td>
                     <td className="p-2 space-x-2">
-                      <button
-                        onClick={() => navigate(`/viewdonations/${donation.id}`)}
-                        className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
-                        View
-                      </button>
-                    </td>
+                     
+                      <CustomButton
+                        label="View"
+                        onClick={() => navigate(`/Donordonations/viewdonations/${donation.id}`)}
+                        color="red"
+                        className="!py-1"
+                      />
+                  </td>
                   </tr>
                 ))
               ) : (
@@ -247,11 +250,12 @@ export default function Donordonations() {
           </table>
           {filtereddonations.length > visibleRows && (
             <div className="flex justify-center mt-4">
-              <button
+              
+              <CustomButton
+                label="More"
                 onClick={loadMore}
-                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700">
-                More
-              </button>
+                color="red"
+              />
             </div>
           )}
         </div>

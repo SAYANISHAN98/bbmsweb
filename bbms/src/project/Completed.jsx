@@ -53,7 +53,7 @@ export default function Completed() {
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
       <div className="w-4/5">
-        <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Completed Requests</h2>
+        <h2 className="mt-4 mb-4 text-3xl font-bold text-center text-red-700">Completed Requests</h2>
         <div className="flex items-center justify-center w-full py-2 space-x-0 px-30">
           <button
             onClick={() => navigate('/Request')}

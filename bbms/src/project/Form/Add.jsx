@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 
+
 export default function Add() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -401,7 +402,7 @@ export default function Add() {
           <div className='flex justify-center pt-5'>
             <button
               type='submit'
-              className='px-4 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 cursor-pointer hover:bg-slate-700 hover:text-white rounded-xl'
+              className='px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 rounded-lg cursor-pointer hover:bg-slate-700 hover:text-white'
             >
               Submit
             </button>
