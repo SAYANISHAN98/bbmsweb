@@ -15,7 +15,7 @@ export default function Request() {
         const { data, error } = await supabase
           .from('requests')
           .select('*')
-          .is('status', 'pending');
+          .eq('status', 'pending');
 
         if (error) {
           console.error('Error fetching requests:', error);
