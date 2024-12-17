@@ -81,7 +81,7 @@ export default function Add() {
             f_name: formattedUserData.Fname,
             l_name: formattedUserData.Lname,
             dob: formattedUserData.dob,
-            nic: formattedUserData.nicNo,
+            nic_no: formattedUserData.nicNo,
             contact_number: formattedUserData.Ucontactno,
             email: formattedUserData.Uemail,
             home_no: formattedUserData.UhomeNo,
@@ -365,6 +365,7 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
+                  <option value="value">Select A Value</option>
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
                   <option value="B+">B+</option>
