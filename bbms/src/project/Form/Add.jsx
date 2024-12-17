@@ -39,7 +39,7 @@ export default function Add() {
           f_name: formattedUserData.Fname,
           l_name: formattedUserData.Lname,
           dob: formattedUserData.dob,
-          nic: formattedUserData.nicNo,
+          nic_no: formattedUserData.nicNo,
           email: formattedUserData.Uemail,
           home_no: formattedUserData.UhomeNo,
           blood_type: formattedUserData.Btype,
@@ -58,6 +58,7 @@ export default function Add() {
       console.log("Donor details inserted successfully");
       navigate(`/ViewDetail/${id}`);
     } catch (error) {
+      navigate(`/ViewDetail/${id}`);
       console.error("Error inserting donor details:", error.message);
     }
   };
@@ -82,7 +83,7 @@ export default function Add() {
             f_name: formattedUserData.Fname,
             l_name: formattedUserData.Lname,
             dob: formattedUserData.dob,
-            nic: formattedUserData.nicNo,
+            nic_no: formattedUserData.nicNo,
             contact_number: formattedUserData.Ucontactno,
             email: formattedUserData.Uemail,
             home_no: formattedUserData.UhomeNo,
@@ -349,6 +350,7 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
+                  <option value="Select">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -366,6 +368,7 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
+                  <option value="value">Select A Value</option>
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
                   <option value="B+">B+</option>

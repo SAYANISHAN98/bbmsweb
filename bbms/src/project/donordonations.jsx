@@ -103,6 +103,7 @@ export default function Donordonations() {
       return;
     }
   
+    // Step 1: Check for matching NIC in the profiles table
     const { data: profileData, error: profileError } = await supabase
       .from('profiles')
       .select('id')
@@ -114,12 +115,12 @@ export default function Donordonations() {
       return;
     }
   
+    // Step 2: If profile is found, fetch the latest donation from donor_donations
     if (profileData) {
-      // Fetch the latest donation for this donor from the donor_donations table
       const { data: donationsData, error: donationsError } = await supabase
         .from('donor_donations')
         .select('date')
-        .eq('donor_id', profileData.id)
+        .eq('donor_id', profileData.id) // Use the donor_id from profile
         .order('date', { ascending: false }) // Order by latest date
         .limit(1); // Fetch only the latest donation
   
@@ -128,25 +129,36 @@ export default function Donordonations() {
         return;
       }
   
-      if (donationsData.length > 0) {
+      // Step 3: Check if donation data is available
+      if (donationsData && donationsData.length > 0) {
         const latestDonationDate = new Date(donationsData[0].date);
         const currentDate = new Date();
-        const diffInTime = currentDate - latestDonationDate;
+        const diffInTime = currentDate - latestDonationDate; // Time difference in milliseconds
         const diffInDays = diffInTime / (1000 * 3600 * 24); // Convert time difference to days
   
+        // Step 4: Check if the difference is greater than 120 days
         if (diffInDays <= 120) {
           setError('You can only donate after 120 days from your last donation.');
           return;
         } else {
+// <<<<<<< test
           // If donation is allowed, navigate to the donation page
           navigate(`/Donordonations/Donate/${profileData.id}`);
+// =======
+//           // If donation is allowed (more than 120 days), navigate to the donation page
+//           navigate(`/Donate/${profileData.id}`);
+// >>>>>>> main
           setModalOpen(false); // Close the modal after navigation
         }
       } else {
-        setError('No donation record found for this NIC.');
+        // No donation record found, donor can donate
+        navigate(`/Donate/${profileData.id}`);
+        setModalOpen(false); // Close the modal after navigation
       }
     }
   };
+  
+  
   
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
@@ -231,6 +243,7 @@ export default function Donordonations() {
                     <td className="px-6 py-4 whitespace-nowrap">{donation.nic_no}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{donation.location}</td>
                     <td className="p-2 space-x-2">
+// <<<<<<< test
                      
                       <CustomButton
                         label="View"
@@ -239,6 +252,14 @@ export default function Donordonations() {
                         className="!py-1"
                       />
                   </td>
+// =======
+//                       <button
+//                         onClick={() => navigate(`/Donordonations/viewdonations/${donation.id}`)}
+//                         className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
+//                         View
+//                       </button>
+//                     </td>
+// >>>>>>> main
                   </tr>
                 ))
               ) : (
