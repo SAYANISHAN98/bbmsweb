@@ -38,7 +38,7 @@ export default function Add() {
           f_name: formattedUserData.Fname,
           l_name: formattedUserData.Lname,
           dob: formattedUserData.dob,
-          nic: formattedUserData.nicNo,
+          nic_no: formattedUserData.nicNo,
           email: formattedUserData.Uemail,
           home_no: formattedUserData.UhomeNo,
           blood_type: formattedUserData.Btype,
