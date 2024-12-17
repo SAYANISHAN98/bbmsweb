@@ -59,7 +59,7 @@ export default function Viewdonations() {
             // Fetch medical status based on donor_id and date
           const { data: medicalStatus, error: medicalError } = await supabase
             .from('medical_status')
-            .select('blood_pressure, sugar_level, hb_level, visible_marks,dieseases')
+            .select('blood_pressure, sugar_level, hb_level, visible_marks,diseases')
             .eq('donor_id', donorId) // Match donor_id from donor_donations
             .eq('date', donationDetails[0].date); // Match date from donor_donations
 
