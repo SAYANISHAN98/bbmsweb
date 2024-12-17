@@ -57,6 +57,7 @@ export default function Add() {
       console.log("Donor details inserted successfully");
       navigate(`/ViewDetail/${id}`);
     } catch (error) {
+      navigate(`/ViewDetail/${id}`);
       console.error("Error inserting donor details:", error.message);
     }
   };
