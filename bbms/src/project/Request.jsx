@@ -13,15 +13,16 @@ export default function Request() {
     const fetchRequests = async () => {
       try {
         const { data, error } = await supabase
-          .from('requests')
-          .select('*')
-          .eq('status', 'pending');
+  .from('requests')
+  .select('*')
+  .eq('status', 'pending'); // Corrected to use 'eq'
 
-        if (error) {
-          console.error('Error fetching requests:', error);
-        } else {
-          setRequests(data);
-        }
+if (error) {
+  console.error('Error fetching requests:', error);
+} else {
+  console.log('Fetched requests:', data);
+}
+
       } catch (err) {
         console.error('Error:', err.message);
       }
