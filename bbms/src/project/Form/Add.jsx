@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Add() {
   const { id } = useParams();
@@ -39,7 +40,7 @@ export default function Add() {
           f_name: formattedUserData.Fname,
           l_name: formattedUserData.Lname,
           dob: formattedUserData.dob,
-          nic: formattedUserData.nicNo,
+          nic_no: formattedUserData.nicNo,
           email: formattedUserData.Uemail,
           home_no: formattedUserData.UhomeNo,
           blood_type: formattedUserData.Btype,
@@ -57,7 +58,7 @@ export default function Add() {
       if (error) throw error;
       console.log("Donor details inserted successfully");
       navigate(`/ViewDetail/${id}`);
-    } catch (error) {
+    } catch (error) { 
       console.error("Error inserting donor details:", error.message);
     }
   };
@@ -82,7 +83,7 @@ export default function Add() {
             f_name: formattedUserData.Fname,
             l_name: formattedUserData.Lname,
             dob: formattedUserData.dob,
-            nic: formattedUserData.nicNo,
+            nic_no: formattedUserData.nicNo,
             contact_number: formattedUserData.Ucontactno,
             email: formattedUserData.Uemail,
             home_no: formattedUserData.UhomeNo,
@@ -102,19 +103,26 @@ export default function Add() {
       if (error) throw error;
 
       console.log("User created:", user);
+      navigate(`/Donor`);
+      /*toast.success("User created successfully!");
       
-      // Call insertDonor with the email after successful signup
-      await insertDonor(userData.Uemail);
+      setTimeout(() => {
+        navigate(`/Donor`);
+      }, 3000);*/
+    
+    await insertDonor(userData.Uemail);
 
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-    }
+  } catch (error) {
+    //toast.error(`Error signing up: ${error.message}`);
+    console.error("Error signing up:", error.message);
+  }
   };
 
 
   return (
     <div className='w-5/6 pb-2 mx-auto bg-white shadow-xl rounded-2xl '>
       <div className='container p-6 mt-5 horizontal'>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false}  closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover className="mt-20 mr-4" />
         <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
           <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Add New Donor </h2>
 
@@ -329,6 +337,8 @@ export default function Add() {
                   name='Uage'
                   type='number'
                   placeholder='User Age'
+                  min={18}    
+                  max={60} 
                   className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
                   required
                 />

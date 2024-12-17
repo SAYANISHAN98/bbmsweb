@@ -112,10 +112,6 @@ export default function ViewProfile() {
           <span className="text-gray-800">{formData.userRole || 'Not Provided'}</span>
         </div>
         <div className="flex items-center justify-between pb-2 border-b">
-          <span className="font-medium text-gray-500">Phone</span>
-          <span className="text-gray-800">{formData.contactNumber || 'Not Provided'}</span>
-        </div>
-        <div className="flex items-center justify-between pb-2 border-b">
           <span className="font-medium text-gray-500">Gender</span>
           <span className="text-gray-800">{formData.gender || 'Not Provided'}</span>
         </div>
