@@ -22,7 +22,8 @@ export default function Viewdonations() {
             date,
             no_of_bottles,
             donor_id,
-            camp_id
+            camp_id,
+            collected_by
           `)
           .eq('id', id); // Filter based on the donation ID
 
@@ -59,7 +60,7 @@ export default function Viewdonations() {
             // Fetch medical status based on donor_id and date
           const { data: medicalStatus, error: medicalError } = await supabase
             .from('medical_status')
-            .select('blood_pressure, sugar_level, hb_level, visible_marks')
+            .select('blood_pressure, sugar_level, hb_level, visible_marks,diseases')
             .eq('donor_id', donorId) // Match donor_id from donor_donations
             .eq('date', donationDetails[0].date); // Match date from donor_donations
 
@@ -72,6 +73,7 @@ export default function Viewdonations() {
 
             const formattedData = {
             donationDate: donationDetails[0].date || 'N/A',
+              collectedBy: donationDetails[0].collected_by || 'N/A',
             noOfBottles: donationDetails[0].no_of_bottles || 'N/A',
             donorName: `${donorProfile[0]?.f_name || 'N/A'} ${donorProfile[0]?.l_name || ''}`.trim(),
             nicNo: donorProfile[0]?.nic_no || 'N/A',
@@ -81,6 +83,7 @@ export default function Viewdonations() {
             sugarLevel: formattedMedicalStatus.sugar_level,
             hbLevel: formattedMedicalStatus.hb_level,
             visibleMarks: formattedMedicalStatus.visible_marks,
+              diseases: formattedMedicalStatus.diseases,
             };
 
 
@@ -133,6 +136,10 @@ export default function Viewdonations() {
           <span className="font-medium text-gray-500">No of Bottles</span>
           <span className="text-gray-800">{donationDetails.noOfBottles || 'Not Provided'}</span>
         </div>
+          <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Collected By</span>
+          <span className="text-gray-800">{donationDetails.collectedBy || 'Not Provided'}</span>
+        </div>
         <div className="flex items-center justify-between pb-2 border-b">
           <span className="font-medium text-gray-500">Location</span>
           <span className="text-gray-800">{donationDetails.location || 'Not Provided'}</span>
@@ -160,6 +167,11 @@ export default function Viewdonations() {
         <div className="flex items-center justify-between pb-2 border-b">
           <span className="font-medium text-gray-500">Visible Marks</span>
           <span className="text-gray-800">{donationDetails.visibleMarks || 'Not Provided'}</span>
+        </div>
+
+           <div className="flex items-center justify-between pb-2 border-b">
+          <span className="font-medium text-gray-500">Diseases</span>
+          <span className="text-gray-800">{donationDetails.diseases || 'Not Provided'}</span>
         </div>
         
           <div className="flex justify-center gap-4 mt-6">

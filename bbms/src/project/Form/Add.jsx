@@ -58,7 +58,7 @@ export default function Add() {
       if (error) throw error;
       console.log("Donor details inserted successfully");
       navigate(`/ViewDetail/${id}`);
-    } catch (error) { 
+    } catch (error) {
       console.error("Error inserting donor details:", error.message);
     }
   };
@@ -359,6 +359,7 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
+                  <option value="Select">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -376,6 +377,7 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
+                  <option value="value">Select A Value</option>
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
                   <option value="B+">B+</option>
