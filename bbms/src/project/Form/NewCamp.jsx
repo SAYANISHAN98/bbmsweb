@@ -35,54 +35,71 @@ export default function NewCamp() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full py-8">
-      <form onSubmit={handleSubmit} className="w-3/4 p-4 bg-white border-2 border-red-500 rounded-lg shadow-lg">
+    <div className='container w-2/3 p-6 pb-2 mx-auto mt-5 bg-white shadow-xl rounded-2xl horizontal'>
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Add Blood Camp Details</h2>
 
-        <div>
-          <label className="mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Camp Name</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Camp Name :
+              </div>
+            <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            placeholder="Enter Camp Name"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Camp Date</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Camp Date :
+              </div>
+              <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Address</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Address :
+              </div>
+              <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <input
             type="text"
             name="address"
             value={formData.address}
             onChange={handleChange}
             placeholder="Enter Address"
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           />
         </div>
+        </div>
 
-        <div>
-          <label className="h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase">Status</label>
+        <div className='w-full mx-2 '>
+        <div className='h-6 text-xs font-bold leading-8 text-gray-600 uppercase'>
+        Status :
+              </div>
+              <div className='flex my-2 bg-white border border-gray-200 rounded'>
           <select
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full px-3 py-1 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-300"
+            className='w-full p-1 px-2 text-gray-800 outline-none appearance-none'
             required
           >
             <option value="">Select Status</option>
@@ -91,18 +108,19 @@ export default function NewCamp() {
             <option value="postponed">Postponed</option>
           </select>
         </div>
+        </div>
 
         <div className="flex items-center justify-between mt-4">
           <button
             type="button"
             onClick={() => navigate('/Bloodcamp')}
-            className="px-4 py-1 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+            className="px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-gray-500 rounded-lg cursor-pointer hover:bg-gray-600 hover:text-white"
           >
             Back
           </button>
           <button
             type="submit"
-            className="px-4 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600"
+            className='px-6 py-2 font-semibold text-white uppercase transition duration-200 ease-in-out bg-red-500 rounded-lg cursor-pointer hover:bg-slate-700 hover:text-white'
           >
             Add Camp
           </button>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
+import CustomButton from './Custombutton';
 
 export default function BloodTests() {
   const [searchQuery, setSearchQuery] = useState(""); // Store the search query
@@ -100,16 +101,16 @@ export default function BloodTests() {
 
   return (
     <div className="flex items-center justify-center w-full mx-4 space-y-2 lg:w-full">
-      <div className="w-5/6 pt-8">
-      <h2 className="mb-4 text-3xl font-bold text-center text-red-700">Blood Test</h2>
+      <div className="w-5/6">
+      <h2 className="mt-4 mb-4 text-3xl font-bold text-center text-red-700">Blood Test</h2>
 
         <div className="flex items-center justify-between w-full">
-          <button
+          <CustomButton
+            label="Add"
             onClick={() => navigate('/Bloodtest/NewTest')}
-            className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-2 px-10 rounded-md"
-          >
-            Add
-          </button>
+            color="red"
+            className="!px-10"
+             />
           <div className="relative w-3/5">
             <input
               type="text"
@@ -149,11 +150,12 @@ export default function BloodTests() {
                     <td className="px-6 py-4 font-medium whitespace-nowrap">{test.nic_no}</td>
                     <td className="px-6 py-4 font-medium whitespace-nowrap">{test.tested_by}</td>
                     <td className="p-2 space-x-2">
-                      <button
+                      <CustomButton
+                        label="View"
                         onClick={() => navigate(`/Bloodtest/ViewbloodTest/${test.id}`)}
-                        className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md ">
-                        View
-                      </button>
+                        color="red"
+                        className="!py-1"
+                      />
                     </td>
                   </tr>
                 ))
@@ -166,12 +168,11 @@ export default function BloodTests() {
           </table>
           {filteredTests.length > visibleRows && (
             <div className="flex justify-center mt-4">
-              <button
+              <CustomButton
+                label="More"
                 onClick={loadMore}
-                className="px-6 py-2 text-white bg-red-500 rounded-xl hover:bg-slate-700"
-              >
-                More
-              </button>
+                color="red"
+              />
             </div>
           )}
         </div>

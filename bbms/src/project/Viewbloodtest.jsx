@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate,useParams, NavLink } from 'react-router-dom';
+import { useNavigate,useParams} from 'react-router-dom';
 import { supabase } from '../lib/supabase';  // Ensure you have your Supabase client set up correctly
+import CustomButton from './Custombutton';
+
 
 export default function Viewbloodtest() {
   const { id } = useParams(); // Get the blood test ID from the URL
@@ -125,15 +127,12 @@ export default function Viewbloodtest() {
             className="object-cover w-full h-auto max-w-xs rounded-lg shadow-md"
           />
         </div>
-      </div>
-     
-
-          <button
-            onClick={() => navigate('/Bloodtest')}
-            className="px-6 py-2 font-semibold text-white bg-gray-500 rounded hover:bg-gray-600"
-          >
-          Back
-        </button>
+        </div>
+          <CustomButton
+          label="Back"
+          onClick={() => navigate('/Bloodtest')}
+          color="gray"
+        />
         
         </div>
        

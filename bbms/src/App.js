@@ -54,7 +54,7 @@ function App() {
                 <Route path="/Notifications/sendbloodrequest" element={<BloodGroupNotificationForm />} />
                 <Route path="/Donor/Add" element={<Add />} />
                 <Route path="/Donor/ViewDetail/Form/Update/:id" element={<Update />} />
-                <Route path="/Donate/:id" element={<Donate />} />
+                <Route path="/Donordonations/Donate/:id" element={<Donate />} />
                 <Route index element={<Home />} />
                 <Route path="/Donor" element={<Donor />} />
                 <Route path="/Request" element={<Request />} />
@@ -72,7 +72,7 @@ function App() {
                 <Route path="/Bloodcamp/Viewcamp/Bloodcampupdate/:id" element={<Bloodcampupdate />} />
                 <Route path="/Donordonations/viewdonations/:id" element={<Viewdonations />} />
 
-                <Route path="/Bloodtestupdate" element={<Bloodtestupdate />} />
+                <Route path="/Bloodtest/Bloodtestupdate" element={<Bloodtestupdate />} />
                 <Route path="*" element={<Notfound />} />
                 <Route path="/Stock/blood/:group" element={<BloodGroupDetail />} />
 

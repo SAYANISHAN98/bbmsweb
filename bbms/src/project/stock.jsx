@@ -19,7 +19,7 @@ export default function Stock() {
   }, {});
 
   const handleCardClick = (group) => {
-    navigate(`/blood/${group}`);
+    navigate(`/Stock/blood/${group}`);
   };
 
   if (isLoading) {
@@ -35,8 +35,8 @@ export default function Stock() {
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen py-10">
-      <h1 className="mb-8 text-4xl font-bold text-red-700">Blood Stock</h1>
+    <div className="flex flex-col items-center min-h-screen py-4">
+      <h1 className="mb-4 text-3xl font-bold text-center text-red-700">Blood Stock</h1>
       <div className="grid w-full max-w-screen-xl grid-cols-1 gap-6 px-4 md:grid-cols-2 lg:grid-cols-4">
         {Object.keys(groupedBloodStock).map((bloodType) => (
           <div

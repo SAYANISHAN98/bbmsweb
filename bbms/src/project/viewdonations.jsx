@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate,useParams, NavLink } from 'react-router-dom';
 import { supabase } from '../lib/supabase'; // Ensure your Supabase client is set up correctly
+import CustomButton from './Custombutton';
 
 export default function Viewdonations() {
   const { id } = useParams(); // Get the donor_donation ID from the URL
@@ -174,13 +175,12 @@ export default function Viewdonations() {
         </div>
         
           <div className="flex justify-center gap-4 mt-6">
-              <button
-            onClick={() => navigate('/Donordonations')}
-            className="px-6 py-2 font-semibold text-white bg-gray-500 rounded hover:bg-gray-600"
-          >
-          Back
-        </button>
-           
+            <CustomButton
+              label="Back"
+              onClick={() => navigate('/Donordonations')}
+              color="gray"
+            />
+              
           </div>
         </div>
       </div>
