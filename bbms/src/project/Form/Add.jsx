@@ -348,6 +348,7 @@ export default function Add() {
                   className='w-full p-1 px-2 text-gray-800 outline-none'
                   required
                 >
+                  <option value="Select">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
