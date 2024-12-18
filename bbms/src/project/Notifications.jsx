@@ -38,7 +38,7 @@ export default function Notifications() {
 
   const handleViewDetails = (userId) => {
     if (userId) {
-      navigate(`/Doner/ViewDetail/${userId}`);
+      navigate(`/Donor/ViewDetail/${userId}`);
     } else {
       console.error('User ID is missing for this notification');
     }
