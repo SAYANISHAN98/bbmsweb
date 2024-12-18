@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Update = () => {
   const { id } = useParams();
@@ -97,7 +99,7 @@ const Update = () => {
       console.error('Error updating data:', profileError );
     } else {
       console.log('Data updated successfully');
-      navigate(`/ViewDetail/${id}`);
+      navigate(`/Donor/ViewDetail/${id}`);
     }
   };
 

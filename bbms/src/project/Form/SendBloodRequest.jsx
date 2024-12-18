@@ -59,6 +59,7 @@ export default function NotificationForm() {
     } else {
       console.log('Notification sent to user:', userId);
     }
+    
   };
 
   return (

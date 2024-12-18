@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Update = () => {
   const { id } = useParams();
@@ -175,16 +177,22 @@ const Update = () => {
             console.log(id);
     if (profileError || medicalError || donationError) {
       console.log(id);
+      //toast.error(`Error signing up: ${profileError || medicalError || donationError}`);
       console.error('Error updating data:', profileError || medicalError || donationError);
     } else {
       console.log('Data updated successfully');
       navigate(`/donordonations`);
+      /*toast.success("Data updated successfully!");
+      setTimeout(() => {
+        navigate(`/donordonations`);
+      }, 3000);*/
     }
   };
 
   return (
     <div className='w-5/6 pb-2 mx-auto bg-white shadow-xl rounded-2xl'>
       <div className='container p-6 mt-5'>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false}  closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover className="mt-20 mr-4" />
         <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
           <h2 className="mb-3 text-2xl font-bold text-center text-red-500">Donate</h2>
          

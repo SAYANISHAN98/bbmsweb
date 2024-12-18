@@ -31,10 +31,10 @@ export default function Login() {
   };
 
   return (
-    <div className="flex w-full h-screen">
-      <div className="flex items-center justify-center w-full lg:w-full">
+    <div className="flex w-full h-screen bg-[url('./project/loginbg.png')] bg-cover bg-center">
+      <div className="flex items-center justify-center w-full lg:w-full ">
         <div className="">
-          <div className="px-10 py-20 bg-white border-2 border-gray-200 rounded-3xl">
+        <div className="relative px-10 py-20 bg-white border-2 border-gray-200 rounded-3xl">
             <div className="flex items-center justify-center mb-8 text-4xl font-semibold">
               <h1>Login</h1>
             </div>
