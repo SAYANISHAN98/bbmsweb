@@ -15,7 +15,7 @@ export default function Notifications() {
         // Fetch notifications with related donor names and status
         const { data: notificationsData, error } = await supabase
           .from('notifications')
-          .select('id, blood_type, created_at, status, profiles(f_name)'); // Include 'status'
+          .select('id,user_id , blood_type, created_at, status, profiles(f_name)'); // Include 'status'
 
         if (error) {
           console.error('Error fetching notifications:', error);
@@ -34,6 +34,14 @@ export default function Notifications() {
 
   const loadMore = () => {
     setVisibleRows((prev) => prev + 10); // Increase visible rows by 10
+  };
+
+  const handleViewDetails = (userId) => {
+    if (userId) {
+      navigate(`/ViewDetail/${userId}`);
+    } else {
+      console.error('User ID is missing for this notification');
+    }
   };
 
   if (loading) {
@@ -62,6 +70,8 @@ export default function Notifications() {
                 <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Donor Name</th>
                 <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Date</th>
                 <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Status</th>
+               <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Action</th>
+
               </tr>
             </thead>
             <tbody>
@@ -76,6 +86,14 @@ export default function Notifications() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap ">
                     {notification.status || 'Pending'}
+                  </td>
+                  <td className="p-2 space-x-2">
+                    <button
+                      onClick={() => handleViewDetails(notification.user_id)}
+                      className="font-bold text-white bg-red-500 active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all py-1 px-4 rounded-md "
+                    >
+                      View
+                    </button>
                   </td>
                 </tr>
               ))}
