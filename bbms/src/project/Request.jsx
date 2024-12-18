@@ -15,20 +15,22 @@ export default function Request() {
         const { data, error } = await supabase
           .from('requests')
           .select('*')
-          .is('status', 'pending');
-
+          .eq('status', 'pending'); // Corrected to use 'eq'
+  
         if (error) {
           console.error('Error fetching requests:', error);
         } else {
-          setRequests(data);
+          console.log('Fetched requests:', data);
+          setRequests(data); // Update the state with fetched data
         }
       } catch (err) {
         console.error('Error:', err.message);
       }
     };
-
+  
     fetchRequests();
   }, []);
+  
 
   const handleAccept = async (id) => {
     try {

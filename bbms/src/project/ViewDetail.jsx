@@ -132,11 +132,11 @@ export default function ViewProfile() {
         onClick={() => navigate(`/Donor/ViewDetail/Form/Update/${id}`)}
         color="blue"
       />
-      <CustomButton
+{/*       <CustomButton
         label="Delete"
         onClick={handleDelete}
         color="red"
-      />
+      /> */}
       <CustomButton
         label="Back"
         onClick={() => navigate('/donor')}

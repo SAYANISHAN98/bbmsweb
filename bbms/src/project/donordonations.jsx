@@ -141,18 +141,14 @@ export default function Donordonations() {
           setError('You can only donate after 120 days from your last donation.');
           return;
         } else {
-// <<<<<<< test
-          // If donation is allowed, navigate to the donation page
+
           navigate(`/Donordonations/Donate/${profileData.id}`);
-// =======
-//           // If donation is allowed (more than 120 days), navigate to the donation page
-//           navigate(`/Donate/${profileData.id}`);
-// >>>>>>> main
+
           setModalOpen(false); // Close the modal after navigation
         }
       } else {
         // No donation record found, donor can donate
-        navigate(`/Donate/${profileData.id}`);
+        navigate(`/Donordonations/Donate/${profileData.id}`);
         setModalOpen(false); // Close the modal after navigation
       }
     }
@@ -243,6 +239,7 @@ export default function Donordonations() {
                     <td className="px-6 py-4 whitespace-nowrap">{donation.nic_no}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{donation.location}</td>
                     <td className="p-2 space-x-2">
+
                      
                       <CustomButton
                         label="View"
@@ -251,6 +248,7 @@ export default function Donordonations() {
                         className="!py-1"
                       />
                   </td>
+
                   </tr>
                 ))
               ) : (

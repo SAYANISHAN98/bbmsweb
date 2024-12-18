@@ -48,6 +48,7 @@ function App() {
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route path="Donor/ViewDetail/:id" element={<ViewDetail />} />
+                <Route path="Notifications/ViewDetail/:id" element={<ViewDetail />} />
                 <Route path="/ViewDonor" element={<ViewDonor />} />
                 <Route path="/Finddonor" element={<Finddonor />} />
                 <Route path="/notifications" element={<Notifications />} />

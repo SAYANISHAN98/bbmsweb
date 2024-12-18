@@ -20,7 +20,7 @@ export default function Add() {
     Udistrict: '',
     Uprovince: '',
     Urole: '',
-    Uage: '',
+   // Uage: '',
     Ugender: '',
     Btype: '',
     lastdonationdate: ''
@@ -57,8 +57,10 @@ export default function Add() {
 
       if (error) throw error;
       console.log("Donor details inserted successfully");
-      navigate(`/ViewDetail/${id}`);
+      navigate(`/Donor`);
     } catch (error) {
+
+      navigate(`/Donor`);
       console.error("Error inserting donor details:", error.message);
     }
   };
@@ -326,7 +328,7 @@ export default function Add() {
                 </select>
               </div>
             </div>
-            <div className='flex-1 mr-2'>
+{/*             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
                 Age :
               </div>
@@ -343,7 +345,7 @@ export default function Add() {
                   required
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className='flex w-full mx-2'>
