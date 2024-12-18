@@ -19,7 +19,7 @@ export default function Add() {
     Udistrict: '',
     Uprovince: '',
     Urole: '',
-    Uage: '',
+   // Uage: '',
     Ugender: '',
     Btype: '',
     lastdonationdate: ''
@@ -319,7 +319,7 @@ export default function Add() {
                 </select>
               </div>
             </div>
-            <div className='flex-1 mr-2'>
+{/*             <div className='flex-1 mr-2'>
               <div className='h-6 mt-1 text-xs font-bold leading-8 text-gray-600 uppercase'>
                 Age :
               </div>
@@ -334,7 +334,7 @@ export default function Add() {
                   required
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className='flex w-full mx-2'>
