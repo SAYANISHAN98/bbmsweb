@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Bloodcamp() {
   const [camps, setCamps] = useState([]);

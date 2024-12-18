@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate,useParams} from 'react-router-dom';
 import { supabase } from '../lib/supabase';  // Ensure you have your Supabase client set up correctly
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 
 export default function Viewbloodtest() {

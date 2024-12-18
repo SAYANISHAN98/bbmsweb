@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Bloodtestupdate() {
   const navigate = useNavigate();

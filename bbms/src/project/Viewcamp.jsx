@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { supabase } from '../lib/supabase'; // Assuming Supabase is set up
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Viewcamp() {
   const { id } = useParams();
