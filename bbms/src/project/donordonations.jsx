@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Donordonations() {
   const [searchQuery, setSearchQuery] = useState(""); // Store the search query
@@ -72,23 +72,28 @@ export default function Donordonations() {
     fetchdonations();
   }, []);
 
-  // Search function to handle Name, NIC No, Location, Date, and Blood Group
-  const searchDonations = (query) => {
-    if (query) {
-      const filtered = donations.filter((donation) => {
-        const nameMatch = donation.f_name?.toLowerCase().includes(query.toLowerCase());
-        const nicMatch = donation.nic_no?.toLowerCase().includes(query.toLowerCase());
-        const locationMatch = donation.location?.toLowerCase().includes(query.toLowerCase());
-        const dateMatch = donation.date?.toLowerCase().includes(query.toLowerCase());
-        const bloodTypeMatch = donation.blood_type?.toLowerCase().includes(query.toLowerCase());
-        return nameMatch || nicMatch || locationMatch || dateMatch || bloodTypeMatch; // Match any of the conditions
-      });
-
-      setFiltereddonations(filtered); // Update the filtered results
-    } else {
-      setFiltereddonations(donations); // Reset to all donations if no query
-    }
-  };
+    // Memoized sorting of donations by donation date in ascending order
+    const sortedDonations = useMemo(() => {
+      return [...donations].sort((a, b) => new Date(a.date) - new Date(b.date)); 
+    }, [donations]);
+  
+    // Search function to handle Name, NIC No, Location, Date, and Blood Group
+    const searchDonations = (query) => {
+      if (query) {
+        const filtered = sortedDonations.filter((donation) => {
+          const nameMatch = donation.f_name?.toLowerCase().includes(query.toLowerCase());
+          const nicMatch = donation.nic_no?.toLowerCase().includes(query.toLowerCase());
+          const locationMatch = donation.location?.toLowerCase().includes(query.toLowerCase());
+          const dateMatch = donation.date?.toLowerCase().includes(query.toLowerCase());
+          const bloodTypeMatch = donation.blood_type?.toLowerCase().includes(query.toLowerCase());
+          return nameMatch || nicMatch || locationMatch || dateMatch || bloodTypeMatch; // Match any of the conditions
+        });
+  
+        setFiltereddonations(filtered); // Update the filtered results
+      } else {
+        setFiltereddonations(sortedDonations); // Reset to all donations if no query
+      }
+    };
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
@@ -153,6 +158,7 @@ export default function Donordonations() {
       }
     }
   };
+  
   
   
   

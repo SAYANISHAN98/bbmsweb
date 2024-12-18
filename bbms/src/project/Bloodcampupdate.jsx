@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Bloodcampupdate() {
   const navigate = useNavigate();

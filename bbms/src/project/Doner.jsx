@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { useProfiles } from '../api/profiles';
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Donor() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   
   const { data: profiles, error, isLoading } = useProfiles(searchTerm);
-
   const [visibleRows, setVisibleRows] = useState(10);
+
+  const processedProfiles = useMemo(() => profiles?.map(user => ({
+    ...user,
+    last_donation_timestamp: new Date(user.last_donation_date).getTime(),
+  })), [profiles]);
+
+  const filteredProfiles = useMemo(() => {
+    return processedProfiles?.filter((user) => {
+      const term = searchTerm.toLowerCase();
+      const name = `${user.f_name} ${user.l_name}`.toLowerCase();
+      const bloodType = user.blood_type?.toLowerCase() || '';
+      const lastDonation = user.last_donation_date?.toLowerCase() || '';
+
+      return (
+        name.includes(term) ||
+        bloodType.includes(term) ||
+        lastDonation.includes(term)
+      );
+    }).sort((a, b) => a.last_donation_timestamp - b.last_donation_timestamp);
+  }, [processedProfiles, searchTerm]);
+
+  const loadMore = () => {
+    setVisibleRows(prev => prev + 10);
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -20,38 +43,16 @@ export default function Donor() {
     return <div>Error: {error.message}</div>;
   }
 
-  // Load more rows function
-  const loadMore = () => {
-    setVisibleRows(prev => prev + 10);
-  };
-
-  // Filter profiles based on search term
-  // Filter profiles based on search term
-const filteredProfiles = profiles?.filter((user) => {
-  const term = searchTerm.toLowerCase();
-  const name = `${user.f_name} ${user.l_name}`.toLowerCase();
-  const bloodType = user.blood_type?.toLowerCase() || ''; // Use empty string if blood_type is null or undefined
-  const lastDonation = user.last_donation_date?.toLowerCase() || ''; // Use empty string if last_donation_date is null or undefined
-
-  return (
-    name.includes(term) ||
-    bloodType.includes(term) ||
-    lastDonation.includes(term)
-  );
-});
-
-
   return (
     <div className='flex items-center justify-center w-full mx-4 space-y-2 lg:w-full'>
       <div className='w-5/6'>
         <div className="flex items-center justify-between w-full py-6">
         <CustomButton
-        label="Add"
-        onClick={() => navigate('/Donor/Add')}
-        color="red"
-        className="!px-10"
-        
-      />
+          label="Add"
+          onClick={() => navigate('/Donor/Add')}
+          color="red"
+          className="!px-10"/>
+
           <div className="relative w-3/5">
             <input
               type="text"
@@ -64,12 +65,10 @@ const filteredProfiles = profiles?.filter((user) => {
           </div>
         </div>
 
-       
-
         <div className='py-8'>
         <table className="w-full overflow-hidden bg-white border-collapse rounded-lg shadow-md">
-            <thead className="">
-              <tr className="">
+            <thead>
+              <tr>
               <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">No</th>
               <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Name</th>
               <th className="px-6 py-3 text-sm font-medium tracking-wider text-left text-gray-500 uppercase">Email</th>
@@ -87,18 +86,15 @@ const filteredProfiles = profiles?.filter((user) => {
                     <td className="px-6 py-4 font-medium whitespace-nowrap">{index + 1}</td>
                     <td className="px-6 py-4 font-medium whitespace-nowrap">{user.f_name} {user.l_name}</td>
                     <td className="px-6 py-4 whitespace-nowrap ">{user.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap ">{user.nic_no}</td> {/* Changed from contact_number to nic_no */}
+                    <td className="px-6 py-4 whitespace-nowrap ">{user.nic_no}</td>
                     <td className="px-6 py-4 font-medium whitespace-nowrap">{user.blood_type}</td>
                     <td className="px-6 py-4 whitespace-nowrap ">{user.last_donation_date}</td>
                     <td className="p-2 space-x-2">
-                     
                       <CustomButton
                         label="View"
                         onClick={() => navigate(`/Donor/ViewDetail/${user.id}`)}
                         color="red"
-                        className="!px-4 !py-1"
-                        
-                      />
+                        className="!px-4 !py-1"/>
                     </td>
                   </tr>
                 ))
@@ -108,19 +104,14 @@ const filteredProfiles = profiles?.filter((user) => {
                 </tr>
               )}
             </tbody>
-
           </table>
 
-          
           {filteredProfiles.length > visibleRows && (
             <div className="flex justify-center mt-4">
               <CustomButton
-                        label="View"
-                        onClick={loadMore}
-                        color="red"
-                        className=""
-                        
-                      />
+                label="Load More"
+                onClick={loadMore}
+                color="red"/>
             </div>
           )}
         </div>

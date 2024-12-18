@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate,useParams, NavLink } from 'react-router-dom';
 import { supabase } from '../lib/supabase'; // Ensure your Supabase client is set up correctly
-import CustomButton from './Custombutton';
+import CustomButton from '../components/Custombutton';
 
 export default function Viewdonations() {
   const { id } = useParams(); // Get the donor_donation ID from the URL
