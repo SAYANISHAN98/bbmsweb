@@ -260,7 +260,7 @@ export default function Newtest() {
         
         <div className='flex-1 ml-2'>
         <div className='h-4 text-xs font-bold leading-8 text-gray-600 uppercase'>
-        Flage :
+        Flag :
               </div>
           <div className="flex gap-4 mt-2 ml-8">
             <label className="flex items-center">
