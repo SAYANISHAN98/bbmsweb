@@ -542,7 +542,8 @@ const Update = () => {
             <div className='flex my-2 bg-white border border-gray-200 rounded'>
         <input
           type='number'
-          min='0'
+          min='1'
+          max='3'
           name='NoOfBottles'
           value={formattedformData.NoOfBottles}
           onChange={handleChange}
