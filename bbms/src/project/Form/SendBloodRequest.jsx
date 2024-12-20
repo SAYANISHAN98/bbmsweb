@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { supabase } from '../../lib/supabase';
+import { useNavigate} from 'react-router-dom';
 
 export default function NotificationForm() {
   const [bloodGroup, setBloodGroup] = useState('');
   const [body, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,6 +71,7 @@ export default function NotificationForm() {
 
     setLoading(false);
     alert('Notifications sent to users who have not donated in the past 120 days.');
+    navigate('/Notifications');
   };
 
   // Step 6: Insert a notification for the user
